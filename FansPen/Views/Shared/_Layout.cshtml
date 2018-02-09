@@ -1,13 +1,31 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FansPen</title>
-
+    <title>@ViewData["Title"]. - FansPen</title>
+    
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @if (Context.Request.Cookies["theme"] == null)
+        {
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-readable.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        }
+         else
+        {
+            if (Context.Request.Cookies["theme"] == "dark")
+            {
+                <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-readable.css" />
+                <link rel="stylesheet" href="~/css/site.css" />
+            }
+            if (Context.Request.Cookies["theme"] == "light")
+            {
+                <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-cyborg.css" />
+                <link rel="stylesheet" href="~/css/site.css" />
+            }
+        }
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -33,6 +51,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Theme" asp-route-returnUrl ="@Context.Request.Path">Theme</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
