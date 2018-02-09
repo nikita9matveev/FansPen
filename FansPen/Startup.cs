@@ -12,9 +12,13 @@ using FansPen.Models;
 using FansPen.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+<<<<<<< HEAD
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+=======
+using Microsoft.AspNetCore.Http;
+>>>>>>> master
 
 namespace FansPen
 {

@@ -8,9 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.VK" Version="0.0.1" />
+    <PackageReference Include="bootstrap" Version="4.0.0" />
     <PackageReference Include="MailKit" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+<<<<<<< HEAD
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
+=======
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" PrivateAssets="All" />
+>>>>>>> master
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" PrivateAssets="All" />
   </ItemGroup>
 
