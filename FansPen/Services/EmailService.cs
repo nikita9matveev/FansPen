@@ -11,10 +11,12 @@ namespace FansPen.Services
     public class EmailService
     {
         public IConfiguration Configuration { get; set; }
+
         public EmailService(IConfiguration config)
         {
             Configuration = config;
         }
+
         public async Task SendEmailAsync(string email, string subject, string message)
         {
             var emailMessage = new MimeMessage();

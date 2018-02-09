@@ -39,6 +39,9 @@
         </div>
     </nav>
     <div class="container body-content">
+        <div>
+            @await Html.PartialAsync("_SelectLanguagePartial")
+        </div>
         @RenderBody()
         @*<hr />
         <footer>
