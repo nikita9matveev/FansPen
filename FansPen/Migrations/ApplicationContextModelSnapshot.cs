@@ -20,6 +20,91 @@ namespace FansPen.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("FansPen.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AboutMe");
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("AvatarUrl");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Interests");
+
+                    b.Property<string>("Lang");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("ProviderKey");
+
+                    b.Property<DateTime>("RegistrationDate");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("Style");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("FansPen.Models.ApplicationUserTopic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
+
+                    b.Property<int>("TopicId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId1");
+
+                    b.HasIndex("TopicId");
+
+                    b.ToTable("ApplicationUserTopic");
+                });
+
             modelBuilder.Entity("FansPen.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -37,21 +122,21 @@ namespace FansPen.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
+
                     b.Property<DateTime>("DataCreate");
 
                     b.Property<int?>("FanficId");
 
                     b.Property<string>("Text");
 
-                    b.Property<int?>("UserId");
-
-                    b.Property<string>("UserId1");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("FanficId");
+                    b.HasIndex("ApplicationUserId1");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("FanficId");
 
                     b.ToTable("Comments");
                 });
@@ -60,6 +145,10 @@ namespace FansPen.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
 
                     b.Property<float>("AverageRating");
 
@@ -77,15 +166,11 @@ namespace FansPen.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("UserId");
-
-                    b.Property<string>("UserId1");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("ApplicationUserId1");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Fanfics");
                 });
@@ -129,17 +214,17 @@ namespace FansPen.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
+
                     b.Property<int>("CommentId");
-
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CommentId");
+                    b.HasIndex("ApplicationUserId1");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("CommentId");
 
                     b.ToTable("Likes");
                 });
@@ -164,6 +249,8 @@ namespace FansPen.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CountOfFanfic");
 
                     b.Property<string>("Name");
 
@@ -190,89 +277,6 @@ namespace FansPen.Migrations
                     b.HasIndex("FanficId");
 
                     b.ToTable("Topics");
-                });
-
-            modelBuilder.Entity("FansPen.Models.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AboutMe");
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("AvatarUrl");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("Interests");
-
-                    b.Property<string>("Lang");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<DateTime>("RegistrationDate");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<string>("Style");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("FansPen.Models.UserTopic", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("TopicId");
-
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TopicId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("UserTopic");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -383,26 +387,38 @@ namespace FansPen.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("FansPen.Models.ApplicationUserTopic", b =>
+                {
+                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("RatedTopics")
+                        .HasForeignKey("ApplicationUserId1");
+
+                    b.HasOne("FansPen.Models.Topic", "Topic")
+                        .WithMany("WhoRated")
+                        .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("FansPen.Models.Comment", b =>
                 {
+                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("ApplicationUserId1");
+
                     b.HasOne("FansPen.Models.Fanfic", "Fanfic")
                         .WithMany("Comments")
                         .HasForeignKey("FanficId");
-
-                    b.HasOne("FansPen.Models.User", "User")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("FansPen.Models.Fanfic", b =>
                 {
+                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Fanfics")
+                        .HasForeignKey("ApplicationUserId1");
+
                     b.HasOne("FansPen.Models.Category", "Category")
                         .WithMany("Fanfics")
                         .HasForeignKey("CategoryId");
-
-                    b.HasOne("FansPen.Models.User", "User")
-                        .WithMany("Fanfics")
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("FansPen.Models.FanficTag", b =>
@@ -427,14 +443,14 @@ namespace FansPen.Migrations
 
             modelBuilder.Entity("FansPen.Models.Like", b =>
                 {
+                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Likes")
+                        .HasForeignKey("ApplicationUserId1");
+
                     b.HasOne("FansPen.Models.Comment", "Comment")
                         .WithMany("Likes")
                         .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("FansPen.Models.User", "User")
-                        .WithMany("Likes")
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("FansPen.Models.Rating", b =>
@@ -451,18 +467,6 @@ namespace FansPen.Migrations
                         .HasForeignKey("FanficId");
                 });
 
-            modelBuilder.Entity("FansPen.Models.UserTopic", b =>
-                {
-                    b.HasOne("FansPen.Models.Topic", "Topic")
-                        .WithMany("WhoRated")
-                        .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("FansPen.Models.User", "User")
-                        .WithMany("RatedTopics")
-                        .HasForeignKey("UserId1");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -473,7 +477,7 @@ namespace FansPen.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("FansPen.Models.User")
+                    b.HasOne("FansPen.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -481,7 +485,7 @@ namespace FansPen.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("FansPen.Models.User")
+                    b.HasOne("FansPen.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -494,7 +498,7 @@ namespace FansPen.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FansPen.Models.User")
+                    b.HasOne("FansPen.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -502,7 +506,7 @@ namespace FansPen.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("FansPen.Models.User")
+                    b.HasOne("FansPen.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

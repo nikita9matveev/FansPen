@@ -14,6 +14,7 @@ namespace FansPen.Models
         public string Lang { get; set; }
         public string Style { get; set; }
         public string AvatarUrl { get; set; }
+        public string ProviderKey { get; set; }
         public ICollection<Fanfic> Fanfics { get; set; }
         public ICollection<Like> Likes { get; set; }
         public ICollection<Comment> Comments { get; set; }
@@ -24,6 +25,11 @@ namespace FansPen.Models
             Likes = new List<Like>();
             Comments = new List<Comment>();
             RatedTopics = new List<ApplicationUserTopic>();
+        }
+
+        internal object FindById(object p)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -118,6 +124,7 @@ namespace FansPen.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int CountOfFanfic { get; set; }
         public virtual ICollection<FanficTag> FanficTags { get; set; }
         public Tag()
         {

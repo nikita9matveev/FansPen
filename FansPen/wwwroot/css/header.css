@@ -1,0 +1,157 @@
+﻿@media(max-width: 767px) {
+    #deskLogo {
+        display: none;
+    }
+
+    #mobileLogo {
+        display: block;
+    }
+}
+
+@media(min-width: 768px) {
+    #deskLogo {
+        display: block;
+    }
+
+    #mobileLogo {
+        display: none;
+    }
+}
+
+.navbar #LoginRegBlock {
+    color: lightgray;
+}
+
+.navbar a {
+    color: white;
+}
+
+@media(min-width: 768px) {
+    .navbar #LoginRegBlock {
+        text-align: right;
+        padding-top: 19px;
+    }
+    .navbar #LogReg {
+        
+    }
+}
+
+#themeBlock img {
+    height: 26px;
+    cursor: pointer;
+}
+
+@media(min-width: 768px) {
+    #themeBlock {
+        text-align: right;
+        padding-top: 17px;
+    }
+}
+
+#langBlock button {
+    background: initial;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#langBlock img {
+    height: 26px;
+    cursor: pointer;
+}
+
+@media(min-width: 768px) {
+    #langBlock {
+        padding-top: 17px;
+    }
+}
+
+#mySearch {
+    padding-top: 17px;
+}
+
+#mySearch input {
+    border: 0;
+    height: 26px;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0px 10px 0px 10px;
+}
+
+/*         */
+
+.nav {
+    left: 50%;
+    /*margin-left: -150px;*/
+    /*top: 50px;*/
+    position: absolute;
+}
+
+#userIcon {
+    padding: 0px !important;
+}
+
+#userIcon img {
+    height: 26px;
+    border-radius: 5px;
+}
+
+    .nav > li > a:hover, .nav > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+        background: #fff;
+    }
+
+.dropdown {
+    /*background: #fff;
+    border: 1px solid #ccc;*/
+    border-radius: 4px;
+    /*width: 300px;*/
+}
+
+.dropdown-menu > li > a {
+    color: #428bca;
+}
+
+.dropdown ul.dropdown-menu {
+    border-radius: 4px;
+    left: -120px;
+    box-shadow: none;
+    margin-top: 20px;
+    width: 80px;
+}
+
+    .dropdown ul.dropdown-menu:before {
+        content: "";
+        border-bottom: 10px solid #fff;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        position: absolute;
+        top: -10px;
+        right: 16px;
+        z-index: 10;
+    }
+
+    .dropdown ul.dropdown-menu:after {
+        content: "";
+        border-bottom: 12px solid #ccc;
+        border-right: 12px solid transparent;
+        border-left: 12px solid transparent;
+        position: absolute;
+        top: -12px;
+        right: 14px;
+        z-index: 9;
+    }
+
+.btnlink {
+    color: #428bca;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 3px 20px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.formlink {
+    float: none;
+}

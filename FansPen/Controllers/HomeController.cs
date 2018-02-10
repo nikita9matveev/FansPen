@@ -5,12 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FansPen.Models;
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Localization;
-=======
 using Microsoft.AspNetCore.Http.Abstractions;
->>>>>>> master
 using Microsoft.AspNetCore.Http;
+using System.Globalization;
 
 namespace FansPen.Controllers
 {
@@ -22,28 +20,15 @@ namespace FansPen.Controllers
         }
 
         [HttpPost]
-        public IActionResult SetLanguage(string culture, string returnUrl)
+        public IActionResult SetLanguage(string returnUrl)
         {
+            string culture = CultureInfo.CurrentCulture.Name == "ru" ? "en" : "ru";
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
             );
             return LocalRedirect(returnUrl);
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
         }
 
         public IActionResult Theme(string returnUrl)

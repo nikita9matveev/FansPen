@@ -25,6 +25,7 @@ namespace FansPen.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private ApplicationContext _db;
 
         public IConfiguration Configuration { get; set; }
 
@@ -33,13 +34,15 @@ namespace FansPen.Controllers
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
-            IConfiguration config)
+            IConfiguration config,
+            ApplicationContext db)
         {
             Configuration = config;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _db = db;
         }
 
         [TempData]
@@ -79,6 +82,7 @@ namespace FansPen.Controllers
                                                     model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    Response.Cookies.Append("avatarUrl", user.AvatarUrl);
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -224,7 +228,7 @@ namespace FansPen.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, RegistrationDate = DateTime.Now, AvatarUrl = "./images/icons/user.png" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -284,6 +288,8 @@ namespace FansPen.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
+                var user = _db.Users.Where(users => users.ProviderKey == info.ProviderKey).FirstOrDefault();
+                Response.Cookies.Append("avatarUrl", user.AvatarUrl);
                 _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
@@ -314,7 +320,14 @@ namespace FansPen.Controllers
                 {
                     throw new ApplicationException("Error loading external login information during confirmation.");
                 }
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, RegistrationDate = DateTime.Now };
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    RegistrationDate = DateTime.Now,
+                    AvatarUrl = "./images/icons/user.png",
+                    ProviderKey = info.ProviderKey
+                };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
