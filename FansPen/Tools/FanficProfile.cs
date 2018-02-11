@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace FansPen.Web.Tools
 {
-    public class CommentProfile: Profile
+    public class FanficProfile: Profile
     {
-        public CommentProfile()
+        public FanficProfile()
         {
-            CreateMap<Comment, CommentViewModel>();
+            CreateMap<Fanfic, FanficViewModel>();
         }
     }
 }
