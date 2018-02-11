@@ -4,11 +4,11 @@ using FansPen.Web.Models.ViewModels;
 
 namespace FansPen.Web.Tools
 {
-    public class FanficProfile : Profile
+    public class PreviewUserProfile : Profile
     {
-        public FanficProfile()
+        public PreviewUserProfile()
         {
-            CreateMap<Fanfic, FanficViewModel>();
+            CreateMap<ApplicationUser, PreviewUserViewModel>();
         }
     }
 }

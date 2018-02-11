@@ -70,10 +70,5 @@ namespace FansPen.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        //public void Test(CommentViewModel model)
-        //{
-        //    var a = Mapper.Map<List<Comment>>(new List<CommentViewModel> { model });
-        //}
     }
 }

@@ -32,10 +32,15 @@
 .autherBlock {
     width: 100%;
     height: 60px;
-    background: red;
+    /*background: red;*/
     padding-top: 10px;
 }
 
 .thumbnail {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.autherBlock .avatarImg {
+    height: 37px;
+    border-radius: 50%;
 }

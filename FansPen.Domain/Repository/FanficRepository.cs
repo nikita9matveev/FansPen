@@ -17,7 +17,7 @@ namespace FansPen.Domain.Repository
 
         public List<Fanfic> GetAllItems()
         {
-            return fanficEntity.Include(x=>x.Category).ToList();
+            return fanficEntity.Include(x => x.Category).Include(x => x.ApplicationUser).ToList();
         }
     }
 }
