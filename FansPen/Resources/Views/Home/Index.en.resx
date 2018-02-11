@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Hello" xml:space="preserve">
-    <value>Hello epta</value>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Anime" xml:space="preserve">
+    <value>Anime and Manga</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>Books</value>
+  </data>
+  <data name="Films" xml:space="preserve">
+    <value>Films</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Сomics" xml:space="preserve">
+    <value>Сomics</value>
   </data>
 </root>

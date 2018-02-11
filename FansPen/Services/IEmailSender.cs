@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FansPen.Services
+namespace FansPen.Web.Services
 {
     public interface IEmailSender
     {

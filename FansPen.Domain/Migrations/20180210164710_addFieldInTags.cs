@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FansPen.Migrations
+namespace FansPen.Domain.Migrations
 {
     public partial class addFieldInTags : Migration
     {

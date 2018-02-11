@@ -1,6 +1,6 @@
 using System;
 
-namespace FansPen.Models
+namespace FansPen.Web.Models
 {
     public class ErrorViewModel
     {

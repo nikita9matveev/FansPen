@@ -6,7 +6,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 
-namespace FansPen.Services
+namespace FansPen.Web.Services
 {
     public class EmailService
     {

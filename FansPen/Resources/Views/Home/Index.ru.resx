@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Hello" xml:space="preserve">
-    <value>Здарова епта</value>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Anime" xml:space="preserve">
+    <value>Аниме и манга</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>Книги</value>
+  </data>
+  <data name="Films" xml:space="preserve">
+    <value>Фильмы</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Игры</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="Сomics" xml:space="preserve">
+    <value>Комиксы</value>
   </data>
 </root>

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace FansPen.Views.Manage
+namespace FansPen.Web.Views.Manage
 {
     public static class ManageNavPages
     {

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using FansPen.Domain.Models;
 
-namespace FansPen.Models
+namespace FansPen.Domain.Models
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {

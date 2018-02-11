@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace FansPen.Models.ManageViewModels
+namespace FansPen.Web.Models.ManageViewModels
 {
     public class ExternalLoginsViewModel
     {

@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using FansPen.Models;
-using FansPen.Models.ManageViewModels;
-using FansPen.Services;
+using FansPen.Domain.Models;
+using FansPen.Web.Models.ManageViewModels;
+using FansPen.Web.Services;
 
-namespace FansPen.Controllers
+namespace FansPen.Web.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

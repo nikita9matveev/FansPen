@@ -10,12 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using FansPen.Models;
-using FansPen.Models.AccountViewModels;
-using FansPen.Services;
+using FansPen.Web.Models.AccountViewModels;
+using FansPen.Web.Services;
 using Microsoft.Extensions.Configuration;
+using FansPen.Domain.Models;
 
-namespace FansPen.Controllers
+namespace FansPen.Web.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

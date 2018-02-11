@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FansPen.Models.AccountViewModels
+namespace FansPen.Web.Models.AccountViewModels
 {
     public class RegisterViewModel
     {

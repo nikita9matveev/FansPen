@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FansPen.Models.ManageViewModels
+namespace FansPen.Web.Models.ManageViewModels
 {
     public class TwoFactorAuthenticationViewModel
     {

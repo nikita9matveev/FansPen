@@ -8,16 +8,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FansPen.Models;
-using FansPen.Services;
+using FansPen.Domain.Models;
+using FansPen.Web.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
+using AutoMapper;
 
-namespace FansPen
+namespace FansPen.Web
 {
     public class Startup
     {
@@ -44,6 +45,7 @@ namespace FansPen
             //services.AddMvc();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddAutoMapper();
             services.AddMvc()
                .AddDataAnnotationsLocalization()
                .AddViewLocalization();

@@ -4,18 +4,32 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FansPen.Models;
+using FansPen.Web.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http.Abstractions;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
+using FansPen.Web.Models.ViewModels;
+using AutoMapper;
+using FansPen.Domain.Models;
+using FansPen.Domain.Repository;
 
-namespace FansPen.Controllers
+namespace FansPen.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public FanficRepository FanficRepository;
+        public ApplicationContext Context;
+
+        public HomeController(ApplicationContext context)
+        {
+            Context = context;
+            FanficRepository = new FanficRepository(context);
+        }
+
         public IActionResult Index()
         {
+            var a = FanficRepository.GetList();
             return View();
         }
 
@@ -54,6 +68,11 @@ namespace FansPen.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public void Test(CommentViewModel model)
+        {
+            var a = Mapper.Map<List<Comment>>(new List<CommentViewModel> { model });
         }
     }
 }
