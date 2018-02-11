@@ -29,7 +29,6 @@ namespace FansPen.Web.Controllers
 
         public IActionResult Index()
         {
-            var a = FanficRepository.GetList();
             return View();
         }
 
