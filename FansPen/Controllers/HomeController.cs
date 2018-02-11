@@ -19,17 +19,23 @@ namespace FansPen.Web.Controllers
     public class HomeController : Controller
     {
         public FanficRepository FanficRepository;
-        public ApplicationContext Context;
 
         public HomeController(ApplicationContext context)
         {
-            Context = context;
             FanficRepository = new FanficRepository(context);
         }
 
         public IActionResult Index()
         {
-            return View();
+            var fanfic = FanficRepository.GetAllItems();
+            var model = Mapper.Map<List<FanficViewModel>>(fanfic);
+            return View(model);
+        }
+
+        public IActionResult Category()
+        {
+            var model = new CategoryViewModel { Id = 1, Name = "Test" };
+            return View(model);
         }
 
         [HttpPost]
