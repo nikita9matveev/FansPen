@@ -19,23 +19,19 @@ namespace FansPen.Web.Controllers
     public class HomeController : Controller
     {
         public FanficRepository FanficRepository;
+        public CategoryRepository CategoryRepository;
 
         public HomeController(ApplicationContext context)
         {
             FanficRepository = new FanficRepository(context);
+            CategoryRepository = new CategoryRepository(context);
         }
 
         public IActionResult Index()
         {
-            var fanfic = FanficRepository.GetAllItems();
-            var model = Mapper.Map<List<FanficViewModel>>(fanfic);
-            return View(model);
-        }
-
-        public IActionResult Category()
-        {
-            var model = new CategoryViewModel { Id = 1, Name = "Test" };
-            return View(model);
+            var fansList = Mapper.Map<List<FanficViewModel>>(FanficRepository.GetAllItems());
+            var categList = Mapper.Map<List<CategoryViewModel>>(CategoryRepository.GetList());
+            return View(new HomeViewModel(fansList, categList));
         }
 
         [HttpPost]
@@ -75,9 +71,9 @@ namespace FansPen.Web.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public void Test(CommentViewModel model)
-        {
-            var a = Mapper.Map<List<Comment>>(new List<CommentViewModel> { model });
-        }
+        //public void Test(CommentViewModel model)
+        //{
+        //    var a = Mapper.Map<List<Comment>>(new List<CommentViewModel> { model });
+        //}
     }
 }

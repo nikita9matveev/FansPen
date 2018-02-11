@@ -1,32 +1,26 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
-@model List<FanficViewModel>
+@model HomeViewModel
 
 @inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "Home Page";
 }
 <div id="content">
-    <div class="row">
-        <div class="col-sm-3" style="background:red;height:100px">
-            <div class="row">
-                <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
-                    <li class="active"><a href="#vtab1" data-toggle="tab">@Localizer["All"]</a></li>
-                    <li><a href="#vtab2" data-toggle="tab">@Localizer["Anime"]</a></li>
-                    <li><a href="#vtab3" data-toggle="tab">@Localizer["Games"]</a></li>
-                    <li><a href="#vtab3" data-toggle="tab">@Localizer["Books"]</a></li>
-                    <li><a href="#vtab3" data-toggle="tab">@Localizer["Other"]</a></li>
-                    <li><a href="#vtab3" data-toggle="tab">@Localizer["Сomics"]</a></li>
-                    <li><a href="#vtab3" data-toggle="tab">@Localizer["Films"]</a></li>
-                </ul>
-            </div>
-            <div class="row">
+    <div class="col-sm-2">
+        <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
+            @foreach (var item in Model.Categorys)
+            {
+                <li><a href="#vtab1" data-toggle="tab">@Localizer[item.Name]</a></li>
+            }
+        </ul>
+        @*<div class="row">
                 <div class="TagCloud">
 
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-9" style="background:blue;height:1000px">
-            <table class="table table-bordered table-striped table-condensed">
+            </div>*@
+    </div>
+    <div class="col-sm-8">
+        @*<table class="table table-bordered table-striped table-condensed">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -36,17 +30,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Fanfics)
                     {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Category.Id)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
-                    </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Category.Id)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                        </tr>
                     }
                 </tbody>
-            </table>
+            </table>*@
+        <div class="thumbnail">
+            <div class="autherBlock">
+                <div class="col-xs-6">
+                    <div class="col-xs-2" style="background:green;">
+                        Img
+                    </div>
+                    <div class="col-xs-10" style="background:blue;">
+                        <div class="col-xs-12" style="background:yellow;">
+                            User Name
+                        </div>
+                        <div class="col-xs-12" style="background:black;">
+                            Data
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2 col-xs-offset-4">
+                    Rating
+                </div>
+            </div>
+            <div class="imgFanfic"><img src="~/images/icons/1.jpg"></div>
+            <div class="caption">
+                <p>Text</p>
+                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
         </div>
     </div>
 </div>

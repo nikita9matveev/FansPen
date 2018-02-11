@@ -32,6 +32,7 @@
     </environment>
     <link rel="stylesheet" href="~/css/header.css" />
     <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/lenta.css" />
     <script defer src="~/lib/fontawesome-free-5.0.6/on-server/js/fontawesome-all.js"></script>
 </head>
 <body>
@@ -47,10 +48,10 @@
                     </button>
                     <div id="mobileLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
                 </div>
-                <div class="col-sm-3" id="deskLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
+                <div class="col-sm-2" id="deskLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
                 <div class="navbar-collapse collapse">
 
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                         <form id="mySearch" role="search">
                             <input type="text" placeholder="@Localizer["Search"]">
                         </form>
