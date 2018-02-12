@@ -126,6 +126,9 @@
   <data name="Books" xml:space="preserve">
     <value>Книги</value>
   </data>
+  <data name="Comics" xml:space="preserve">
+    <value>Комиксы</value>
+  </data>
   <data name="Films" xml:space="preserve">
     <value>Фильмы</value>
   </data>
@@ -134,8 +137,5 @@
   </data>
   <data name="Other" xml:space="preserve">
     <value>Другое</value>
-  </data>
-  <data name="Сomics" xml:space="preserve">
-    <value>Комиксы</value>
   </data>
 </root>

@@ -13,5 +13,6 @@ namespace FansPen.Web.Models.ViewModels
         public DateTime CreateDate { get; set; }
         public DateTime EditingDate { get; set; }
         public CategoryViewModel Category { get; set; }
+        public PreviewUserViewModel ApplicationUser { get; set; }
     }
 }
