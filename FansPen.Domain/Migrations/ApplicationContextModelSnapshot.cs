@@ -20,7 +20,7 @@ namespace FansPen.Domain.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FansPen.Models.ApplicationUser", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -85,7 +85,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("FansPen.Models.ApplicationUserTopic", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.ApplicationUserTopic", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -105,7 +105,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("ApplicationUserTopic");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Category", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -117,7 +117,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Comment", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -141,7 +141,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Fanfic", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Fanfic", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -175,7 +175,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("Fanfics");
                 });
 
-            modelBuilder.Entity("FansPen.Models.FanficTag", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.FanficTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -193,7 +193,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("FanficTag");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Img", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Img", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -209,7 +209,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("Imgs");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Like", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Like", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -229,7 +229,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("Likes");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Rating", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Rating", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -245,7 +245,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Tag", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -259,7 +259,7 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Topic", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Topic", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -387,82 +387,82 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FansPen.Models.ApplicationUserTopic", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.ApplicationUserTopic", b =>
                 {
-                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("RatedTopics")
                         .HasForeignKey("ApplicationUserId1");
 
-                    b.HasOne("FansPen.Models.Topic", "Topic")
+                    b.HasOne("FansPen.Domain.Models.Topic", "Topic")
                         .WithMany("WhoRated")
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FansPen.Models.Comment", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Comment", b =>
                 {
-                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Comments")
                         .HasForeignKey("ApplicationUserId1");
 
-                    b.HasOne("FansPen.Models.Fanfic", "Fanfic")
+                    b.HasOne("FansPen.Domain.Models.Fanfic", "Fanfic")
                         .WithMany("Comments")
                         .HasForeignKey("FanficId");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Fanfic", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Fanfic", b =>
                 {
-                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Fanfics")
                         .HasForeignKey("ApplicationUserId1");
 
-                    b.HasOne("FansPen.Models.Category", "Category")
+                    b.HasOne("FansPen.Domain.Models.Category", "Category")
                         .WithMany("Fanfics")
                         .HasForeignKey("CategoryId");
                 });
 
-            modelBuilder.Entity("FansPen.Models.FanficTag", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.FanficTag", b =>
                 {
-                    b.HasOne("FansPen.Models.Fanfic", "Fanfic")
+                    b.HasOne("FansPen.Domain.Models.Fanfic", "Fanfic")
                         .WithMany("FanficTags")
                         .HasForeignKey("FanficId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FansPen.Models.Tag", "Tag")
+                    b.HasOne("FansPen.Domain.Models.Tag", "Tag")
                         .WithMany("FanficTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FansPen.Models.Img", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Img", b =>
                 {
-                    b.HasOne("FansPen.Models.Topic", "Topic")
+                    b.HasOne("FansPen.Domain.Models.Topic", "Topic")
                         .WithMany("Imgs")
                         .HasForeignKey("TopicId");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Like", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Like", b =>
                 {
-                    b.HasOne("FansPen.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Likes")
                         .HasForeignKey("ApplicationUserId1");
 
-                    b.HasOne("FansPen.Models.Comment", "Comment")
+                    b.HasOne("FansPen.Domain.Models.Comment", "Comment")
                         .WithMany("Likes")
                         .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FansPen.Models.Rating", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Rating", b =>
                 {
-                    b.HasOne("FansPen.Models.Topic", "Topic")
+                    b.HasOne("FansPen.Domain.Models.Topic", "Topic")
                         .WithMany("Ratings")
                         .HasForeignKey("TopicId");
                 });
 
-            modelBuilder.Entity("FansPen.Models.Topic", b =>
+            modelBuilder.Entity("FansPen.Domain.Models.Topic", b =>
                 {
-                    b.HasOne("FansPen.Models.Fanfic", "Fanfic")
+                    b.HasOne("FansPen.Domain.Models.Fanfic", "Fanfic")
                         .WithMany("Topics")
                         .HasForeignKey("FanficId");
                 });
@@ -477,7 +477,7 @@ namespace FansPen.Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("FansPen.Models.ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -485,7 +485,7 @@ namespace FansPen.Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("FansPen.Models.ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -498,7 +498,7 @@ namespace FansPen.Domain.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FansPen.Models.ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -506,7 +506,7 @@ namespace FansPen.Domain.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("FansPen.Models.ApplicationUser")
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

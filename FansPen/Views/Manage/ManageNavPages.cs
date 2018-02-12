@@ -17,7 +17,9 @@ namespace FansPen.Web.Views.Manage
 
         public static string ExternalLogins => "ExternalLogins";
 
-        public static string TwoFactorAuthentication => "TwoFactorAuthentication";
+        public static string DisplayUserFanfics => "DisplayUserFanfics";
+
+        public static string AddNewFanfic => "AddNewFanfic";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
@@ -25,7 +27,9 @@ namespace FansPen.Web.Views.Manage
 
         public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 
-        public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
+        public static string DisplayUserFanficsNavClass(ViewContext viewContext) => PageNavClass(viewContext, DisplayUserFanfics);
+
+        public static string AddNewFanficNavClass(ViewContext viewContext) => PageNavClass(viewContext, AddNewFanfic); 
     
         public static string PageNavClass(ViewContext viewContext, string page)
         {

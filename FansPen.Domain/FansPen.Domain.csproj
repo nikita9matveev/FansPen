@@ -90,8 +90,8 @@
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.2.0.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.SqlServer.2.0.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.SqlServer.2.0.0\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
@@ -194,6 +194,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Migrations\20180211130411_Main.cs" />
+    <Compile Include="Migrations\20180211130411_Main.designer.cs">
+      <DependentUpon>20180211130411_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ApplicationUserTopicModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
@@ -205,19 +210,6 @@
     <Compile Include="Models\RatingModel.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TopicModel.cs" />
-    <Compile Include="Migrations\20180209140846_AllModels.cs" />
-    <Compile Include="Migrations\20180209140846_AllModels.Designer.cs">
-      <DependentUpon>20180209140846_AllModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180210145009_addProviderKey.cs" />
-    <Compile Include="Migrations\20180210145009_addProviderKey.Designer.cs">
-      <DependentUpon>20180210145009_addProviderKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180210164710_addFieldInTags.cs" />
-    <Compile Include="Migrations\20180210164710_addFieldInTags.Designer.cs">
-      <DependentUpon>20180210164710_addFieldInTags.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\FanficRepository.cs" />

@@ -1,0 +1,9 @@
+﻿@media(max-width:767px) {
+    .RegisterImage {
+        display: none;
+    }
+}
+
+#RegisterMain {
+    margin-top: 50px;
+}

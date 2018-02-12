@@ -12,6 +12,8 @@ namespace FansPen.Web.Models.ManageViewModels
 
         public bool IsEmailConfirmed { get; set; }
 
+        public string Language { get; set; }
+
         [Required]
         [EmailAddress]
         public string Email { get; set; }

@@ -30,8 +30,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-    <link rel="stylesheet" href="~/css/header.css" />
-    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" asp-href-include="~/css/*.css" asp-append-version="true"/>
     <script defer src="~/lib/fontawesome-free-5.0.6/on-server/js/fontawesome-all.js"></script>
 </head>
 <body>
@@ -78,7 +77,8 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+
+    <div class="container body-content">        
         @RenderBody()
     </div>
 

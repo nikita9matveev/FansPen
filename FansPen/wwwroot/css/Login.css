@@ -1,0 +1,27 @@
+﻿@media(max-width:767px){
+    .LogImage{
+        display:none;
+    }
+}
+
+#LoginMain {
+    margin-top: 20px;
+}
+
+#SignInLabel {
+    margin-left: -10px;
+}
+
+#LoginRememberMe {
+    margin-top: 0px;
+}
+
+#LoginOrLabel {
+    padding-left: 7px;
+}
+
+#LoginProviders {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}

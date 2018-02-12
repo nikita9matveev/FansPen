@@ -14,6 +14,7 @@ using FansPen.Domain.Models;
 using FansPen.Web.Models.ManageViewModels;
 using FansPen.Web.Services;
 
+
 namespace FansPen.Web.Controllers
 {
     [Authorize]
@@ -26,6 +27,9 @@ namespace FansPen.Web.Controllers
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
 
+        //ApplicationContext _context;
+        //IHostingEnvironment _appEnvironment;
+
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
         public ManageController(
@@ -33,13 +37,17 @@ namespace FansPen.Web.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder
+          /*ApplicationContext context, IHostingEnvironment appEnvironment*/)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+
+            //_context = context;
+            //_appEnvironment = appEnvironment;
         }
 
         [TempData]
@@ -104,6 +112,26 @@ namespace FansPen.Web.Controllers
             StatusMessage = "Your profile has been updated";
             return RedirectToAction(nameof(Index));
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> AddFile(IFormFile uploadedFile)
+        //{
+        //    if (uploadedFile != null)
+        //    {
+        //        // путь к папке Files
+        //        string path = "/Files/" + uploadedFile.FileName;
+        //        // сохраняем файл в папку Files в каталоге wwwroot
+        //        using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+        //        {
+        //            await uploadedFile.CopyToAsync(fileStream);
+        //        }
+        //        ApplicationUser file = new ApplicationUser { Style = uploadedFile.FileName, AvatarUrl = path };
+        //        _context.Users.Add(file);
+        //        _context.SaveChanges();
+        //    }
+
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
