@@ -80,11 +80,16 @@
 
 /*         */
 
-.nav {
-    left: 50%;
-    /*margin-left: -150px;*/
-    /*top: 50px;*/
+@media(min-width: 768px){
+    .nav {
+        float: right;
+        /*left: 50%;*/
+        /*margin-left: -150px;*/
+        /*top: 50px;*/
+        /*position: absolute;*/
+    }
 }
+
 
 #userIcon {
     padding: 0px !important;

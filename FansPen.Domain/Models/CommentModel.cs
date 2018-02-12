@@ -10,7 +10,7 @@ namespace FansPen.Domain.Models
         public int Id { get; set; }
         public int? FanficId { get; set; }
         public Fanfic Fanfic { get; set; }
-        public int? ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public ICollection<Like> Likes { get; set; }
         public string Text { get; set; }
