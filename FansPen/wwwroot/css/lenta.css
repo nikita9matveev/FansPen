@@ -14,7 +14,7 @@
     background-color: #000;
     height: 100%;
     left: 0;
-    opacity: 0.5;
+    opacity: 0.6;
     position: absolute;
     top: 0;
     -webkit-transition: opacity 0.3s;
@@ -26,21 +26,106 @@
 }
 
 .imgFanfic:hover:after {
-    opacity: 0;
+    opacity: 0.4;
 }
 
 .autherBlock {
-    width: 100%;
-    height: 60px;
-    /*background: red;*/
-    padding-top: 10px;
+    padding: 5px 0 5px 0;
 }
 
 .thumbnail {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-.autherBlock .avatarImg {
+.avatarImg {
     height: 37px;
     border-radius: 50%;
 }
+
+.titleFanfic {
+    position: absolute;
+    z-index: 500;
+    color: white;
+    width: 100%;
+    height: 100%;
+    top: 40%;
+}
+
+.titleFanficH4 {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/******/
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    line-height: 1.2em;
+    font-size: 30px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating label input:checked ~ .icon{
+  color: #09f;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}
+
+@media(min-width:768px) {
+    .starsRating {
+        text-align: right;
+    }
+}
+
+/******/
