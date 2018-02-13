@@ -21,17 +21,35 @@ namespace FansPen.Web.Controllers
         public FanficRepository FanficRepository;
         public CategoryRepository CategoryRepository;
 
+        private HomeViewModel _homeModel;
+
         public HomeController(ApplicationContext context)
         {
             FanficRepository = new FanficRepository(context);
             CategoryRepository = new CategoryRepository(context);
+            _homeModel = new HomeViewModel(Mapper.Map<List<CategoryViewModel>>(CategoryRepository.GetList()));
         }
 
         public IActionResult Index()
         {
-            var fansList = Mapper.Map<List<FanficViewModel>>(FanficRepository.GetAllItems());
-            var categList = Mapper.Map<List<CategoryViewModel>>(CategoryRepository.GetList());
-            return View(new HomeViewModel(fansList, categList));
+            _homeModel.SetFanficList(Mapper.Map<List<FanficViewModel>>(FanficRepository.GetAllItems()));
+            return View(_homeModel);
+        }
+
+        [HttpGet]
+        [Route("Category")]
+        public IActionResult Category(string value)
+        {
+            _homeModel.SetFanficList(Mapper.Map<List<FanficViewModel>>(FanficRepository.GetItemByCategory(value)));
+            return View("Index", _homeModel);
+        }
+
+        [HttpGet]
+        [Route("Tags")]
+        public IActionResult Tags(string value)
+        {
+            _homeModel.SetFanficList(Mapper.Map<List<FanficViewModel>>(FanficRepository.GetItemByTags(value)));
+            return View("Index", _homeModel);
         }
 
         [HttpPost]
@@ -46,7 +64,7 @@ namespace FansPen.Web.Controllers
             return LocalRedirect(returnUrl);
         }
 
-        public IActionResult Theme(string returnUrl)
+        public IActionResult Theme(string returnUrl, string value)
         {
             if (Request.Cookies["theme"] == null)
             {
