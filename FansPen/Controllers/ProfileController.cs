@@ -8,5 +8,6 @@ namespace FansPen.Web.Controllers
 {
     public class ProfileController : Controller
     {
+
     }
 }

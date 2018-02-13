@@ -21,13 +21,18 @@ namespace FansPen.Domain.Repository
 
         public List<Fanfic> GetAllItems()
         {
-            return _fanficEntity.Include(x => x.Category).Include(x => x.ApplicationUser).ToList();
+            return _fanficEntity
+                .Include(x => x.Category)
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.FanficTags).ToList();
         }
 
         public List<Fanfic> GetItemByCategory(string category)
         {
-            return _fanficEntity.Include(x => x.Category)
+            return _fanficEntity
+                .Include(x => x.Category)
                 .Include(x => x.ApplicationUser)
+                .Include(x => x.FanficTags)
                 .Where(x => x.Category.Name == category).ToList();
         }
 
@@ -37,7 +42,7 @@ namespace FansPen.Domain.Repository
             List<FanficTag> tagFanfic = _tagFanficRepository.GetItemByTagId(tagId);
             List<Fanfic> fanficsResult = new List<Fanfic>();
             List<Fanfic> fanficsList = _fanficEntity.Include(x => x.Category)
-                .Include(x => x.ApplicationUser).ToList();
+                .Include(x => x.ApplicationUser).Include(x => x.FanficTags).ToList();
             foreach (var tagFan in tagFanfic)
             {
                 foreach (var fan in fanficsList)
@@ -45,6 +50,7 @@ namespace FansPen.Domain.Repository
                     if (tagFan.FanficId == fan.Id)
                     {
                         fanficsResult.Add(fan);
+                        break;
                     }
                 }
             }

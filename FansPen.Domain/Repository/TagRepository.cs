@@ -14,6 +14,11 @@ namespace FansPen.Domain.Repository
             _tagEntity = context.Set<Tag>();
         }
 
+        public List<Tag> GetOrderItems()
+        {
+            return _tagEntity.OrderByDescending(x => x.CountOfFanfic).Take(10).ToList();
+        }
+
         public int GetItemByName(string name)
         {
             var tag = _tagEntity.SingleOrDefault(x => x.Name == name);
