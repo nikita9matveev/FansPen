@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FansPen.Web.Models.ViewModels
 {
@@ -14,5 +15,11 @@ namespace FansPen.Web.Models.ViewModels
         public DateTime EditingDate { get; set; }
         public CategoryViewModel Category { get; set; }
         public PreviewUserViewModel ApplicationUser { get; set; }
+        public List<TagViewModel> Tags { get; set; }
+        public ICollection<FanficTagViewModel> FanficTags { get; set; }
+        public FanficViewModel()
+        {
+            Tags = new List<TagViewModel>();
+        }
     }
 }

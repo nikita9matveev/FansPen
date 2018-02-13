@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FansPen.Domain.Migrations
 {
-    public partial class Main : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -194,8 +194,7 @@ namespace FansPen.Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<int>(nullable: true),
-                    ApplicationUserId1 = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     AverageRating = table.Column<float>(nullable: false),
                     CategoryId = table.Column<int>(nullable: true),
                     Content = table.Column<string>(nullable: true),
@@ -209,8 +208,8 @@ namespace FansPen.Domain.Migrations
                 {
                     table.PrimaryKey("PK_Fanfics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Fanfics_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_Fanfics_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -228,8 +227,7 @@ namespace FansPen.Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<int>(nullable: true),
-                    ApplicationUserId1 = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     DataCreate = table.Column<DateTime>(nullable: false),
                     FanficId = table.Column<int>(nullable: true),
                     Text = table.Column<string>(nullable: true)
@@ -238,8 +236,8 @@ namespace FansPen.Domain.Migrations
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_Comments_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -305,16 +303,15 @@ namespace FansPen.Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<int>(nullable: false),
-                    ApplicationUserId1 = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     CommentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Likes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Likes_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_Likes_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -332,16 +329,15 @@ namespace FansPen.Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<int>(nullable: false),
-                    ApplicationUserId1 = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     TopicId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ApplicationUserTopic", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ApplicationUserTopic_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_ApplicationUserTopic_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -394,9 +390,9 @@ namespace FansPen.Domain.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplicationUserTopic_ApplicationUserId1",
+                name: "IX_ApplicationUserTopic_ApplicationUserId",
                 table: "ApplicationUserTopic",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationUserTopic_TopicId",
@@ -443,9 +439,9 @@ namespace FansPen.Domain.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ApplicationUserId1",
+                name: "IX_Comments_ApplicationUserId",
                 table: "Comments",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_FanficId",
@@ -453,9 +449,9 @@ namespace FansPen.Domain.Migrations
                 column: "FanficId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Fanfics_ApplicationUserId1",
+                name: "IX_Fanfics_ApplicationUserId",
                 table: "Fanfics",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Fanfics_CategoryId",
@@ -478,9 +474,9 @@ namespace FansPen.Domain.Migrations
                 column: "TopicId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Likes_ApplicationUserId1",
+                name: "IX_Likes_ApplicationUserId",
                 table: "Likes",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Likes_CommentId",

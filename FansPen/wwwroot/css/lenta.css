@@ -65,6 +65,14 @@
     font-size: 30px;
 }
 
+.rating input {
+    cursor: default !important;
+}
+
+.rating span {
+    cursor: default !important;
+}
+
 .rating label {
   position: absolute;
   top: 0;

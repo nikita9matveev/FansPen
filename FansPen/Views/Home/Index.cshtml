@@ -4,13 +4,18 @@
 @inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "Home Page";
+    var currentPath = Context.Request.Path.ToString();
+    var currentQuery = currentPath == "/Category" ? Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
 <div id="content">
     <div class="col-sm-2">
         <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
+            @{ var isAllActive = currentPath == "/" ? "active" : ""; }
+            <li class="@isAllActive"><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["All"]</a></li>
             @foreach (var item in Model.Categorys)
             {
-                <li><a href="#vtab1" data-toggle="tab">@Localizer[item.Name]</a></li>
+                var isActive = currentQuery == item.Name ? "active" : "";
+                <li class="@isActive"><a href="/Category?value=@item.Name.ToString()">@Localizer[item.Name]</a></li>
             }
         </ul>
     </div>
@@ -41,7 +46,7 @@
                                     var check = rating == i ? "checked" : "";
                                     <label>
                                         <input type="radio" name="stars" disabled value="@i" @check />
-                                        @for(int j = 1; j <= i; j++)
+                                        @for (int j = 1; j <= i; j++)
                                         {
                                             <span class="icon">★</span>
                                         }
@@ -58,10 +63,22 @@
                     <img src="@item.ImgUrl">
                 </div>
                 <div class="caption">
-                    <p>@item.Description , @Context.Request.Host@Context.Request.Path@Context.Request.QueryString</p>
-                    <p><a href="#" class="btn btn-primary" role="button">@item.Category.Name</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    <p>@item.Description</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">@Localizer[item.Category.Name]</a>
+                        @foreach (var tag in item.Tags)
+                        {
+                            <a href="/Tag?value=@tag.Name.ToString()" class="btn btn-default" role="button">#@tag.Name</a>
+                        }
+                    </p>
                 </div>
             </div>
+        }
+    </div>
+    <div class="col-sm-2">
+        @foreach (var tag in Model.Tags)
+        {
+            <a href="/Tag?value=@tag.Name.ToString()" class="btn btn-default" role="button">#@tag.Name @tag.CountOfFanfic</a>
         }
     </div>
 </div>

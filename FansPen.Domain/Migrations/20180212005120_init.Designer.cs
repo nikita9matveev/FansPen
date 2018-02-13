@@ -11,8 +11,8 @@ using System;
 namespace FansPen.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180211130411_Main")]
-    partial class Main
+    [Migration("20180212005120_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,15 +91,13 @@ namespace FansPen.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<int>("TopicId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("TopicId");
 
@@ -123,9 +121,7 @@ namespace FansPen.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<DateTime>("DataCreate");
 
@@ -135,7 +131,7 @@ namespace FansPen.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("FanficId");
 
@@ -147,9 +143,7 @@ namespace FansPen.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<float>("AverageRating");
 
@@ -169,7 +163,7 @@ namespace FansPen.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CategoryId");
 
@@ -215,15 +209,13 @@ namespace FansPen.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<int>("CommentId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CommentId");
 
@@ -392,7 +384,7 @@ namespace FansPen.Domain.Migrations
                 {
                     b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("RatedTopics")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("FansPen.Domain.Models.Topic", "Topic")
                         .WithMany("WhoRated")
@@ -404,7 +396,7 @@ namespace FansPen.Domain.Migrations
                 {
                     b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Comments")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("FansPen.Domain.Models.Fanfic", "Fanfic")
                         .WithMany("Comments")
@@ -415,7 +407,7 @@ namespace FansPen.Domain.Migrations
                 {
                     b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Fanfics")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("FansPen.Domain.Models.Category", "Category")
                         .WithMany("Fanfics")
@@ -446,7 +438,7 @@ namespace FansPen.Domain.Migrations
                 {
                     b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Likes")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("FansPen.Domain.Models.Comment", "Comment")
                         .WithMany("Likes")
