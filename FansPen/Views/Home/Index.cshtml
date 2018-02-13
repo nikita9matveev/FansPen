@@ -5,7 +5,8 @@
 @{
     ViewData["Title"] = "Home Page";
     var currentPath = Context.Request.Path.ToString();
-    var currentQuery = currentPath == "/Category" ? Context.Request.QueryString.ToString().Split('=')[1] : "";
+    var currentQuery = currentPath == "/Category" && Context.Request.QueryString.ToString() != "" ? 
+        Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
 <div id="content">
     <div class="col-sm-2">
