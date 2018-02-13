@@ -7,18 +7,18 @@ namespace FansPen.Web.Models.ViewModels
 {
     public class HomeViewModel
     {
-        public List<FanficViewModel> Fanfics { get; set; }
+        public List<FanficPreViewModel> Fanfics { get; set; }
         public List<CategoryViewModel> Categorys { get; set; }
         public List<TagViewModel> Tags { get; set; }
 
         public HomeViewModel(List<CategoryViewModel> categorys)
         {
-            Fanfics = new List<FanficViewModel>();
+            Fanfics = new List<FanficPreViewModel>();
             Tags = new List<TagViewModel>();
             Categorys = categorys;
         }
 
-        public void SetList(List<FanficViewModel> fanfics, List<TagViewModel> tags)
+        public void SetList(List<FanficPreViewModel> fanfics, List<TagViewModel> tags)
         {
             Fanfics.Clear();
             foreach(var fanfic in fanfics)

@@ -97,7 +97,8 @@
 
 #userIcon img {
     height: 26px;
-    border-radius: 5px;
+    border-radius: 3px;
+    margin-right: 3px;
 }
 
     .nav > li > a:hover, .nav > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {

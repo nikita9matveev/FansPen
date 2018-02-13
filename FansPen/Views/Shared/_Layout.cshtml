@@ -45,12 +45,12 @@
                     </button>
                     <div id="mobileLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
                 </div>
-                <div class="col-sm-2" id="deskLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
+                <div class="col-sm-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand">FansPen</a></div>
                 <div class="navbar-collapse collapse">
 
                     <div class="col-sm-6">
-                        <form id="mySearch" role="search">
-                            <input type="text" placeholder="@Localizer["Search"]">
+                        <form method="get" action="/Search" id="mySearch" role="search">
+                            <input type="text" name="value" placeholder="@Localizer["Search"]">
                         </form>
                     </div>
                     <div id="themeBlock" class="col-sm-1">
@@ -63,7 +63,7 @@
                             {
                                 themeUrl = "nomoon.svg";
                             }
-                            <a asp-area="" asp-route-returnUrl="@Context.Request.Path" asp-route-value="@Context.Request.QueryString" asp-controller="Home" asp-action="Theme">
+                            <a asp-area="" asp-route-returnUrl="@Context.Request.Path" asp-controller="Home" asp-action="Theme">
                                 <img src="~/images/icons/@themeUrl" />
                             </a>
                         }

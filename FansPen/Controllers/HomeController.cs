@@ -21,7 +21,6 @@ namespace FansPen.Web.Controllers
         public FanficRepository FanficRepository;
         public CategoryRepository CategoryRepository;
         public TagRepository TagRepository;
-
         private HomeViewModel _homeModel;
 
         public HomeController(ApplicationContext context)
@@ -35,27 +34,41 @@ namespace FansPen.Web.Controllers
         public IActionResult Index()
         {
             _homeModel.SetList(
-                Mapper.Map<List<FanficViewModel>>(FanficRepository.GetAllItems()),
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetAllItems()),
                 Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
             return View(_homeModel);
         }
 
         [HttpGet]
         [Route("Category")]
-        public IActionResult Category(string value)
+        public IActionResult Category(string value = "")
         {
             _homeModel.SetList(
-                Mapper.Map<List<FanficViewModel>>(FanficRepository.GetItemByCategory(value)),
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByCategory(value)),
                 Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
             return View("Index", _homeModel);
         }
 
         [HttpGet]
         [Route("Tag")]
-        public IActionResult Tags(string value)
+        public IActionResult Tags(string value = "")
         {
             _homeModel.SetList(
-                Mapper.Map<List<FanficViewModel>>(FanficRepository.GetItemByTags(value)),
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value)),
+                Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
+            return View("Index", _homeModel);
+        }
+
+        [HttpGet]
+        [Route("Search")]
+        public IActionResult Search(string value = "")
+        {
+            if(value[0] == '#' && value.Length > 1)
+            {
+                return RedirectToActionPermanent("Tags","Home", new { value = value.Substring(1, value.Length - 1) });
+            }
+            _homeModel.SetList(
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value)),
                 Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
             return View("Index", _homeModel);
         }
@@ -72,15 +85,16 @@ namespace FansPen.Web.Controllers
             return LocalRedirect(returnUrl);
         }
 
-        public IActionResult Theme(string returnUrl, string value)
+        public IActionResult Theme(string returnUrl)
         {
+            //if (Request.Cookies["theme"] == null) Response.Cookies.Append("theme", "light");
             if (Request.Cookies["theme"] == "dark")
             {
-                Response.Cookies.Append("theme", "dark");
+                Response.Cookies.Append("theme", "light");
             }
             else
             {
-                Response.Cookies.Append("theme", "light");
+                Response.Cookies.Append("theme", "dark");
             }
             return LocalRedirect(returnUrl);
         }
