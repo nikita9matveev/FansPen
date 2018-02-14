@@ -85,24 +85,6 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("FansPen.Domain.Models.ApplicationUserTopic", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<int>("TopicId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("TopicId");
-
-                    b.ToTable("ApplicationUserTopic");
-                });
-
             modelBuilder.Entity("FansPen.Domain.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -147,8 +129,6 @@ namespace FansPen.Domain.Migrations
                     b.Property<float>("AverageRating");
 
                     b.Property<int?>("CategoryId");
-
-                    b.Property<string>("Content");
 
                     b.Property<DateTime>("CreateDate");
 
@@ -226,11 +206,15 @@ namespace FansPen.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ApplicationUserId");
+
                     b.Property<int?>("TopicId");
 
                     b.Property<int>("Value");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("TopicId");
 
@@ -261,6 +245,8 @@ namespace FansPen.Domain.Migrations
                     b.Property<int?>("FanficId");
 
                     b.Property<string>("Name");
+
+                    b.Property<int>("Number");
 
                     b.Property<string>("Text");
 
@@ -379,18 +365,6 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FansPen.Domain.Models.ApplicationUserTopic", b =>
-                {
-                    b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("RatedTopics")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("FansPen.Domain.Models.Topic", "Topic")
-                        .WithMany("WhoRated")
-                        .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("FansPen.Domain.Models.Comment", b =>
                 {
                     b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
@@ -447,6 +421,10 @@ namespace FansPen.Domain.Migrations
 
             modelBuilder.Entity("FansPen.Domain.Models.Rating", b =>
                 {
+                    b.HasOne("FansPen.Domain.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("RatedTopics")
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("FansPen.Domain.Models.Topic", "Topic")
                         .WithMany("Ratings")
                         .HasForeignKey("TopicId");

@@ -123,11 +123,11 @@
   <data name="Books" xml:space="preserve">
     <value>Книги</value>
   </data>
-  <data name="By" xml:space="preserve">
-    <value />
-  </data>
   <data name="Comics" xml:space="preserve">
     <value>Комиксы</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Эпиграф:</value>
   </data>
   <data name="Films" xml:space="preserve">
     <value>Фильмы</value>

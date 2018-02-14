@@ -19,13 +19,13 @@ namespace FansPen.Domain.Models
         public ICollection<Fanfic> Fanfics { get; set; }
         public ICollection<Like> Likes { get; set; }
         public ICollection<Comment> Comments { get; set; }
-        public ICollection<ApplicationUserTopic> RatedTopics { get; set; }
+        public ICollection<Rating> RatedTopics { get; set; }
         public ApplicationUser()
         {
             Fanfics = new List<Fanfic>();
             Likes = new List<Like>();
             Comments = new List<Comment>();
-            RatedTopics = new List<ApplicationUserTopic>();
+            RatedTopics = new List<Rating>();
         }
         internal object FindById(object p)
         {

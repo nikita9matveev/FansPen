@@ -32,14 +32,22 @@
                 }
             </form>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-12 category-tag-list">
             <a href="/Category?value=@Model.Category.Name" class="categoryButton">@Localizer[Model.Category.Name]</a>
             @foreach (var tag in Model.Tags)
             {
                 <a href="/Tag?value=@tag.Name" class="tagButton">#@tag.Name</a>
             }
         </div>
-        <img style="width:100%" src="@Model.ImgUrl" />
+        <div class="col-sm-6">
+            <div class="img-fanfic">
+                <img src="@Model.ImgUrl" />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h4>@Localizer["Description"]</h4>
+            <p class="description-fanfic">@Model.Description</p>
+        </div>
     </div>
 </div>
 

@@ -194,13 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
-    <Compile Include="Migrations\20180212005120_init.cs" />
-    <Compile Include="Migrations\20180212005120_init.designer.cs">
-      <DependentUpon>20180212005120_init.cs</DependentUpon>
+    <Compile Include="Migrations\20180214032825_fixDb.cs" />
+    <Compile Include="Migrations\20180214032825_fixDb.designer.cs">
+      <DependentUpon>20180214032825_fixDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\ApplicationUserTopicModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\FanficModel.cs" />
