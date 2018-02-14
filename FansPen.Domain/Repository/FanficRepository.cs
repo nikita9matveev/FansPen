@@ -56,5 +56,16 @@ namespace FansPen.Domain.Repository
             }
             return fanficsResult;
         }
+
+        public Fanfic GetById(int id)
+        {
+            return _fanficEntity
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.Category)
+                .Include(x => x.Topics)
+                .Include(x => x.FanficTags)
+                .Include(x => x.Comments)
+                .Where(x => x.Id == id).FirstOrDefault();
+        }
     }
 }

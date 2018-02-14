@@ -21,9 +21,21 @@ namespace FansPen.Web.Models.ViewModels
         public virtual ICollection<TopicViewModel> Topics { get; set; }
         public virtual ICollection<FanficTagViewModel> FanficTags { get; set; }
         public List<TagViewModel> Tags { get; set; }
-        public FanficViewModel()
+
+        public void SetTags(List<TagViewModel> tags)
         {
             Tags = new List<TagViewModel>();
+            foreach (var fanTag in FanficTags)
+            {
+                foreach (var tag in tags)
+                {
+                    if (fanTag.TagId == tag.Id)
+                    {
+                        Tags.Add(tag);
+                        break;
+                    }
+                }
+            }
         }
     }
 }

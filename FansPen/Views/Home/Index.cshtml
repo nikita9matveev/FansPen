@@ -8,7 +8,7 @@
     var currentQuery = currentPath == "/Category" && Context.Request.QueryString.ToString() != "" ? 
         Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
-<div id="content">
+<div class="contentMain">
     <div class="col-sm-2">
         <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
             @{ var isAllActive = currentPath == "/" ? "active" : ""; }
@@ -57,19 +57,21 @@
                         </form>
                     </div>
                 </div>
-                <div class="imgFanfic">
-                    <div class="titleFanfic">
-                        <h4 class="titleFanficH4">@item.Name</h4>
+                <a href="/Fanfic?id=@item.Id">
+                    <div class="imgFanfic">
+                        <div class="titleFanfic">
+                            <h4 class="titleFanficH4">@item.Name</h4>
+                        </div>
+                        <img src="@item.ImgUrl">
                     </div>
-                    <img src="@item.ImgUrl">
-                </div>
+                </a>
                 <div class="caption">
                     <p>@item.Description</p>
                     <p>
-                        <a href="#" class="btn btn-primary" role="button">@Localizer[item.Category.Name]</a>
+                        <a href="/Category?value=@item.Category.Name.ToString()" class="categoryButton" role="button">@Localizer[item.Category.Name]</a>
                         @foreach (var tag in item.Tags)
                         {
-                            <a href="/Tag?value=@tag.Name.ToString()" class="btn btn-default" role="button">#@tag.Name</a>
+                            <a href="/Tag?value=@tag.Name.ToString()" class="tagButton" role="button">#@tag.Name</a>
                         }
                     </p>
                 </div>
@@ -79,7 +81,7 @@
     <div class="col-sm-2">
         @foreach (var tag in Model.Tags)
         {
-            <a href="/Tag?value=@tag.Name.ToString()" class="btn btn-default" role="button">#@tag.Name @tag.CountOfFanfic</a>
+            <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>
         }
     </div>
 </div>

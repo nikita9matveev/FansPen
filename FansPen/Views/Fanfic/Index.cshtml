@@ -1,4 +1,46 @@
-﻿
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model FanficViewModel
 
-<h1>@ViewData["id"]</h1>
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Model.Name.ToString();
+}
+
+<div class="contentMain">
+    <div class="col-sm-10 col-sm-offset-1 fanficBlock">
+        <div class="text-center">
+            <h2 class="nameFanfic">@Model.Name</h2>
+        </div>
+        <div class="col-sm-6 authorData">
+            <p><b>@Model.ApplicationUser.UserName</b> <span>@Model.CreateDate.ToShortDateString()</span></p>
+        </div>
+        <div class="col-sm-6 starsRating">
+            <form class="rating" title="@Model.AverageRating">
+                @{
+                    var rating = Math.Round(Model.AverageRating);
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        var check = rating == i ? "checked" : "";
+                        <label>
+                            <input type="radio" name="stars" disabled value="@i" @check />
+                            @for (int j = 1; j <= i; j++)
+                            {
+                                <span class="icon">★</span>
+                            }
+                        </label>
+                    }
+                }
+            </form>
+        </div>
+        <div class="col-xs-12">
+            <a href="/Category?value=@Model.Category.Name" class="categoryButton">@Localizer[Model.Category.Name]</a>
+            @foreach (var tag in Model.Tags)
+            {
+                <a href="/Tag?value=@tag.Name" class="tagButton">#@tag.Name</a>
+            }
+        </div>
+        <img style="width:100%" src="@Model.ImgUrl" />
+    </div>
+</div>
+
 
