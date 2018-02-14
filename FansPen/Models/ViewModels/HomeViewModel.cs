@@ -9,11 +9,13 @@ namespace FansPen.Web.Models.ViewModels
     {
         public List<FanficViewModel> Fanfics { get; set; }
         public List<CategoryViewModel> Categorys { get; set; }
+        public FanficViewModel Search { get; set; }
         //public List<TagViewModel> Tags { get; set; }
-        public HomeViewModel(List<FanficViewModel> fans, List<CategoryViewModel> categorys)//, List<TagViewModel> tags)
+        public HomeViewModel(List<FanficViewModel> fans, List<CategoryViewModel> categorys, FanficViewModel search)//, List<TagViewModel> tags)
         {
             Fanfics = fans;
             Categorys = categorys;
+            Search = search;
             //Tags = tags;
         }
     }

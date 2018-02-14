@@ -27,7 +27,7 @@ namespace FansPen.Web.Controllers
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
 
-        //ApplicationContext _context;
+        //private ApplicationContext _context;
         //IHostingEnvironment _appEnvironment;
 
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
@@ -37,18 +37,19 @@ namespace FansPen.Web.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder
-          /*ApplicationContext context, IHostingEnvironment appEnvironment*/)
+          UrlEncoder urlEncoder)
+        /*ApplicationContext context) IHostingEnvironment appEnvironment*/
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            
 
-            //_context = context;
-            //_appEnvironment = appEnvironment;
-        }
+        //_context = context;
+        //_appEnvironment = appEnvironment;
+    }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -66,8 +67,9 @@ namespace FansPen.Web.Controllers
             {
                 Username = user.UserName,
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
+                AboutMe = user.AboutMe,
                 IsEmailConfirmed = user.EmailConfirmed,
+                Interests = user.Interests,
                 StatusMessage = StatusMessage
             };
 
@@ -95,17 +97,29 @@ namespace FansPen.Web.Controllers
                 var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
                 if (!setEmailResult.Succeeded)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
+                    throw new ApplicationException($"Unexpected error occurred setting Email for user with ID '{user.Id}'.");
                 }
             }
 
-            var phoneNumber = user.PhoneNumber;
-            if (model.PhoneNumber != phoneNumber)
+            var aboutMe = user.AboutMe;
+            if (model.AboutMe != aboutMe)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
+                user.AboutMe = model.AboutMe;
+                IdentityResult setAboutMe = await _userManager.UpdateAsync(user);
+                if (!setAboutMe.Succeeded)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+                    throw new ApplicationException($"Unexpected error occurred setting About me info for user with ID '{user.Id}'.");
+                }
+            }
+
+            var interests = user.Interests;
+            if (model.Interests != interests)
+            {
+                user.Interests = model.Interests;
+                IdentityResult setInterests = await _userManager.UpdateAsync(user);
+                if (!setInterests.Succeeded)
+                {
+                    throw new ApplicationException($"Unexpected error occurred setting Interests for user with ID '{user.Id}'.");
                 }
             }
 

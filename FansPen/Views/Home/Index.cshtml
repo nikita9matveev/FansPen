@@ -15,33 +15,84 @@
         </ul>
     </div>
     <div class="col-sm-8">
-        @foreach (var item in Model.Fanfics)
+        @if (Model.Search == null)
+        {
+            @foreach (var item in Model.Fanfics)
+            {
+                <div class="thumbnail">
+                    <div class="row autherBlock">
+                        <div class="col-sm-6 com-xs-12">
+                            <div class="col-xs-2">
+                                <img class="avatarImg" src="@item.ApplicationUser.AvatarUrl">
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="col-xs-12" style="overflow:hidden">
+                                    @item.ApplicationUser.UserName
+                                </div>
+                                <div class="col-xs-12" style="overflow:hidden">
+                                    @item.CreateDate.ToShortDateString()
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 starsRating" style="overflow:hidden">
+                            <form class="rating" title="@item.AverageRating">
+                                @{
+                                    var rating = Math.Round(item.AverageRating);
+                                    for (int i = 1; i <= 5; i++)
+                                    {
+                                        var check = rating == i ? "checked" : "";
+                                        <label>
+                                            <input type="radio" name="stars" disabled value="@i" @check />
+                                            @for (int j = 1; j <= i; j++)
+                                            {
+                                                <span class="icon">★</span>
+                                            }
+                                        </label>
+                                    }
+                                }
+                            </form>
+                        </div>
+                    </div>
+                    <div class="imgFanfic">
+                        <div class="titleFanfic">
+                            <h4 class="titleFanficH4">@item.Name</h4>
+                        </div>
+                        <img src="@item.ImgUrl">
+                    </div>
+                    <div class="caption">
+                        <p>@item.Description , @Context.Request.Host@Context.Request.Path@Context.Request.QueryString</p>
+                        <p><a href="#" class="btn btn-primary" role="button">@item.Category.Name</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+                </div>
+            }
+        }
+        else
         {
             <div class="thumbnail">
                 <div class="row autherBlock">
                     <div class="col-sm-6 com-xs-12">
                         <div class="col-xs-2">
-                            <img class="avatarImg" src="@item.ApplicationUser.AvatarUrl">
+                            <img class="avatarImg" src="@Model.Search.ApplicationUser.AvatarUrl">
                         </div>
                         <div class="col-xs-10">
                             <div class="col-xs-12" style="overflow:hidden">
-                                @item.ApplicationUser.UserName
+                                @Model.Search.ApplicationUser.UserName
                             </div>
                             <div class="col-xs-12" style="overflow:hidden">
-                                @item.CreateDate.ToShortDateString()
+                                @Model.Search.CreateDate.ToShortDateString()
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12 starsRating" style="overflow:hidden">
-                        <form class="rating" title="@item.AverageRating">
+                        <form class="rating" title="@Model.Search.AverageRating">
                             @{
-                                var rating = Math.Round(item.AverageRating);
+                                var rating = Math.Round(Model.Search.AverageRating);
                                 for (int i = 1; i <= 5; i++)
                                 {
                                     var check = rating == i ? "checked" : "";
                                     <label>
                                         <input type="radio" name="stars" disabled value="@i" @check />
-                                        @for(int j = 1; j <= i; j++)
+                                        @for (int j = 1; j <= i; j++)
                                         {
                                             <span class="icon">★</span>
                                         }
@@ -53,15 +104,16 @@
                 </div>
                 <div class="imgFanfic">
                     <div class="titleFanfic">
-                        <h4 class="titleFanficH4">@item.Name</h4>
+                        <h4 class="titleFanficH4">@Model.Search.Name</h4>
                     </div>
-                    <img src="@item.ImgUrl">
+                    <img src="@Model.Search.ImgUrl">
                 </div>
                 <div class="caption">
-                    <p>@item.Description , @Context.Request.Host@Context.Request.Path@Context.Request.QueryString</p>
-                    <p><a href="#" class="btn btn-primary" role="button">@item.Category.Name</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    <p>@Model.Search.Description , @Context.Request.Host@Context.Request.Path@Context.Request.QueryString</p>
+                    <p><a href="#" class="btn btn-primary" role="button">@Model.Search.Category.Name</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
                 </div>
             </div>
+
         }
     </div>
 </div>

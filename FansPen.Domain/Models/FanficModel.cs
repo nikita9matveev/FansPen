@@ -14,7 +14,7 @@ namespace FansPen.Domain.Models
         public string ImgUrl { get; set; }
         public string Description { get; set; }
         public DateTime CreateDate { get; set; }
-        public DateTime EditingDate { get; set; }       
+        public DateTime EditingDate { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public int? CategoryId { get; set; }

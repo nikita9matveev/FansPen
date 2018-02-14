@@ -12,15 +12,14 @@ namespace FansPen.Web.Models.ManageViewModels
 
         public bool IsEmailConfirmed { get; set; }
 
-        public string Language { get; set; }
+        public string Interests { get; set; }
 
         [Required]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Phone]
-        [Display(Name = "Phone number")]
-        public string PhoneNumber { get; set; }
+        [Display(Name = "About me")]
+        public string AboutMe { get; set; }
 
         public string StatusMessage { get; set; }
     }

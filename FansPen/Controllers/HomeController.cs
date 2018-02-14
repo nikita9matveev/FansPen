@@ -27,11 +27,12 @@ namespace FansPen.Web.Controllers
             CategoryRepository = new CategoryRepository(context);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int searchString)        //принимает параметр ?searchString="id"
         {
             var fansList = Mapper.Map<List<FanficViewModel>>(FanficRepository.GetAllItems());
             var categList = Mapper.Map<List<CategoryViewModel>>(CategoryRepository.GetList());
-            return View(new HomeViewModel(fansList, categList));
+            var searchList = Mapper.Map<FanficViewModel>(FanficRepository.GetItem(searchString)); //ОДНА запись, найденная по id-у
+            return View(new HomeViewModel(fansList, categList, searchList));
         }
 
         [HttpPost]
