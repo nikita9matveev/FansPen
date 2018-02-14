@@ -4,89 +4,44 @@
 @inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "Home Page";
+    var currentPath = Context.Request.Path.ToString();
+    var currentQuery = currentPath == "/Category" && Context.Request.QueryString.ToString() != "" ? 
+        Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
-<div id="content">
+<div class="contentMain">
     <div class="col-sm-2">
         <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
+            @{ var isAllActive = currentPath == "/" ? "active" : ""; }
+            <li class="@isAllActive"><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["All"]</a></li>
             @foreach (var item in Model.Categorys)
             {
-                <li><a href="#vtab1" data-toggle="tab">@Localizer[item.Name]</a></li>
+                var isActive = currentQuery == item.Name ? "active" : "";
+                <li class="@isActive"><a href="/Category?value=@item.Name.ToString()">@Localizer[item.Name]</a></li>
             }
         </ul>
     </div>
     <div class="col-sm-8">
-        @if (Model.Search == null)
-        {
-            @foreach (var item in Model.Fanfics)
-            {
-                <div class="thumbnail">
-                    <div class="row autherBlock">
-                        <div class="col-sm-6 com-xs-12">
-                            <div class="col-xs-2">
-                                <img class="avatarImg" src="@item.ApplicationUser.AvatarUrl">
-                            </div>
-                            <div class="col-xs-10">
-                                <div class="col-xs-12" style="overflow:hidden">
-                                    @item.ApplicationUser.UserName
-                                </div>
-                                <div class="col-xs-12" style="overflow:hidden">
-                                    @item.CreateDate.ToShortDateString()
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xs-12 starsRating" style="overflow:hidden">
-                            <form class="rating" title="@item.AverageRating">
-                                @{
-                                    var rating = Math.Round(item.AverageRating);
-                                    for (int i = 1; i <= 5; i++)
-                                    {
-                                        var check = rating == i ? "checked" : "";
-                                        <label>
-                                            <input type="radio" name="stars" disabled value="@i" @check />
-                                            @for (int j = 1; j <= i; j++)
-                                            {
-                                                <span class="icon">★</span>
-                                            }
-                                        </label>
-                                    }
-                                }
-                            </form>
-                        </div>
-                    </div>
-                    <div class="imgFanfic">
-                        <div class="titleFanfic">
-                            <h4 class="titleFanficH4">@item.Name</h4>
-                        </div>
-                        <img src="@item.ImgUrl">
-                    </div>
-                    <div class="caption">
-                        <p>@item.Description , @Context.Request.Host@Context.Request.Path@Context.Request.QueryString</p>
-                        <p><a href="#" class="btn btn-primary" role="button">@item.Category.Name</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                    </div>
-                </div>
-            }
-        }
-        else
+        @foreach (var item in Model.Fanfics)
         {
             <div class="thumbnail">
                 <div class="row autherBlock">
                     <div class="col-sm-6 com-xs-12">
                         <div class="col-xs-2">
-                            <img class="avatarImg" src="@Model.Search.ApplicationUser.AvatarUrl">
+                            <img class="avatarImg" src="@item.ApplicationUser.AvatarUrl">
                         </div>
                         <div class="col-xs-10">
                             <div class="col-xs-12" style="overflow:hidden">
-                                @Model.Search.ApplicationUser.UserName
+                                @item.ApplicationUser.UserName
                             </div>
                             <div class="col-xs-12" style="overflow:hidden">
-                                @Model.Search.CreateDate.ToShortDateString()
+                                @item.CreateDate.ToShortDateString()
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12 starsRating" style="overflow:hidden">
-                        <form class="rating" title="@Model.Search.AverageRating">
+                        <form class="rating" title="@item.AverageRating">
                             @{
-                                var rating = Math.Round(Model.Search.AverageRating);
+                                var rating = Math.Round(item.AverageRating);
                                 for (int i = 1; i <= 5; i++)
                                 {
                                     var check = rating == i ? "checked" : "";
@@ -102,18 +57,31 @@
                         </form>
                     </div>
                 </div>
-                <div class="imgFanfic">
-                    <div class="titleFanfic">
-                        <h4 class="titleFanficH4">@Model.Search.Name</h4>
+                <a href="/Fanfic?id=@item.Id">
+                    <div class="imgFanfic">
+                        <div class="titleFanfic">
+                            <h4 class="titleFanficH4">@item.Name</h4>
+                        </div>
+                        <img src="@item.ImgUrl">
                     </div>
-                    <img src="@Model.Search.ImgUrl">
-                </div>
+                </a>
                 <div class="caption">
-                    <p>@Model.Search.Description , @Context.Request.Host@Context.Request.Path@Context.Request.QueryString</p>
-                    <p><a href="#" class="btn btn-primary" role="button">@Model.Search.Category.Name</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    <p>@item.Description</p>
+                    <p>
+                        <a href="/Category?value=@item.Category.Name.ToString()" class="categoryButton" role="button">@Localizer[item.Category.Name]</a>
+                        @foreach (var tag in item.Tags)
+                        {
+                            <a href="/Tag?value=@tag.Name.ToString()" class="tagButton" role="button">#@tag.Name</a>
+                        }
+                    </p>
                 </div>
             </div>
-
+        }
+    </div>
+    <div class="col-sm-2">
+        @foreach (var tag in Model.Tags)
+        {
+            <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>
         }
     </div>
 </div>

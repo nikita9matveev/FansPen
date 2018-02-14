@@ -1,0 +1,27 @@
+﻿.fanficBlock {
+    border-radius: 5px !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+}
+
+.authorData {
+    /*padding-top: 7px;*/
+}
+
+@media(min-width: 768px) {
+    .authorData b {
+        font-size: 1.3em;
+    }
+}
+
+.nameFanfic {
+    text-decoration: underline;
+}
+
+@media(max-width: 767px) {
+    .nameFanfic {
+        font-size: 1.5em;
+    }
+    .fanficBlock {
+        padding-top: 2px;
+    }
+}

@@ -37,3 +37,59 @@ body {
         display: none;
     }
 }
+
+.contentMain {
+    margin-top: 20px;
+    font-size: .9em;
+}
+
+/* Category and Tag */
+
+.categoryButton {
+    background: #0049c4;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 3px;
+    color: white;
+}
+
+.categoryButton:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.tagButton {
+    background: #4976c4;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 3px;
+    color: white;
+}
+
+.tagButton:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.tag-cloud {
+    margin-bottom: 3px;
+    border-radius: 3px 0 0 3px;
+}
+
+.tag-count {
+    background: #0049c4;
+    display: inline-block;
+    padding: 5px;
+    color: white;
+    border-radius: 0 3px 3px 0;
+}
+
+.div-tag {
+    display: inline-block;
+}
+
+@media(max-width: 767px) {
+    .tagButton, .categoryButton {
+        margin-bottom: 3px
+    }
+}

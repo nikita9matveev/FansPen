@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace FansPen.Web.Models.ViewModels
 {
-    public class TagViewModel
+    public class ApplicationUserTopicViewModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int CountOfFanfic { get; set; }
+        public string ApplicationUserId { get; set; }
+        public int TopicId { get; set; }
     }
 }

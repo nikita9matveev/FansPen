@@ -20,19 +20,57 @@ namespace FansPen.Web.Controllers
     {
         public FanficRepository FanficRepository;
         public CategoryRepository CategoryRepository;
+        public TagRepository TagRepository;
+        private HomeViewModel _homeModel;
 
         public HomeController(ApplicationContext context)
         {
             FanficRepository = new FanficRepository(context);
             CategoryRepository = new CategoryRepository(context);
+            TagRepository = new TagRepository(context);
+            _homeModel = new HomeViewModel(Mapper.Map<List<CategoryViewModel>>(CategoryRepository.GetList()));
         }
 
-        public IActionResult Index(int searchString)        //принимает параметр ?searchString="id"
+        public IActionResult Index()
         {
-            var fansList = Mapper.Map<List<FanficViewModel>>(FanficRepository.GetAllItems());
-            var categList = Mapper.Map<List<CategoryViewModel>>(CategoryRepository.GetList());
-            var searchList = Mapper.Map<FanficViewModel>(FanficRepository.GetItem(searchString)); //ОДНА запись, найденная по id-у
-            return View(new HomeViewModel(fansList, categList, searchList));
+            _homeModel.SetList(
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetAllItems()),
+                Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
+            return View(_homeModel);
+        }
+
+        [HttpGet]
+        [Route("Category")]
+        public IActionResult Category(string value = "")
+        {
+            _homeModel.SetList(
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByCategory(value)),
+                Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
+            return View("Index", _homeModel);
+        }
+
+        [HttpGet]
+        [Route("Tag")]
+        public IActionResult Tags(string value = "")
+        {
+            _homeModel.SetList(
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value)),
+                Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
+            return View("Index", _homeModel);
+        }
+
+        [HttpGet]
+        [Route("Search")]
+        public IActionResult Search(string value = "")
+        {
+            if(value[0] == '#' && value.Length > 1)
+            {
+                return RedirectToActionPermanent("Tags","Home", new { value = value.Substring(1, value.Length - 1) });
+            }
+            _homeModel.SetList(
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value)),
+                Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
+            return View("Index", _homeModel);
         }
 
         [HttpPost]
@@ -49,20 +87,14 @@ namespace FansPen.Web.Controllers
 
         public IActionResult Theme(string returnUrl)
         {
-            if (Request.Cookies["theme"] == null)
+            //if (Request.Cookies["theme"] == null) Response.Cookies.Append("theme", "light");
+            if (Request.Cookies["theme"] == "dark")
             {
                 Response.Cookies.Append("theme", "light");
             }
             else
             {
-                if (Request.Cookies["theme"] == "light")
-                {
-                    Response.Cookies.Append("theme", "dark");
-                }
-                else if (Request.Cookies["theme"] == "dark")
-                {
-                    Response.Cookies.Append("theme", "light");
-                }
+                Response.Cookies.Append("theme", "dark");
             }
             return LocalRedirect(returnUrl);
         }

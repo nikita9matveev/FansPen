@@ -47,7 +47,7 @@
     z-index: 500;
     color: white;
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     top: 40%;
 }
 
@@ -63,6 +63,14 @@
     height: 30px;
     line-height: 1.2em;
     font-size: 30px;
+}
+
+.rating input {
+    cursor: default !important;
+}
+
+.rating span {
+    cursor: default !important;
 }
 
 .rating label {
