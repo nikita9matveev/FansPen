@@ -1,6 +1,7 @@
 ﻿.fanficBlock {
     border-radius: 5px !important;
     box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+    padding-bottom: 10px;
 }
 
 .authorData {
@@ -29,12 +30,15 @@
         padding-top: 2px;
     }
     .img-fanfic {
-        overflow:visible !important;
+        /*overflow:visible !important;*/
+    }
+    .start-fanfic {
+        top: 25% !important;
     }
 }
 
 .category-tag-list {
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .description-fanfic {
@@ -42,12 +46,109 @@
 }
 
 .img-fanfic {
+    position: relative;
     overflow: hidden;
-    min-height: 200px;
+    /*min-height: 200px;*/
     max-height: 500px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.img-fanfic:after {
+    content: '';
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 0;
+}
+
+.img-fanfic:hover:after {
+    opacity: 0.8;
 }
 
 .img-fanfic img {
     width: 100%;
+}
+
+.contents-fanfic p {
+    background: rgba(200,200,200,.2);
+    /*padding: 3px;*/
     border-radius: 3px;
+    color: black;
+}
+
+.contents-fanfic:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.start-fanfic {
+    position: absolute;
+    z-index: 500;
+    color: white;
+    width: 100%;
+    /*height: 100%;*/
+    top: 35%;
+}
+
+.start-fanfic-text {
+    display: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.img-fanfic:hover .start-fanfic-text {
+    display: block;
+}
+
+.send-comment-fanfic {
+    margin-bottom: 10px;
+}
+
+.send-comment-fanfic textarea {
+    resize: none;
+    max-width: 100%;
+}
+
+.send-comment-fanfic div {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.comment-fanfic {
+    border-radius: 3px;
+    padding: 10px 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,.5);
+    margin-bottom: 10px;
+}
+
+.avatar-comment-fanfic {
+    padding-right: 0;
+}
+
+@media(min-width: 768px) {
+    .name-comment-fanfic div {
+        padding-left: 0;
+    }
+}
+
+.hr-comment {
+    margin: 10px 0;
+}
+
+.avatar-comment-fanfic img {
+    width: 36px;
+    border-radius: 50%;
+}
+
+.like-button {
+    display: inline;
 }

@@ -123,8 +123,17 @@
   <data name="Books" xml:space="preserve">
     <value>Книги</value>
   </data>
+  <data name="Chapter" xml:space="preserve">
+    <value>Глава</value>
+  </data>
   <data name="Comics" xml:space="preserve">
     <value>Комиксы</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>Оглавление:</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Эпиграф:</value>
@@ -137,5 +146,14 @@
   </data>
   <data name="Other" xml:space="preserve">
     <value>Другое</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Начать чтение</value>
+  </data>
+  <data name="WriteComment" xml:space="preserve">
+    <value>Оставить комментарий</value>
   </data>
 </root>

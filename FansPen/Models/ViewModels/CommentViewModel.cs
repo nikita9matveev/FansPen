@@ -8,12 +8,7 @@ namespace FansPen.Web.Models.ViewModels
         public int Id { get; set; }
         public PreviewUserViewModel ApplicationUser { get; set; }
         public ICollection<LikeViewModel> Likes { get; set; }
-        public List<PreviewUserViewModel> UsersLiked { get; set; }
         public string Text { get; set; }
         public DateTime DataCreate { get; set; }
-        public CommentViewModel()
-        {
-            UsersLiked = new List<PreviewUserViewModel>();
-        }
     }
 }

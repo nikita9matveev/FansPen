@@ -228,7 +228,13 @@ namespace FansPen.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, RegistrationDate = DateTime.Now, AvatarUrl = "./images/icons/user.png" };
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    RegistrationDate = DateTime.Now,
+                    AvatarUrl = "/images/icons/user.png"
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -325,7 +331,7 @@ namespace FansPen.Web.Controllers
                     UserName = model.UserName,
                     Email = model.Email,
                     RegistrationDate = DateTime.Now,
-                    AvatarUrl = "./images/icons/user.png",
+                    AvatarUrl = "/images/icons/user.png",
                     ProviderKey = info.ProviderKey
                 };
                 var result = await _userManager.CreateAsync(user);
