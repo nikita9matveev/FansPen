@@ -11,6 +11,8 @@ var getCommentAjax = true;
 var setLikeAjax = true;
 var sendCommentAjax = true;
 var getNewCommentAjax = true;
+var deleteCommentAjax = true;
+var getNewCountAjax = true;
 
 var interval = window.setInterval(getNewComments, 2000);
 
@@ -47,9 +49,8 @@ commentText.keyup(function (event) {
         if (event.shiftKey) {
             this.value = content.substring(0, caret - 1) + "\n" + content.substring(caret, content.length);
             event.stopPropagation();
-        } else {
-            //this.value = content.substring(0, caret - 1) + content.substring(caret, content.length);
-            //$('form').submit();
+        }
+        else {
             if (!sendButton.attr('disabled') && sendCommentAjax) {
                 sendCommentAjax = false;
                 sendComment();
@@ -87,20 +88,21 @@ function getComments() {
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
                 var isLike = data[i].isLiked ? "fas" : "far";
-                var text = data[i].text.replace('\n','<br />');
+                var text = data[i].text.replace('\n', '<br />');
+                var your = data[i].isYour ? `<div class="col-sm-1 col-xs-2 del-comment-button del${data[i].id}"><div class="hidden">${data[i].id}</div><i class="fas fa-times"></i></div>` : ``;
                 commentDiv.append(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
                         <img src="${data[i].user.avatarUrl}" />
                     </div>
-                    <div class="col-sm-11 col-xs-10 name-comment-fanfic">
+                    <div class="col-sm-10 col-xs-8 name-comment-fanfic">
                         <div class="col-xs-12">
                             <b>${data[i].user.userName}</b>
                         </div>
                         <div class="col-xs-12 small-text">
                             ${data[i].dataCreate}
                         </div>
-                    </div>
-                    <div class="col-xs-12">
+                    </div>` + your +
+                    `<div class="col-xs-12 text-comment">
                         <hr class="hr-comment">
                         ${text}
                     </div>
@@ -109,6 +111,7 @@ function getComments() {
                     </div>
                 </div>`);
                 $('.like' + data[i].id).click(setLike);
+                $('.del' + data[i].id).click(deleteComment);
             }
         },
         dataType: 'json',
@@ -172,11 +175,6 @@ function sendComment() {
     }).always(function (data) { sendCommentAjax = true; });
 }
 
-/*
-<div class="col-sm-1 col-xs-2 del-comment-button">
-                        <i class="fas fa-times"></i>
-                    </div>
- */
 function getNewComments() {
     if (getNewCommentAjax) {
         getNewCommentAjax = false;
@@ -189,19 +187,20 @@ function getNewComments() {
                 for (var i = 0; i < data.length; i++) {
                     var isLike = data[i].isLiked ? "fas" : "far";
                     var text = data[i].text.replace('\n', '<br />');
+                    var your = data[i].isYour ? `<div class="col-sm-1 col-xs-2 del-comment-button del${data[i].id}"><div class="hidden">${data[i].id}</div><i class="fas fa-times"></i></div>` : ``;
                     commentDiv.prepend(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
                         <img src="${data[i].user.avatarUrl}" />
                     </div>
-                    <div class="col-sm-11 col-xs-10 name-comment-fanfic">
+                    <div class="col-sm-10 col-xs-8 name-comment-fanfic">
                         <div class="col-xs-12">
                             <b>${data[i].user.userName}</b>
                         </div>
                         <div class="col-xs-12 small-text">
                             ${data[i].dataCreate}
                         </div>
-                    </div>
-                    <div class="col-xs-12">
+                    </div>` + your +
+                    `<div class="col-xs-12 text-comment">
                         <hr class="hr-comment">
                         ${text}
                     </div>
@@ -210,6 +209,7 @@ function getNewComments() {
                     </div>
                 </div>`);
                     $('.like' + data[i].id).click(setLike);
+                    $('.del' + data[i].id).click(deleteComment);
                 }
             },
             dataType: 'json',
@@ -217,5 +217,48 @@ function getNewComments() {
                 alert("Error while retrieving data!");
             }
         }).always(function (data) { getNewCommentAjax = true; });
+    }
+    if (getNewCountAjax) {
+        getNewCountAjax = false;
+        $.ajax({
+            url: "/GetNewCount",
+            data: {
+                idFanfic: fanficId
+            },
+            success: function (data) {
+                countComments.empty();
+                countComments.append(`(${data.count})`);
+            },
+            datatype: 'json',
+            error: function () {
+                alert("Error while retrieving data!");
+            }
+        }).always(function (data) { getNewCountAjax = true; });
+    }
+}
+
+function deleteComment() {
+    var commentId = $(this).eq(0).children().eq(0).text();
+    var comment = $(this).eq(0).parent();
+    if (deleteCommentAjax) {
+        deleteCommentAjax = false;
+        $.ajax({
+            url: "/DeleteComment",
+            method: 'POST',
+            data: {
+                idComment: commentId,
+                idFanfic: fanficId
+            },
+            success: function (data) {
+                package--;
+                comment.remove();
+                countComments.empty();
+                countComments.append(`(${data.count})`);
+            },
+            datatype: 'json',
+            error: function () {
+                alert("Error while retrieving data!");
+            }
+        }).always(function (data) { deleteCommentAjax = true; });
     }
 }

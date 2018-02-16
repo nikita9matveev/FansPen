@@ -13,6 +13,7 @@ namespace FansPen.Web.Models.ViewModels
         public string Text { get; set; }
         public string DataCreate { get; set; }
         public bool IsLiked { get; set; }
+        public bool IsYour { get; set; }
 
         public CommentScriptModel(CommentViewModel commentView, List<PreviewUserViewModel> users, string currentUser)
         {
@@ -21,6 +22,7 @@ namespace FansPen.Web.Models.ViewModels
             Text = commentView.Text;
             DataCreate = commentView.DataCreate.ToShortDateString();
             IsLiked = false;
+            IsYour = commentView.ApplicationUser.Id == currentUser;
             UsersLiked = new List<PreviewUserViewModel>();
             foreach(var like in commentView.Likes)
             {

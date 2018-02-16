@@ -79,5 +79,19 @@ namespace FansPen.Web.Controllers
         {
             return Json(new { count = CommentRepository.SendComment(User.Identity.GetUserId(), id, text) });
         }
+
+        [HttpPost]
+        [Route("DeleteComment")]
+        public IActionResult DeleteComment(int idComment, int idFanfic)
+        {
+            return Json(new { count = CommentRepository.DeleteComment(idComment, idFanfic) });
+        }
+
+        [HttpGet]
+        [Route("GetNewCount")]
+        public IActionResult GetNewCount(int idFanfic)
+        {
+            return Json(new { count = CommentRepository.GetNewCount(idFanfic) });
+        }
     }
 }

@@ -49,5 +49,21 @@ namespace FansPen.Domain.Repository
                 .Where(x => x.DataCreate > DateTime.Now.AddSeconds(-2))
                 .Where(x => x.FanficId == id).ToList();
         }
+
+        public int DeleteComment(int idComment, int idFanfic)
+        {
+            Comment comment = _commentEntity.Where(x => x.Id == idComment).FirstOrDefault();
+            if(_commentEntity != null)
+            {
+                _commentEntity.Remove(comment);
+                Save();
+            }
+            return _commentEntity.Where(x => x.FanficId == idFanfic).Count();
+        }
+
+        public int GetNewCount(int idFanfic)
+        {
+            return _commentEntity.Where(x => x.FanficId == idFanfic).Count();
+        }
     }
 }

@@ -149,3 +149,7 @@
     text-align: right;
     padding-top: 5px;
 }
+
+.text-comment {
+    word-wrap: break-word;
+}
