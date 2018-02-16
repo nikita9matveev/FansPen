@@ -109,18 +109,10 @@
     display: block;
 }
 
-.send-comment-fanfic {
-    margin-bottom: 10px;
-}
-
 .send-comment-fanfic textarea {
     resize: none;
     max-width: 100%;
-}
-
-.send-comment-fanfic div {
-    text-align: right;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .comment-fanfic {
@@ -151,4 +143,9 @@
 
 .like-button {
     display: inline;
+}
+
+.del-comment-button {
+    text-align: right;
+    padding-top: 5px;
 }

@@ -3,8 +3,8 @@ var commentText = $('#commentText');
 var commentDiv = $('.comment-div');
 var sendButton = $('#sendButton');
 var countComments = $('#countComments');
+var fanficId = $('#FanficId').text();
 
-var fanficId = window.location.search.replace('?', '').split('=')[1] - 0;
 var package = 0;
 
 var getCommentAjax = true;
@@ -20,6 +20,41 @@ commentText.on("change paste keyup", function () {
     }
     else {
         sendButton.attr('disabled', true);
+    }
+});
+
+function getCaret(el) {
+    if (el.selectionStart) {
+        return el.selectionStart;
+    } else if (document.selection) {
+        el.focus();
+        var r = document.selection.createRange();
+        if (r == null) {
+            return 0;
+        }
+        var re = el.createTextRange(), rc = re.duplicate();
+        re.moveToBookmark(r.getBookmark());
+        rc.setEndPoint('EndToStart', re);
+        return rc.text.length;
+    }
+    return 0;
+}
+
+commentText.keyup(function (event) {
+    if (event.keyCode == 13) {
+        var content = this.value;
+        var caret = getCaret(this);
+        if (event.shiftKey) {
+            this.value = content.substring(0, caret - 1) + "\n" + content.substring(caret, content.length);
+            event.stopPropagation();
+        } else {
+            //this.value = content.substring(0, caret - 1) + content.substring(caret, content.length);
+            //$('form').submit();
+            if (!sendButton.attr('disabled') && sendCommentAjax) {
+                sendCommentAjax = false;
+                sendComment();
+            }
+        }
     }
 });
 
@@ -52,6 +87,7 @@ function getComments() {
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
                 var isLike = data[i].isLiked ? "fas" : "far";
+                var text = data[i].text.replace('\n','<br />');
                 commentDiv.append(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
                         <img src="${data[i].user.avatarUrl}" />
@@ -66,7 +102,7 @@ function getComments() {
                     </div>
                     <div class="col-xs-12">
                         <hr class="hr-comment">
-                        ${data[i].text}
+                        ${text}
                     </div>
                     <div class="col-xs-12 text-right">
                         <div class="like${data[i].id} like-button" onselectstart="return false" onmousedown="return false"><div class="hidden">${data[i].id} ${data[i].isLiked}</div><i class="${isLike} fa-heart"></i><b> ${data[i].usersLiked.length}</b></div>
@@ -136,6 +172,11 @@ function sendComment() {
     }).always(function (data) { sendCommentAjax = true; });
 }
 
+/*
+<div class="col-sm-1 col-xs-2 del-comment-button">
+                        <i class="fas fa-times"></i>
+                    </div>
+ */
 function getNewComments() {
     if (getNewCommentAjax) {
         getNewCommentAjax = false;
@@ -145,9 +186,9 @@ function getNewComments() {
                 id: fanficId
             },
             success: function (data) {
-                console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     var isLike = data[i].isLiked ? "fas" : "far";
+                    var text = data[i].text.replace('\n', '<br />');
                     commentDiv.prepend(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
                         <img src="${data[i].user.avatarUrl}" />
@@ -162,7 +203,7 @@ function getNewComments() {
                     </div>
                     <div class="col-xs-12">
                         <hr class="hr-comment">
-                        ${data[i].text}
+                        ${text}
                     </div>
                     <div class="col-xs-12 text-right">
                         <div class="like${data[i].id} like-button" onselectstart="return false" onmousedown="return false"><div class="hidden">${data[i].id} ${data[i].isLiked}</div><i class="${isLike} fa-heart"></i><b> ${data[i].usersLiked.length}</b></div>

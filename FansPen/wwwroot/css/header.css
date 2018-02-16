@@ -48,7 +48,7 @@
     }
 }
 
-#langBlock button {
+#langBlock button, #themeBlock button {
     background: initial;
     border: 0;
     padding: 0;

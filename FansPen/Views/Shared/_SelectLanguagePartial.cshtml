@@ -24,7 +24,7 @@
     {
         langUrl = "UK.svg";
     }
-    <form asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post">
+    <form asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" method="post">
         <button type="submit">
             <img src="~/images/icons/@langUrl" />
         </button>

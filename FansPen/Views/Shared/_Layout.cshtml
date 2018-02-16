@@ -63,9 +63,11 @@
                             {
                                 themeUrl = "nomoon.svg";
                             }
-                            <a asp-area="" asp-route-returnUrl="@Context.Request.Path" asp-controller="Home" asp-action="Theme">
-                                <img src="~/images/icons/@themeUrl" />
-                            </a>
+                            <form asp-area="" asp-controller="Home" asp-action="Theme" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" method="post">
+                                <button type="submit">
+                                    <img src="~/images/icons/@themeUrl" />
+                                </button>
+                            </form>
                         }
                     </div>
                     <div id="langBlock" class="col-sm-1">

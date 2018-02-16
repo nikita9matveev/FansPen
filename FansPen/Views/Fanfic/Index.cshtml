@@ -62,7 +62,7 @@
             }
         </div>
         <div class="col-xs-12">
-            <hr>
+            <hr><div class="hidden" id="FanficId">@Model.Id</div>
         </div>
         <div class="col-xs-12">
             <h4>@Localizer["Comments"] <span id="countComments">(@Model.Comments.Count())</span></h4>
@@ -71,8 +71,11 @@
         {
             <div class="col-xs-12 send-comment-fanfic">
                 <textarea id="commentText" placeholder="@Localizer["WriteComment"]" maxlength="1000" class="form-control" rows="2"></textarea>
-                <div><a id="sendButton" class="btn btn-success" disabled>@Localizer["Send"]</a></div>
+                <div class="">
+                    <a id="sendButton" class="btn btn-success" disabled>@Localizer["Send"]</a>
+                </div>
             </div>
+            <div class="col-xs-12"><hr /></div>
         }
         <div class="col-xs-12 comment-div">
         </div>

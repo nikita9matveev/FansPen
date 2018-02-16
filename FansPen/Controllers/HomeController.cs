@@ -82,21 +82,26 @@ namespace FansPen.Web.Controllers
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
             );
-            return LocalRedirect(returnUrl);
+            return RedirectPermanent(returnUrl);
         }
 
         public IActionResult Theme(string returnUrl)
         {
-            //if (Request.Cookies["theme"] == null) Response.Cookies.Append("theme", "light");
-            if (Request.Cookies["theme"] == "dark")
+            if (HttpContext.Request.Cookies["theme"] == "dark")
             {
-                Response.Cookies.Append("theme", "light");
+                HttpContext.Response.Cookies.Append(
+                    "theme", "light",
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1)
+                });
             }
             else
             {
-                Response.Cookies.Append("theme", "dark");
+                HttpContext.Response.Cookies.Append(
+                    "theme", "dark",
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1)
+                });
             }
-            return LocalRedirect(returnUrl);
+            return RedirectPermanent(returnUrl);
         }
 
         public IActionResult Error()
