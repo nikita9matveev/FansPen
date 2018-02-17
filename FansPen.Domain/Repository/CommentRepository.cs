@@ -27,27 +27,25 @@ namespace FansPen.Domain.Repository
                 .Skip(package).Take(10).ToList();
         }
 
-        public int SendComment(string userId, int fanficId, string text)
+        public Comment SendComment(string userId, int fanficId, string text)
         {
+            DateTime now = DateTime.Now;
             _commentEntity.Add(new Comment
             {
                 ApplicationUserId = userId,
-                DataCreate = DateTime.Now,
+                DataCreate = now,
                 Text = text,
                 FanficId = fanficId
             });
             Save();
-            return _commentEntity.Where(x => x.FanficId == fanficId).Count();
-        }
-
-        public List<Comment> GetNewComments(int id)
-        {
             return _commentEntity
-                .OrderByDescending(x => x.DataCreate)
                 .Include(x => x.ApplicationUser)
                 .Include(x => x.Likes)
-                .Where(x => x.DataCreate > DateTime.Now.AddSeconds(-2))
-                .Where(x => x.FanficId == id).ToList();
+                .Where(x => x.ApplicationUserId == userId)
+                .Where(x => x.DataCreate == now)
+                .Where(x => x.Text == text)
+                .Where(x => x.FanficId == fanficId)
+                .First();
         }
 
         public int DeleteComment(int idComment, int idFanfic)
@@ -58,11 +56,6 @@ namespace FansPen.Domain.Repository
                 _commentEntity.Remove(comment);
                 Save();
             }
-            return _commentEntity.Where(x => x.FanficId == idFanfic).Count();
-        }
-
-        public int GetNewCount(int idFanfic)
-        {
             return _commentEntity.Where(x => x.FanficId == idFanfic).Count();
         }
     }

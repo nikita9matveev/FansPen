@@ -14,6 +14,7 @@ namespace FansPen.Web.Controllers
     public class FanficController : Controller
     {
         public FanficRepository FanficRepository;
+        public TopicRepository TopicRepository;
         public TagRepository TagRepository;
 
         private FanficViewModel _fanficViewModel { get; set; }
@@ -21,6 +22,7 @@ namespace FansPen.Web.Controllers
         public FanficController(ApplicationContext context)
         {
             FanficRepository = new FanficRepository(context);
+            TopicRepository = new TopicRepository(context);
             TagRepository = new TagRepository(context);
         }
 
@@ -34,5 +36,11 @@ namespace FansPen.Web.Controllers
             return View("Index", _fanficViewModel);
         }
 
+        [HttpGet]
+        [Route("Topic")]
+        public IActionResult Topic(int id)
+        { 
+            return View(Mapper.Map<TopicViewModel>(TopicRepository.GetTopicById(id)));
+        }
     }
 }

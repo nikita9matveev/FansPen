@@ -17,7 +17,7 @@ namespace FansPen.Web.Models.ViewModels
         public PreviewUserViewModel ApplicationUser { get; set; }
         public CategoryViewModel Category { get; set; }
         public virtual ICollection<CommentViewModel> Comments { get; set; }
-        public virtual ICollection<TopicViewModel> Topics { get; set; }
+        public virtual ICollection<TopicPreViewModel> Topics { get; set; }
         public virtual ICollection<FanficTagViewModel> FanficTags { get; set; }
         public List<TagViewModel> Tags { get; set; }
 

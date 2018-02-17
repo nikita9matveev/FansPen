@@ -20,7 +20,7 @@
         <div class="col-sm-6 starsRating">
             <form class="rating" title="@Model.AverageRating">
                 @{
-                    var rating = Math.Round(Model.AverageRating);
+                    var rating = Math.Round(Model.AverageRating, MidpointRounding.AwayFromZero);
                     for (int i = 1; i <= 5; i++)
                     {
                         var check = rating == i ? "checked" : "";
@@ -61,6 +61,8 @@
                 <a href="/Topic?id=@item.Id" class="contents-fanfic"><p><b>@Localizer["Chapter"] @item.Number. </b>@item.Name</p></a>
             }
         </div>
+
+        @* Comments block *@
         <div class="col-xs-12">
             <hr><div class="hidden" id="FanficId">@Model.Id</div>
         </div>

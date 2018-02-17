@@ -1,0 +1,67 @@
+﻿/* starts */
+
+.setable-rating {
+  display: inline-block;
+  position: relative;
+  height: 30px;
+  line-height: 1.2em;
+  font-size: 30px;
+}
+
+.setable-rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.setable-rating label:last-child {
+  position: static;
+}
+
+.setable-rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.setable-rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.setable-rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.setable-rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.setable-rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.setable-rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.setable-rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.setable-rating label:last-child .icon {
+  color: #633520;
+}
+
+.setable-rating:not(:hover) label input:checked ~ .icon,
+.setable-rating:hover label:hover input ~ .icon {
+  color: #09f;
+}
+
+.setable-rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}

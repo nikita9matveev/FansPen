@@ -41,7 +41,7 @@
                     <div class="col-sm-6 col-xs-12 starsRating" style="overflow:hidden">
                         <form class="rating" title="@item.AverageRating">
                             @{
-                                var rating = Math.Round(item.AverageRating);
+                                var rating = Math.Round(item.AverageRating, MidpointRounding.AwayFromZero);
                                 for (int i = 1; i <= 5; i++)
                                 {
                                     var check = rating == i ? "checked" : "";
