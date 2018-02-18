@@ -9,6 +9,9 @@ namespace FansPen.Domain.Repository
 {
     public class ApplicationUserRepository : BaseRepository<ApplicationUser>
     {
-        public ApplicationUserRepository(ApplicationContext context) : base(context) { }
+        public ApplicationUserRepository(ApplicationContext context) : base(context)
+        {
+
+        }
     }
 }

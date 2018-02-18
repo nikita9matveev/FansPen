@@ -53,7 +53,7 @@
 }
 
 .setable-rating label:last-child .icon {
-  color: #633520;
+  color: #000;
 }
 
 .setable-rating:not(:hover) label input:checked ~ .icon,
