@@ -65,3 +65,20 @@
   color: #000;
   text-shadow: 0 0 5px #09f;
 }
+
+/* end stars */
+
+.average-rating-topic {
+    text-align: right;
+}
+
+@media(max-width: 767px) {
+    .average-rating-topic {
+        text-align: left;
+    }
+}
+
+.emoji-star-topic {
+    color: #09f;
+    font-size: 1.2em;
+}

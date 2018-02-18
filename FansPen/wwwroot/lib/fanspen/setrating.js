@@ -16,7 +16,7 @@ $(":radio").change(function () {
                 idTopic: topicId
             },
             success: function (data) {
-                $('#averageTopic').text('(' + data.averageTopicRating + ')');
+                $('#averageTopic').text(data.averageTopicRating);
                 $('#countRating').text(data.countRatings);
             },
             datatype: 'json',
