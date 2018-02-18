@@ -7,13 +7,11 @@ namespace FansPen.Domain.Repository
 {
     public class FanficRepository : BaseRepository<Fanfic>
     {
-        private ApplicationContext _context;
         private DbSet<Fanfic> _fanficEntity;
         private TagRepository _tagRepositiry;
         private TagFanficRepository _tagFanficRepository;
 
         public FanficRepository(ApplicationContext context) : base(context) {
-            _context = context;
             _fanficEntity = context.Set<Fanfic>();
             _tagRepositiry = new TagRepository(context);
             _tagFanficRepository = new TagFanficRepository(context);
@@ -33,7 +31,9 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.Category)
                 .Include(x => x.ApplicationUser)
                 .Include(x => x.FanficTags)
-                .Where(x => x.Category.Name == category).ToList();
+                .Where(x => x.Category.Name == category)
+                .OrderByDescending(x => x.CreateDate)
+                .ToList();
         }
 
         public List<Fanfic> GetItemByTags(string tag)
@@ -54,7 +54,7 @@ namespace FansPen.Domain.Repository
                     }
                 }
             }
-            return fanficsResult;
+            return fanficsResult.OrderByDescending(x => x.CreateDate).ToList();
         }
 
         public Fanfic GetById(int id)
@@ -66,6 +66,24 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.FanficTags)
                 .Include(x => x.Comments)
                 .Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public void SetAverageRatingById(int id)
+        {
+            Fanfic fanfic = _fanficEntity
+                .Include(x => x.Topics)
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+            if(fanfic != null)
+            {
+                float averageFanficRating = 0;
+                foreach(var topic in fanfic.Topics)
+                {
+                    averageFanficRating += topic.AverageRating;
+                }
+                fanfic.AverageRating = averageFanficRating / fanfic.Topics.Count();
+                Save();
+            }
         }
     }
 }

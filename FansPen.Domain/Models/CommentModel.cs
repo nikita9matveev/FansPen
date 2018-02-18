@@ -8,7 +8,7 @@ namespace FansPen.Domain.Models
     public class Comment
     {
         public int Id { get; set; }
-        public int? FanficId { get; set; }
+        public int FanficId { get; set; }
         public Fanfic Fanfic { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

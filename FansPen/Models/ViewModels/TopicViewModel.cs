@@ -12,11 +12,24 @@ namespace FansPen.Web.Models.ViewModels
         public string Text { get; set; }
         public ICollection<ImgViewModel> Imgs { get; set; }
         public ICollection<RatingViewModel> Ratings { get; set; }
-        public List<PreviewUserViewModel> UsersRated { get; set; }
+        //public List<PreviewUserViewModel> UsersRated { get; set; }
         public float AverageRating { get; set; }
+        public int UserRating { get; set; }
         public TopicViewModel()
         {
-            UsersRated = new List<PreviewUserViewModel>();
+            //UsersRated = new List<PreviewUserViewModel>();
+            UserRating = 0;
+        }
+        public void SetUserRating(string userId)
+        {
+            foreach(var rating in Ratings)
+            {
+                if(rating.ApplicationUserId == userId)
+                {
+                    UserRating = rating.Value;
+                    break;
+                }
+            }
         }
     }
 }

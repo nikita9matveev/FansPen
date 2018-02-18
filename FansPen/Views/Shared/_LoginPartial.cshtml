@@ -18,7 +18,7 @@
                     <li><a href="#"><i class="fas fa-edit"></i> @Localizer["Newfan"]</a></li>
                     <li class="divider"></li>
                     <li>
-                        <form class="formlink" asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                        <form class="formlink" asp-area="" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" method="post" id="logoutForm">
                             <button type="submit" class="btnlink"><i class="fas fa-sign-out-alt"></i> @Localizer["Singout"]</button>
                         </form>
                     </li>

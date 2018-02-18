@@ -216,6 +216,7 @@
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\FanficRepository.cs" />
     <Compile Include="Repository\LikeRepository.cs" />
+    <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\TagFanficRepository.cs" />
     <Compile Include="Repository\TagRepository.cs" />
     <Compile Include="Repository\TopicRepository.cs" />

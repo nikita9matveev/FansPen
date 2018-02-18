@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model TopicViewModel
+
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="contentMain">
+    <div class="col-sm-10 col-sm-offset-1 fanficBlock">
+        <div class="text-center">
+            <h2 class="nameFanfic">@Localizer["Chapter"] @Model.Number. @Model.Name</h2>
+        </div>
+        @foreach (var topic in Model.Fanfic.Topics)
+        {
+            <div>@topic.Name</div>
+        }
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="col-sm-6 text-left">
+                @Localizer["YourMark"]
+                <form class="setable-rating">
+                    @{
+                        for (int i = 1; i <= 5; i++)
+                        {
+                            var check = Model.UserRating == i ? "checked" : "";
+                            <label>
+                                <input type="radio" name="stars" value="@i" @check />
+                                @for (int j = 1; j <= i; j++)
+                                {
+                                    <span class="icon">★</span>
+                                }
+                            </label>
+                        }
+                    }
+                </form>
+            </div>
+            <div class="col-sm-6 text-right">
+                <span id="averageTopic">(@Model.AverageRating)</span>
+                <span id="countRating">@Model.Ratings.Count()</span>
+            </div>
+        }
+        else
+        { 
+            <div class="col-xs-12 text-right">
+                <span id="averageTopic">(@Model.AverageRating)</span>
+                @Model.Ratings.Count()
+            </div>
+        }
+
+        @* Comments block *@
+        <div id="commentsBlock">
+            <div class="col-xs-12">
+                <hr><div class="hidden" id="FanficId">@Model.FanficId</div>
+            </div>
+            <div class="col-xs-12">
+                <h4>@Localizer["Comments"] <span id="countComments">(@Model.Fanfic.Comments.Count())</span></h4>
+            </div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="col-xs-12 send-comment-fanfic">
+                    <textarea id="commentText" placeholder="@Localizer["WriteComment"]" maxlength="1000" class="form-control" rows="2"></textarea>
+                    <div class="">
+                        <a id="sendButton" class="btn btn-success" disabled>@Localizer["Send"]</a>
+                    </div>
+                </div>
+                <div class="col-xs-12"><hr /></div>
+            }
+            <div class="col-xs-12 comment-div">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/fanspen/setrating.js"></script>
+@section Scripts {
+    @await Html.PartialAsync("_CommentScripts")
+    @await Html.PartialAsync("_SetRating")
+}

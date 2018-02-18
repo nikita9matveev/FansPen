@@ -21,10 +21,21 @@ namespace FansPen.Domain.Repository
         {
             return _topicEntity
                 .Include(x => x.Fanfic)
+                .Include(x => x.Ratings)
                 .Include(x => x.Fanfic.Comments)
                 .Include(x => x.Fanfic.Topics)
                 .Include(x => x.Imgs)
                 .Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public void SetAverageRatingById(int idTopic, float averageRating)
+        {
+            Topic topic = _topicEntity.Where(x => x.Id == idTopic).FirstOrDefault();
+            if (topic != null)
+            {
+                topic.AverageRating = averageRating;
+                Save();
+            }
         }
     }
 }

@@ -45,10 +45,10 @@
     <EmbeddedResource Update="Resources\Views\Fanfic\Index.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views\Fanfic\Topic.en.resx">
+    <EmbeddedResource Update="Resources\Views\Topic\Topic.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views\Fanfic\Topic.ru.resx">
+    <EmbeddedResource Update="Resources\Views\Topic\Topic.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Home\Index.en.resx">
