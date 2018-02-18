@@ -1,13 +1,32 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model ApplicationUserViewModel
 
 @inject IViewLocalizer Localizer
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = Model.UserName;
 }
 
 <div class="contentMain">
-    <h2>Profile</h2>
+    <div class="col-sm-3">
+        <div class="col-xs-12">
+            <div id="mainAvatar">
+                <img src="@Model.AvatarUrl" />
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <h3>@Model.UserName</h3>
+        </div>
+        <div class="col-xs-12">
+            <h5>@Model.Email</h5>
+        </div>
+        @if (UserManager.GetUserId(User) == Model.Id)
+        {
+            <div class="col-xs-12" id="newFanficButton">
+                <a href="#" class="btn btn-success">@Localizer["NewFanfic"]</a>
+            </div>
+        }
+    </div>
 </div>

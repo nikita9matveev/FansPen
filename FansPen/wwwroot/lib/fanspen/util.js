@@ -5,11 +5,11 @@
         var text = data.Text.replace('\n', '<br />');
         commentDiv.prepend(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
-                        <img src="${data.User.AvatarUrl}" />
+                        <a href="/Profile?id=${data.User.Id}"><img src="${data.User.AvatarUrl}" /></a>
                     </div>
                     <div class="col-sm-10 col-xs-8 name-comment-fanfic">
                         <div class="col-xs-12">
-                            <b>${data.User.UserName}</b>
+                            <a href="/Profile?id=${data.User.Id}"><b>${data.User.UserName}</b></a>
                         </div>
                         <div class="col-xs-12 small-text">
                             ${data.DataCreate}

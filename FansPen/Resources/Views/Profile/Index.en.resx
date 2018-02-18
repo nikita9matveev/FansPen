@@ -117,22 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Newfan" xml:space="preserve">
-    <value>Новый фанфик</value>
-  </data>
-  <data name="Or" xml:space="preserve">
-    <value>или</value>
-  </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Профиль</value>
-  </data>
-  <data name="Singin" xml:space="preserve">
-    <value>Войти</value>
-  </data>
-  <data name="Singout" xml:space="preserve">
-    <value>Выйти</value>
-  </data>
-  <data name="Singup" xml:space="preserve">
-    <value>Регистрация</value>
+  <data name="NewFanfic" xml:space="preserve">
+    <value>New fanfic</value>
   </data>
 </root>

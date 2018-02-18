@@ -1,0 +1,13 @@
+﻿#mainAvatar, #mainAvatar img {
+    width: 100%;
+}
+
+#mainAvatar {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#newFanficButton a {
+    width: 100%;
+    margin-top: 10px;
+}

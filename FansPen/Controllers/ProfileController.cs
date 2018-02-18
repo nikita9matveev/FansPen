@@ -1,5 +1,7 @@
-﻿using FansPen.Domain.Models;
+﻿using AutoMapper;
+using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
+using FansPen.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FansPen.Web.Controllers
@@ -17,7 +19,10 @@ namespace FansPen.Web.Controllers
         [Route("Profile")]
         public IActionResult Profile(string id)
         {
-            return View("Index");
+            return View("Index",
+                Mapper.Map<ApplicationUserViewModel>(
+                    ApplicationUserRepository.GetApplicationUserById(id)
+                ));
         }
     }
 }

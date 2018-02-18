@@ -86,11 +86,11 @@ function getComments() {
                 var your = data[i].isYour ? `<div class="col-sm-1 col-xs-2 del-comment-button del${data[i].id}"><div class="hidden">${data[i].id}</div><i class="fas fa-times"></i></div>` : ``;
                 commentDiv.append(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
-                        <img src="${data[i].user.avatarUrl}" />
+                        <a href="/Profile?id=${data[i].user.id}"><img src="${data[i].user.avatarUrl}" /></a>
                     </div>
                     <div class="col-sm-10 col-xs-8 name-comment-fanfic">
                         <div class="col-xs-12">
-                            <b>${data[i].user.userName}</b>
+                            <a href="/Profile?id=${data[i].user.id}"><b>${data[i].user.userName}</b></a>
                         </div>
                         <div class="col-xs-12 small-text">
                             ${data[i].dataCreate}
@@ -162,11 +162,11 @@ function sendComment() {
             var text = data.newComment.text.replace('\n', '<br />');
             commentDiv.prepend(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
-                        <img src="${data.newComment.user.avatarUrl}" />
+                        <a href="/Profile?id=${data.newComment.user.id}"><img src="${data.newComment.user.avatarUrl}" /></a>
                     </div>
                     <div class="col-sm-10 col-xs-8 name-comment-fanfic">
                         <div class="col-xs-12">
-                            <b>${data.newComment.user.userName}</b>
+                            <a href="/Profile?id=${data.newComment.user.id}"><b>${data.newComment.user.userName}</b></a>
                         </div>
                         <div class="col-xs-12 small-text">
                             ${data.newComment.dataCreate}

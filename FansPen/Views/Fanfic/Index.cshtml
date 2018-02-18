@@ -15,7 +15,7 @@
             <h2 class="nameFanfic">@Model.Name</h2>
         </div>
         <div class="col-sm-6 authorData">
-            <p><b>@Model.ApplicationUser.UserName</b> <span class="small-text">@Model.CreateDate.ToShortDateString()</span></p>
+            <p><a href="/Profile?id=@Model.ApplicationUser.Id"><b>@Model.ApplicationUser.UserName</b></a> <span class="small-text">@Model.CreateDate.ToShortDateString()</span></p>
         </div>
         <div class="col-sm-6 starsRating">
             <form class="rating" title="@Model.AverageRating">
