@@ -198,6 +198,10 @@
     <Compile Include="Migrations\20180214032825_fixDb.designer.cs">
       <DependentUpon>20180214032825_fixDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20180218133429_fixedUser.cs" />
+    <Compile Include="Migrations\20180218133429_fixedUser.designer.cs">
+      <DependentUpon>20180218133429_fixedUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CategoryModel.cs" />
