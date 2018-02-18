@@ -10,7 +10,7 @@
 }
 
 <div class="contentMain">
-    <div class="col-sm-3">
+    <div class="col-sm-3 col-sm-offset-1">
         <div class="col-xs-12">
             <div id="mainAvatar">
                 <img src="@Model.AvatarUrl" />
@@ -22,36 +22,82 @@
         <div class="col-xs-12">
             <h5>@Model.Email</h5>
         </div>
+        <div class="col-xs-12">
+            <h5><small>@Model.RegistrationDate</small></h5>
+        </div>
         @if (UserManager.GetUserId(User) == Model.Id)
         {
             <div class="col-xs-12" id="newFanficButton">
                 <a href="#" class="btn btn-success">@Localizer["NewFanfic"]</a>
             </div>
         }
+        <div class="col-xs-12"><hr /></div>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-7">
         <div class="col-xs-12">
             <ul class="nav nav-tabs" id="menuProfile">
-                <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Info</a></li>
-                <li class=""><a href="#fanfics" data-toggle="tab" aria-expanded="false">Fanfics</a></li>
+                <li class="active">
+                    <a href="#profileData" data-toggle="tab" aria-expanded="true">
+                        @if (UserManager.GetUserId(User) == Model.Id)
+                        {
+                            @Localizer["MyInfo"]
+                        }
+                        else
+                        {
+                            @Localizer["Info"]
+                        }
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#fanficsData" data-toggle="tab" aria-expanded="false">
+                        @if (UserManager.GetUserId(User) == Model.Id)
+                        {
+                            @Localizer["MyFanfics"]
+                        }
+                        else
+                        {
+                            @Localizer["Fanfics"]
+                        }
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="col-xs-12">
             <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade active in" id="home">
-                    @*<div class="col-xs-12">*@
-                        <label class="control-label">First name</label>
-                        <input class="form-control" type="text">
-                    @*</div>
-                    <div class="col-xs-12">*@
-                        <label class="control-label">Last Name</label>
-                        <input class="form-control" type="text">
-                    @*</div>*@
+                <div class="tab-pane fade active in" id="profileData">
+                    @{
+                        var changeble = UserManager.GetUserId(User) == Model.Id ? "changeble" : "";
+                        <label class="control-label label-profile">@Localizer["FirstName"]</label>
+                        <div>
+                            <h5 id="FirstName" class="@changeble">@Localizer[Model.FirstName]</h5>
+                        </div>
+                        <hr />
+                        <label class="control-label label-profile">@Localizer["SecondName"]</label>
+                        <div>
+                            <h5 id="SecondName" class="@changeble">@Localizer[Model.SecondName]</h5>
+                        </div>
+                        <hr />
+                        <label class="control-label label-profile">@Localizer["Sex"]</label>
+                        <div>
+                            <h5 id="Sex" class="@changeble">@Localizer[Model.Sex]</h5>
+                        </div>
+                        <hr />
+                        <label class="control-label label-profile">@Localizer["AboutMe"]</label>
+                        <div>
+                            <h5 id="AboutMe" class="@changeble">@Localizer[Model.AboutMe]</h5>
+                        </div>
+                    }
                 </div>
-                <div class="tab-pane fade" id="fanfics">
+                <div class="tab-pane fade" id="fanficsData">
                     <p>List of fanfics</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@if (UserManager.GetUserId(User) == Model.Id)
+{
+    @await Html.PartialAsync("_ChangeProfile")
+}

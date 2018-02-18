@@ -11,7 +11,7 @@ namespace FansPen.Web.Tools
         {
             CreateMap<Topic, TopicViewModel>()
                 .ForMember(dest => dest.AverageRating,
-                opt => opt.MapFrom(src => Math.Round(src.AverageRating, 1, MidpointRounding.AwayFromZero))); ;
+                opt => opt.MapFrom(src => Math.Round(src.AverageRating, 1, MidpointRounding.AwayFromZero)));
         }
     }
 }

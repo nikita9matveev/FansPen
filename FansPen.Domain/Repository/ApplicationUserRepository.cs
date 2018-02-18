@@ -24,5 +24,53 @@ namespace FansPen.Domain.Repository
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
         }
+
+        public void SetFirstNameById(string id, string firstName)
+        {
+            ApplicationUser user = _applicationUserEntity
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+            if(user != null)
+            {
+                user.FirstName = firstName;
+                Save();
+            }
+        }
+
+        public void SetSecondNameById(string id, string secondName)
+        {
+            ApplicationUser user = _applicationUserEntity
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+            if (user != null)
+            {
+                user.SecondName = secondName;
+                Save();
+            }
+        }
+
+        public void SetSexById(string id, string sex)
+        {
+            ApplicationUser user = _applicationUserEntity
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+            if (user != null)
+            {
+                user.Sex = sex;
+                Save();
+            }
+        }
+
+        public void SetAboutMeById(string id, string aboutMe)
+        {
+            ApplicationUser user = _applicationUserEntity
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+            if (user != null)
+            {
+                user.AboutMe = aboutMe;
+                Save();
+            }
+        }
     }
 }
