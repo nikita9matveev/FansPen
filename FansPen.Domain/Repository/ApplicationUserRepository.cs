@@ -20,7 +20,6 @@ namespace FansPen.Domain.Repository
         public ApplicationUser GetApplicationUserById(string id)
         {
             return _applicationUserEntity
-                .Include(x => x.Fanfics)
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
         }

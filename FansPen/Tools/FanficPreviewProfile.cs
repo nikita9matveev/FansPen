@@ -11,7 +11,9 @@ namespace FansPen.Web.Tools
         {
             CreateMap<Fanfic, FanficPreViewModel>()
                 .ForMember(dest => dest.AverageRating,
-                opt => opt.MapFrom(src => Math.Round(src.AverageRating, 1, MidpointRounding.AwayFromZero)));
+                opt => opt.MapFrom(src => Math.Round(src.AverageRating, 1, MidpointRounding.AwayFromZero)))
+                .ForMember(dest => dest.CreateDate,
+                opt => opt.MapFrom(src => src.CreateDate.ToShortDateString()));
         }
     }
 }

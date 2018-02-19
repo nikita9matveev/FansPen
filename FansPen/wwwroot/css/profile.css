@@ -7,14 +7,15 @@
     overflow: hidden;
 }
 
-#newFanficButton a {
-    width: 100%;
+#newFanficButton {
+    /*width: 100%;*/
     margin-top: 10px;
 }
 
 #menuProfile {
     float: left !important;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 #aboutMeTextArea {
@@ -46,14 +47,19 @@
     }
 }
 
-#myTabContent {
-    padding: 0px 15px;
-}
-
 #SexSelect {
     width: auto !important;
 }
 
 #AboutMe {
     text-align: justify;
+}
+
+#resultDivProfile {
+    margin-top: 10px;
+}
+
+.bordered-thumbnail {
+    box-shadow: none;
+    border: 1px solid rgb(220, 228, 236) !important;
 }

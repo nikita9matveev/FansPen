@@ -15,11 +15,13 @@
         {
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-darkly.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/dark.css" />
         }
         else
         {
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/light.css" />
         }
     </environment>
     <environment exclude="Development">
@@ -48,7 +50,7 @@
             <div class="col-sm-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand">FansPen</a></div>
             <div class="navbar-collapse collapse">
 
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <form method="get" action="/Search" id="mySearch" role="search">
                         <input type="text" name="value" placeholder="@Localizer["Search"]">
                     </form>

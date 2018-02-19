@@ -85,5 +85,51 @@ namespace FansPen.Domain.Repository
                 Save();
             }
         }
+
+        public List<Fanfic> GetUserFanficsByCategory(string idUser, string category, int sort, int package)
+        {
+            if(sort == 0)
+            {
+                return _fanficEntity
+                .Include(x => x.Category)
+                .Where(x => x.ApplicationUserId == idUser)
+                .Where(x => x.Category.Name == category)
+                .OrderByDescending(x => x.CreateDate)
+                .Skip(package)
+                .Take(10).ToList();
+            }
+            else
+            {
+                return _fanficEntity
+                .Include(x => x.Category)
+                .Where(x => x.ApplicationUserId == idUser)
+                .Where(x => x.Category.Name == category)
+                .OrderByDescending(x => x.AverageRating)
+                .Skip(package)
+                .Take(10).ToList();
+            }
+        }
+
+        public List<Fanfic> GetUserFanfics(string idUser, int sort, int package)
+        {
+            if (sort == 0)
+            {
+                return _fanficEntity
+                .Include(x => x.Category)
+                .Where(x => x.ApplicationUserId == idUser)
+                .OrderByDescending(x => x.CreateDate)
+                .Skip(package)
+                .Take(10).ToList();
+            }
+            else
+            {
+                return _fanficEntity
+                .Include(x => x.Category)
+                .Where(x => x.ApplicationUserId == idUser)
+                .OrderByDescending(x => x.AverageRating)
+                .Skip(package)
+                .Take(10).ToList();
+            }
+        }
     }
 }

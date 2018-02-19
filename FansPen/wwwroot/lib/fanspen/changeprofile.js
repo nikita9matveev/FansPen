@@ -1,13 +1,10 @@
 ﻿var idUser = window.location.search.replace('?id=', '');
-var locale = document.cookie.split('.AspNetCore.Culture=')[1];
-var shotlocale = locale == undefined ? "" : locale.substring(locale.length - 2);
-var notIndicated = shotlocale == "ru" ? "Не указано" : "Not indicated";
+var notIndicated = shotCulture == "en" ? "Not indicated" : "Не указано";
 
 var firstAjax = true;
 var secondAjax = true;
 var sexAjax = true;
 var aboutAjax = true;
-
 
 $('#FirstName').on('dblclick', selectFirstName);
 $('#FirstName').on('touchend', selectFirstName);
@@ -66,18 +63,20 @@ $(document.body).keydown(function (e) {
 });
 
 function selectFirstName(e) {
-    var text = $(this).text() == "Not indicated" || $(this).text() == "Не указано" ? "" : $(this).text();
-    $(this).parent().html(`<input class="form-control" id="FirstNameInput" type="text" value="${text}">`);
+    var text = $(this).text().trim() == "Not indicated" || $(this).text().trim() == "Не указано" ? "" : $(this).text().trim();
+    $(this).parent().html(`<input class="form-control min-border-input" id="FirstNameInput" type="text" value="${text}">`);
+    $('#FirstNameInput').focus();
 }
 
 function selectSecondName(e) {
-    var text = $(this).text() == "Not indicated" || $(this).text() == "Не указано" ? "" : $(this).text();
-    $(this).parent().html(`<input class="form-control" id="SecondNameInput" type="text" value="${text}">`);
+    var text = $(this).text().trim() == "Not indicated" || $(this).text().trim() == "Не указано" ? "" : $(this).text().trim();
+    $(this).parent().html(`<input class="form-control min-border-input" id="SecondNameInput" type="text" value="${text}">`);
+    $('#SecondNameInput').focus();
 }
 
 function selectSex(e) {
     var lang, currentVal;
-    switch ($(this).text()) {
+    switch ($(this).text().trim()) {
         case 'Not indicated': lang = true; currentVal = 0; break;
         case 'Male': lang = true; currentVal = 1; break;
         case 'Female': lang = true; currentVal = 2; break;
@@ -87,16 +86,18 @@ function selectSex(e) {
         default: return;
     }
     $(this).parent().html(
-        '<select class="form-control" id="SexSelect">' +
+        '<select class="form-control min-border-input" id="SexSelect">' +
         '<option ' + (0 == currentVal ? 'selected' : '') + '>' + (lang ? 'Not indicated' : 'Не указано') + '</option>' +
         '<option ' + (1 == currentVal ? 'selected' : '') + '>' + (lang ? 'Male' : 'Мужской') + '</option>' +
         '<option ' + (2 == currentVal ? 'selected' : '') + '>' + (lang ? 'Female' : 'Женский') + '</option>' +
         '</select>');
+    $('#SexSelect').focus();
 }
 
 function selectAboutMe(e) {
-    var text = $(this).text() == "Not indicated" || $(this).text() == "Не указано" ? "" : $(this).text();
-    $(this).parent().html(`<textarea id="aboutMeTextArea" class="form-control" rows="3" maxlength="1000">${text}</textarea>`);
+    var text = $(this).text().trim() == "Not indicated" || $(this).text().trim() == "Не указано" ? "" : $(this).text().trim();
+    $(this).parent().html(`<textarea id="aboutMeTextArea" class="form-control min-border-input" rows="3" maxlength="1000">${text}</textarea>`);
+    $('#aboutMeTextArea').focus();
 }
 
 
@@ -112,7 +113,7 @@ function setFirstName(value) {
                 value: value
             },
             success: function () {
-                var text = value == "" ? notIndicated : value;
+                var text = value == "" ? localeText("NotIndicated") : value;
                 $('#FirstNameInput').parent().html(`<h5 id="FirstName" class="changeble">${text}</h5>`);
                 $('#FirstName').on('dblclick', selectFirstName);
                 $('#FirstName').on('touchend', selectFirstName);
@@ -136,7 +137,7 @@ function setSecondName(value) {
                 value: value
             },
             success: function () {
-                var text = value == "" ? notIndicated : value;
+                var text = value == "" ? localeText("NotIndicated") : value;
                 $('#SecondNameInput').parent().html(`<h5 id="SecondName" class="changeble">${text}</h5>`);
                 $('#SecondName').on('dblclick', selectSecondName);
                 $('#SecondName').on('touchend', selectSecondName);
@@ -189,7 +190,7 @@ function setAboutMe(value) {
                 value: value
             },
             success: function () {
-                var text = value == "" ? notIndicated : value;
+                var text = value == "" ? localeText("NotIndicated") : value;
                 $('#aboutMeTextArea').parent().html(`<h5 id="AboutMe" class="changeble">${text}</h5>`);
                 $('#AboutMe').on('dblclick', selectAboutMe);
                 $('#AboutMe').on('touchend', selectAboutMe);

@@ -96,3 +96,7 @@ body {
 .small-text {
     font-size: .9em;
 }
+
+.min-border-input {
+    border-width: 1px;
+}

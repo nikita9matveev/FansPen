@@ -120,14 +120,32 @@
   <data name="AboutMe" xml:space="preserve">
     <value>About me:</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Anime" xml:space="preserve">
+    <value>Anime and Manga</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>Books</value>
+  </data>
+  <data name="Comics" xml:space="preserve">
+    <value>Comics</value>
+  </data>
   <data name="Fanfics" xml:space="preserve">
     <value>Fanfics</value>
   </data>
   <data name="Female" xml:space="preserve">
     <value>Female</value>
   </data>
+  <data name="Films" xml:space="preserve">
+    <value>Films</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>First name:</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
   </data>
   <data name="Info" xml:space="preserve">
     <value>Info</value>
@@ -141,11 +159,20 @@
   <data name="MyInfo" xml:space="preserve">
     <value>My info</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
   <data name="NewFanfic" xml:space="preserve">
     <value>New fanfic</value>
   </data>
   <data name="NotIndicated" xml:space="preserve">
     <value>Not indicated</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Popular" xml:space="preserve">
+    <value>Popular</value>
   </data>
   <data name="SecondName" xml:space="preserve">
     <value>Second name:</value>

@@ -18,5 +18,10 @@ namespace FansPen.Web.Models.ViewModels
         public string AvatarUrl { get; set; }
         public string ProviderKey { get; set; }
         public ICollection<FanficPreViewModel> Fanfics { get; set; }
+
+        //public SetTags()
+        //{
+
+        //}
     }
 }

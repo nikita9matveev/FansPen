@@ -3,6 +3,7 @@ using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
 using FansPen.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace FansPen.Web.Controllers
 {
@@ -10,9 +11,12 @@ namespace FansPen.Web.Controllers
     {
         public ApplicationUserRepository ApplicationUserRepository;
 
+        public FanficRepository FanficRepository;
+
         public ProfileController(ApplicationContext context)
         {
             ApplicationUserRepository = new ApplicationUserRepository(context);
+            FanficRepository = new FanficRepository(context);
         }
 
         [HttpGet]
@@ -51,6 +55,16 @@ namespace FansPen.Web.Controllers
         public void SetAboutMe(string id, string value)
         {
             ApplicationUserRepository.SetAboutMeById(id, value);
+        }
+
+        [HttpGet]
+        [Route("GetUserFanfics")]
+        public IActionResult GetUserFanfics(string id, int package, string category, int sort)
+        {
+            List<FanficPreViewModel> fanfics = (category == "All") ?
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanfics(id, sort, package)) :
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanficsByCategory(id, category, sort, package));
+            return Json(new { fanfics });
         }
     }
 }
