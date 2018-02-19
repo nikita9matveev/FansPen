@@ -226,6 +226,7 @@ namespace FansPen.Web.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
@@ -247,12 +248,13 @@ namespace FansPen.Web.Controllers
                     EmailService emailService = new EmailService(Configuration);
                     await emailService.SendEmailAsync(model.Email, "Confirm your account",
                         $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
+                    
                     // await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }
-            return View(model);
+            return View();
         }
 
         [HttpPost]
