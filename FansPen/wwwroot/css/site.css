@@ -99,5 +99,8 @@ body {
 
 .min-border-input {
     border-width: 1px;
-    padding: 0px 10px;
+}
+
+#cloudinary-overlay.modal {
+    background-color: rgba(0,0,0,.5) !important;
 }

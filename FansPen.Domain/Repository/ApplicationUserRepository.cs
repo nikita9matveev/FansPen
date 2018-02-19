@@ -71,5 +71,15 @@ namespace FansPen.Domain.Repository
                 Save();
             }
         }
+
+        public void UploadAvatar(string id, string url)
+        {
+            ApplicationUser user = _applicationUserEntity.Where(x => x.Id == id).FirstOrDefault();
+            if (user != null)
+            {
+                user.AvatarUrl = url;
+                Save();
+            }
+        }
     }
 }

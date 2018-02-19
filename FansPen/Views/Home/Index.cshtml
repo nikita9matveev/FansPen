@@ -23,11 +23,13 @@
     <div class="col-sm-7">
         @foreach (var item in Model.Fanfics)
         {
+            var avatarFanfic = item.ApplicationUser.AvatarUrl;
+            avatarFanfic = avatarFanfic.Substring(0, 47) + "t_avatarFanfic" + avatarFanfic.Substring(59);
             <div class="thumbnail">
                 <div class="row autherBlock">
                     <div class="col-sm-6 col-xs-12">
                         <div class="col-xs-2">
-                            <a href="/Profile?id=@item.ApplicationUser.Id"><img class="avatarImg" src="@item.ApplicationUser.AvatarUrl"></a>
+                            <a href="/Profile?id=@item.ApplicationUser.Id"><img class="avatarImg" src="@avatarFanfic"></a>
                         </div>
                         <div class="col-xs-10">
                             <div class="col-xs-12">
