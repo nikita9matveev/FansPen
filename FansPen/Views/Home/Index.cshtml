@@ -20,28 +20,28 @@
             }
         </ul>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-7">
         @foreach (var item in Model.Fanfics)
         {
             <div class="thumbnail">
                 <div class="row autherBlock">
-                    <div class="col-sm-6 com-xs-12">
+                    <div class="col-sm-6 col-xs-12">
                         <div class="col-xs-2">
-                            <img class="avatarImg" src="@item.ApplicationUser.AvatarUrl">
+                            <a href="/Profile?id=@item.ApplicationUser.Id"><img class="avatarImg" src="@item.ApplicationUser.AvatarUrl"></a>
                         </div>
                         <div class="col-xs-10">
-                            <div class="col-xs-12" style="overflow:hidden">
-                                @item.ApplicationUser.UserName
+                            <div class="col-xs-12">
+                                <a href="/Profile?id=@item.ApplicationUser.Id"><b>@item.ApplicationUser.UserName</b></a>
                             </div>
-                            <div class="col-xs-12" style="overflow:hidden">
-                                @item.CreateDate.ToShortDateString()
+                            <div class="col-xs-12 small-text">
+                                @item.CreateDate
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12 starsRating" style="overflow:hidden">
                         <form class="rating" title="@item.AverageRating">
                             @{
-                                var rating = Math.Round(item.AverageRating);
+                                var rating = Math.Round(item.AverageRating, MidpointRounding.AwayFromZero);
                                 for (int i = 1; i <= 5; i++)
                                 {
                                     var check = rating == i ? "checked" : "";
@@ -60,13 +60,13 @@
                 <a href="/Fanfic?id=@item.Id">
                     <div class="imgFanfic">
                         <div class="titleFanfic">
-                            <h4 class="titleFanficH4">@item.Name</h4>
+                            <h3 class="titleFanficH3">@item.Name</h3>
                         </div>
                         <img src="@item.ImgUrl">
                     </div>
                 </a>
                 <div class="caption">
-                    <p>@item.Description</p>
+                    <p class="description-fanfic">@item.Description</p>
                     <p>
                         <a href="/Category?value=@item.Category.Name.ToString()" class="categoryButton" role="button">@Localizer[item.Category.Name]</a>
                         @foreach (var tag in item.Tags)
@@ -78,7 +78,7 @@
             </div>
         }
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
         @foreach (var tag in Model.Tags)
         {
             <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>

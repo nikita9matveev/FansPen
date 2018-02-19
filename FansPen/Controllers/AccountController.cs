@@ -229,7 +229,13 @@ namespace FansPen.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, RegistrationDate = DateTime.Now, AvatarUrl = "./images/icons/user.png" };
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    RegistrationDate = DateTime.Now,
+                    AvatarUrl = "/images/icons/user.png"
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -253,11 +259,11 @@ namespace FansPen.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Logout(string returnUrl)
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectPermanent(returnUrl);
         }
 
         [HttpPost]
@@ -327,7 +333,7 @@ namespace FansPen.Web.Controllers
                     UserName = model.UserName,
                     Email = model.Email,
                     RegistrationDate = DateTime.Now,
-                    AvatarUrl = "./images/icons/user.png",
+                    AvatarUrl = "/images/icons/user.png",
                     ProviderKey = info.ProviderKey
                 };
                 var result = await _userManager.CreateAsync(user);

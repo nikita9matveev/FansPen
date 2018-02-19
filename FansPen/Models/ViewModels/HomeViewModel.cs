@@ -23,17 +23,7 @@ namespace FansPen.Web.Models.ViewModels
             Fanfics.Clear();
             foreach(var fanfic in fanfics)
             {
-                foreach(var fanTag in fanfic.FanficTags)
-                {
-                    foreach(var tag in tags)
-                    {
-                        if(fanTag.TagId == tag.Id)
-                        {
-                            fanfic.Tags.Add(tag);
-                            break;
-                        }
-                    }
-                }
+                fanfic.SetTags(tags);
             }
             Fanfics = fanfics;
             Tags.Clear();

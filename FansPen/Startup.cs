@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
+using Microsoft.Owin;
+using Owin;
 
 namespace FansPen.Web
 {
@@ -42,7 +44,7 @@ namespace FansPen.Web
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            //services.AddMvc();
+            services.AddSignalR();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddAutoMapper();
@@ -117,6 +119,8 @@ namespace FansPen.Web
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseSignalR();
 
             app.UseMvc(routes =>
             {

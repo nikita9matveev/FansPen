@@ -1,0 +1,64 @@
+﻿#mainAvatar, #mainAvatar img {
+    width: 100%;
+}
+
+#mainAvatar {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#newFanficButton {
+    margin-top: 10px;
+}
+
+#menuProfile {
+    float: left !important;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#aboutMeTextArea {
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 90px;
+    max-height: 200px;
+}
+
+.label-profile {
+    font-size: 1.2em;
+}
+
+#profileData h5 {
+    cursor: default;
+}
+
+#profileData .changeble {
+    cursor: pointer;
+}
+
+#profileData .changeble:hover {
+    text-decoration: underline;
+}
+
+@media(min-width: 768px) {
+    #menuProfile a {
+        font-size: 1.2em;
+    }
+}
+
+#SexSelect {
+    width: auto !important;
+}
+
+#AboutMe {
+    text-align: justify;
+}
+
+#resultDivProfile {
+    margin-top: 10px;
+}
+
+.bordered-thumbnail {
+    box-shadow: none;
+    border: 1px solid rgb(220, 228, 236) !important;
+}

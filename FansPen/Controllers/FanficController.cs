@@ -6,6 +6,7 @@ using AutoMapper;
 using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
 using FansPen.Web.Models.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FansPen.Web.Controllers

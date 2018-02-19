@@ -2,6 +2,9 @@
 @model FanficViewModel
 
 @inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = Model.Name.ToString();
 }
@@ -12,12 +15,12 @@
             <h2 class="nameFanfic">@Model.Name</h2>
         </div>
         <div class="col-sm-6 authorData">
-            <p><b>@Model.ApplicationUser.UserName</b> <span>@Model.CreateDate.ToShortDateString()</span></p>
+            <p><a href="/Profile?id=@Model.ApplicationUser.Id"><b>@Model.ApplicationUser.UserName</b></a> <span class="small-text">@Model.CreateDate.ToShortDateString()</span></p>
         </div>
         <div class="col-sm-6 starsRating">
             <form class="rating" title="@Model.AverageRating">
                 @{
-                    var rating = Math.Round(Model.AverageRating);
+                    var rating = Math.Round(Model.AverageRating, MidpointRounding.AwayFromZero);
                     for (int i = 1; i <= 5; i++)
                     {
                         var check = rating == i ? "checked" : "";
@@ -32,15 +35,57 @@
                 }
             </form>
         </div>
-        <div class="col-xs-12">
-            <a href="/Category?value=@Model.Category.Name" class="categoryButton">@Localizer[Model.Category.Name]</a>
-            @foreach (var tag in Model.Tags)
+        <div class="col-sm-6">
+            <a href="/Topic?id=@Model.Topics.First().Id">
+                <div class="img-fanfic">
+                    <div class="start-fanfic">
+                        <h3 class="start-fanfic-text"><i class="far fa-play-circle"></i> @Localizer["Start"]</h3>
+                    </div>
+                    <img src="@Model.ImgUrl" />
+                </div>
+            </a>
+            <div class="category-tag-list">
+                <a href="/Category?value=@Model.Category.Name" class="categoryButton">@Localizer[Model.Category.Name]</a>
+                @foreach (var tag in Model.Tags)
+                {
+                    <a href="/Tag?value=@tag.Name" class="tagButton">#@tag.Name</a>
+                }
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h4>@Localizer["Description"]</h4>
+            <p class="description-fanfic">@Model.Description</p>
+            <h4>@Localizer["Contents"]</h4>
+            @foreach (var item in Model.Topics)
             {
-                <a href="/Tag?value=@tag.Name" class="tagButton">#@tag.Name</a>
+                <a href="/Topic?id=@item.Id" class="contents-fanfic"><p><b>@Localizer["Chapter"] @item.Number. </b>@item.Name</p></a>
             }
         </div>
-        <img style="width:100%" src="@Model.ImgUrl" />
+
+        @* Comments block *@
+        <div class="col-xs-12">
+            <hr><div class="hidden" id="FanficId">@Model.Id</div>
+        </div>
+        <div class="col-xs-12">
+            <h4>@Localizer["Comments"] <span id="countComments">(@Model.Comments.Count())</span></h4>
+        </div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="col-xs-12 send-comment-fanfic">
+                <textarea id="commentText" placeholder="@Localizer["WriteComment"]" maxlength="1000" class="form-control" rows="2"></textarea>
+                <div class="">
+                    <a id="sendButton" class="btn btn-success" disabled>@Localizer["Send"]</a>
+                </div>
+            </div>
+            <div class="col-xs-12"><hr /></div>
+        }
+        <div class="col-xs-12 comment-div">
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    @await Html.PartialAsync("_CommentScripts")
+}
 
 

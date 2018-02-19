@@ -8,17 +8,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]. - FansPen</title>
+    <title>@ViewData["Title"]</title>
+
     <environment include="Development">
         @if (Context.Request.Cookies["theme"] == "dark")
         {
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-darkly.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/dark.css" />
         }
         else
         {
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/light.css" />
         }
     </environment>
     <environment exclude="Development">
@@ -35,44 +38,44 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div id="mobileLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
-                </div>
-                <div class="col-sm-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand">FansPen</a></div>
-                <div class="navbar-collapse collapse">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div id="mobileLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
+            </div>
+            <div class="col-sm-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand">FansPen</a></div>
+            <div class="navbar-collapse collapse">
 
-                    <div class="col-sm-6">
-                        <form method="get" action="/Search" id="mySearch" role="search">
-                            <input type="text" name="value" placeholder="@Localizer["Search"]">
-                        </form>
-                    </div>
-                    <div id="themeBlock" class="col-sm-1">
-                        @{ var themeUrl = "";
-                            if (Context.Request.Cookies["theme"] == "dark")
-                            {
-                                themeUrl = "moon.svg";
-                            }
-                            else
-                            {
-                                themeUrl = "nomoon.svg";
-                            }
-                            <a asp-area="" asp-route-returnUrl="@Context.Request.Path" asp-controller="Home" asp-action="Theme">
-                                <img src="~/images/icons/@themeUrl" />
-                            </a>
-                        }
-                    </div>
-                    <div id="langBlock" class="col-sm-1">
-                        @await Html.PartialAsync("_SelectLanguagePartial")
-                    </div>
-                    @await Html.PartialAsync("_LoginPartial")
+                <div class="col-sm-5">
+                    <form method="get" action="/Search" id="mySearch" role="search">
+                        <input type="text" name="value" placeholder="@Localizer["Search"]">
+                    </form>
                 </div>
+                <div id="themeBlock" class="col-sm-1">
+                    @{ var themeUrl = "";
+                        if (Context.Request.Cookies["theme"] == "dark")
+                        {
+                            themeUrl = "moon.svg";
+                        }
+                        else
+                        {
+                            themeUrl = "nomoon.svg";
+                        }
+                        <form asp-area="" asp-controller="Home" asp-action="Theme" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" method="post">
+                            <button type="submit">
+                                <img src="~/images/icons/@themeUrl" />
+                            </button>
+                        </form>
+                    }
+                </div>
+                <div id="langBlock" class="col-sm-1">
+                    @await Html.PartialAsync("_SelectLanguagePartial")
+                </div>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
@@ -100,7 +103,6 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>
