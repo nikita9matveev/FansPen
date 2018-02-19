@@ -129,6 +129,9 @@
   <data name="Books" xml:space="preserve">
     <value>Книги</value>
   </data>
+  <data name="ChangeAvatar" xml:space="preserve">
+    <value>Изменить аватар</value>
+  </data>
   <data name="Comics" xml:space="preserve">
     <value>Комиксы</value>
   </data>
@@ -179,5 +182,8 @@
   </data>
   <data name="Sex" xml:space="preserve">
     <value>Пол:</value>
+  </data>
+  <data name="TitleChange" xml:space="preserve">
+    <value>Двойной клик для изменения</value>
   </data>
 </root>

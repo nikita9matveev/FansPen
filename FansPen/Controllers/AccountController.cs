@@ -82,7 +82,7 @@ namespace FansPen.Web.Controllers
                                                     model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    Response.Cookies.Append("avatarUrl", user.AvatarUrl);
+                    Response.Cookies.Append("avatarUrl", user.AvatarUrl.Substring(0, 47) + "t_avatarHead" + user.AvatarUrl.Substring(59));
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -233,7 +233,7 @@ namespace FansPen.Web.Controllers
                     UserName = model.UserName,
                     Email = model.Email,
                     RegistrationDate = DateTime.Now,
-                    AvatarUrl = "/images/icons/user.png"
+                    AvatarUrl = "http://res.cloudinary.com/fanspen/image/upload/t_avatarMain/vphr6ro2od7whwdcb3cc.png"
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -295,7 +295,7 @@ namespace FansPen.Web.Controllers
             if (result.Succeeded)
             {
                 var user = _db.Users.Where(users => users.ProviderKey == info.ProviderKey).FirstOrDefault();
-                Response.Cookies.Append("avatarUrl", user.AvatarUrl);
+                Response.Cookies.Append("avatarUrl", user.AvatarUrl.Substring(0, 47) + "t_avatarHead" + user.AvatarUrl.Substring(59));
                 _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
@@ -331,7 +331,7 @@ namespace FansPen.Web.Controllers
                     UserName = model.UserName,
                     Email = model.Email,
                     RegistrationDate = DateTime.Now,
-                    AvatarUrl = "/images/icons/user.png",
+                    AvatarUrl = "http://res.cloudinary.com/fanspen/image/upload/t_avatarMain/vphr6ro2od7whwdcb3cc.png",
                     ProviderKey = info.ProviderKey
                 };
                 var result = await _userManager.CreateAsync(user);
