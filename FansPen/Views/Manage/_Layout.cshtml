@@ -1,15 +1,27 @@
-﻿@{ 
+﻿@using FansPen.Web.Views.Manage
+@model IndexViewModel
+@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
 <div>
     <br />
     <div class="row">
-        <div class="col-md-3">
-            @await Html.PartialAsync("_ManageNav")
+        <div class="col-md-4">
+            <img src="~/images/1b.png" alt="" class="img-thumbnail">
+            <h3><label class="text-primary"><input asp-for="Username" class="btn-link" disabled style="cursor:default" /></label></h3>
+            <h6><label class="text-muted">Date of registration: 01.04.1998</label></h6>
+            <div class="btn btn-success btn-block @ManageNavPages.AddNewFanficNavClass(ViewContext)" style="box-shadow:10px">
+                <b><a asp-action="AddNewFanfic" class="text-warning"><span class="glyphicon glyphicon-plus"></span> Add new fanfic</a></b>
+            </div>
         </div>
-        <div class="col-md-9">
-            @RenderBody()
+        <div class="col-md-8">
+            <div class="row">
+                @await Html.PartialAsync("_ManageNav")
+            </div>
+            <div class="row col-md-12">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>
@@ -17,4 +29,4 @@
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
-        
+
