@@ -1,4 +1,5 @@
-﻿var culture = document.cookie.split('.AspNetCore.Culture=')[1].split(';')[0];
+﻿var cultureLong = document.cookie.split('.AspNetCore.Culture=')[1];
+var culture = cultureLong == undefined ? undefined : cultureLong.split(';')[0];
 var shotCulture = culture == undefined ? "" : culture.substring(culture.length - 2);
 
 function localeText(word) {

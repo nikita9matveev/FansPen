@@ -99,4 +99,5 @@ body {
 
 .min-border-input {
     border-width: 1px;
+    padding: 0px 10px;
 }
