@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Fanfic Builder";
+}
+
+<div class="contentOther">
+    <div class="col-sm-10 col-sm-offset-1 col-xs-12 fanficBlock">
+
+        @* TITLE *@
+        <div class="col-xs-12 margin-block-builder text-center">
+            <h3>@Localizer["BuilderTitle"]</h3>
+        </div>
+
+        <div class="col-sm-6">
+            @* CATEGORY *@
+            <div class="col-xs-12 margin-block-builder">
+                <select class="form-control min-border-input" id="categoryProfile">
+                    <option>@Localizer["Category"]</option>
+                    <option>@Localizer["Anime"]</option>
+                    <option>@Localizer["Books"]</option>
+                    <option>@Localizer["Games"]</option>
+                    <option>@Localizer["Comics"]</option>
+                    <option>@Localizer["Films"]</option>
+                    <option>@Localizer["Other"]</option>
+                </select>
+            </div>
+
+            @* FANFIC'S NAME *@
+            <div class="col-xs-12 margin-block-builder">
+                @*<div class="col-sm-8 col-sm-offset-2">*@
+                <input type="text" class="form-control min-border-input" id="FanficNameInput" placeholder="@Localizer["NameFanfic"]">
+                @*</div>*@
+            </div>
+
+            @* FANFIC'S TAGS *@
+            <div class="col-xs-12 margin-block-builder">
+                @*<div class="col-sm-8 col-sm-offset-2">*@
+                <input type="text" class="form-control min-border-input" placeholder="@Localizer["Tags"]">
+                @*</div>*@
+            </div>
+
+            <div class="col-xs-12 margin-block-builder">
+                <textarea id="DescriptionFanfic" placeholder="@Localizer["Description"]" class="form-control min-border-input" rows="3" maxlength="1000"></textarea>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+
+            @* DOWNLOAD COVER *@
+            <div class="col-xs-12 margin-block-builder">
+                @*<div class="col-sm-8 col-sm-offset-2">*@
+                <a id="CoverFanfic">
+                    <div class="load-photo-builder deletable">
+                        <div class="load-title-div">
+                            <h4 class="load-title"><i class="fas fa-plus-circle"></i> @Localizer["DownloadCover"]</h4>
+                        </div>
+                        <img id="CoverImg" src="http://res.cloudinary.com/fanspen/image/upload/v1519090685/default1.jpg" />
+                    </div>
+                </a>
+                @*</div>*@
+            </div>
+
+        </div>
+        <div class="col-xs-12">
+            <hr />
+        </div>
+
+        @* BUTTON NEW TOPIC *@
+        <div class="col-xs-12 margin-block-builder">
+            <div class="col-sm-4 col-sm-offset-4">
+                <a id="AddTopic" class="btn btn-block btn-success"><i class="fas fa-plus-circle"></i> @Localizer["AddTopic"]</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("_Builder")
+@await Html.PartialAsync("_UploadPhoto")

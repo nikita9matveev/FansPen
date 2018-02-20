@@ -1,0 +1,66 @@
+﻿.margin-block-builder {
+    margin-bottom: 10px;
+}
+
+.load-photo-builder {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.deletable:after {
+    content: '';
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    width: 100%;
+}
+
+.load-photo-builder img {
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+}
+
+.load-photo-builder:hover img {
+    -webkit-transform: scale(1.3);
+    -moz-transform: scale(1.3);
+    -o-transform: scale(1.3);
+}
+
+.load-photo-builder img {
+    width: 100%;
+}
+
+.load-title-div {
+    position: absolute;
+    z-index: 500;
+    top: 40%;
+    width: 100%;
+}
+
+.load-title {
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
+
+#CoverFanfic {
+    cursor: pointer;
+}
+
+#DescriptionFanfic {
+    max-height: 300px;
+    min-height: 70px;
+    max-width: 100%;
+    min-width: 100%;
+    overflow: hidden;
+}

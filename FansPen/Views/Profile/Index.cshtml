@@ -10,20 +10,20 @@
 }
 
 <div class="contentMain">
-    <div class="col-sm-3">
+    <div class="col-sm-3 fixed-info-profile">
         <div id="mainAvatar">
-            <a id="avatarPhoto"><img title="@Localizer["ChangeAvatar"]" id="avatarUser" src="@Model.AvatarUrl" /></a>
+            <a id="avatarPhoto"><img id="avatarUser" src="@Model.AvatarUrl" /></a>
         </div>
         <h3>@Model.UserName</h3>
         <h5>@Model.Email</h5>
         <h5 class="small-text">@Model.RegistrationDate</h5>
         @if (UserManager.GetUserId(User) == Model.Id)
         {
-            <a href="#" id="newFanficButton" class="btn btn-block btn-success">@Localizer["NewFanfic"]</a>
+            <a href="/FanficBuilder" id="newFanficButton" class="btn btn-block btn-success">@Localizer["NewFanfic"]</a>
         }
         <hr />
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8 col-sm-offset-3">
         <ul class="nav nav-tabs" id="menuProfile">
             <li class="active">
                 <a href="#profileData" data-toggle="tab" aria-expanded="true">

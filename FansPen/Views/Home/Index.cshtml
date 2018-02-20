@@ -9,7 +9,7 @@
         Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
 <div class="contentMain">
-    <div class="col-sm-2">
+    <div class="col-sm-2 fixCategory">
         <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
             @{ var isAllActive = currentPath == "/" ? "active" : ""; }
             <li class="@isAllActive"><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["All"]</a></li>
@@ -20,7 +20,7 @@
             }
         </ul>
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-7 col-sm-offset-2">
         @foreach (var item in Model.Fanfics)
         {
             var avatarFanfic = item.ApplicationUser.AvatarUrl;
@@ -80,7 +80,7 @@
             </div>
         }
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 fixCloud">
         @foreach (var tag in Model.Tags)
         {
             <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>
