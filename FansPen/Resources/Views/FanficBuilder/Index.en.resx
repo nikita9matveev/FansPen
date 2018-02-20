@@ -132,6 +132,9 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="Chapter" xml:space="preserve">
+    <value>Chapter</value>
+  </data>
   <data name="Comics" xml:space="preserve">
     <value>Comics</value>
   </data>

@@ -57,10 +57,33 @@
     cursor: pointer;
 }
 
-#DescriptionFanfic {
+/*#DescriptionFanfic {
     max-height: 300px;
     min-height: 70px;
     max-width: 100%;
     min-width: 100%;
     overflow: hidden;
+}*/
+
+.description-div div.CodeMirror {
+    height: 300px !important;
+}
+
+.CodeMirror {
+    height: 1000px !important;
+}
+
+.cm-null.cm-spell-error {
+    background: initial !important;
+}
+
+.editor-toolbar {
+    background: white !important;
+}
+
+div.tagsinput {
+    width: auto !important;
+    border: 1px solid #dce4ec !important;
+    border-radius: 4px !important;
+    height: 100% !important;
 }

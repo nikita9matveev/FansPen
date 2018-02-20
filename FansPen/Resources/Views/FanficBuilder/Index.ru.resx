@@ -132,6 +132,9 @@
   <data name="Category" xml:space="preserve">
     <value>Категория</value>
   </data>
+  <data name="Chapter" xml:space="preserve">
+    <value>Глава</value>
+  </data>
   <data name="Comics" xml:space="preserve">
     <value>Комиксы</value>
   </data>

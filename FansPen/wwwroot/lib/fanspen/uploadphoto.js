@@ -23,6 +23,7 @@ function uploadPhoto() {
                 $('.load-photo-builder').removeClass('deletable');
                 $('.load-title-div').remove();
             }
+
             if ($this.attr('id') == 'avatarPhoto' && result != undefined) {
                 var headerAvatar = result[0].url;
                 headerAvatar = headerAvatar.substr(0, 47) + "t_avatarHead" + headerAvatar.substr(58, 22) + "png";

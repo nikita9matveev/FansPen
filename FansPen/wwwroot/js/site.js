@@ -10,6 +10,7 @@ function localeText(word) {
         case "Games": return shotCulture == "en" ? "Games" : "Игры";
         case "Other": return shotCulture == "en" ? "Other" : "Другое";
         case "Films": return shotCulture == "en" ? "Films" : "Фильмы";
+        case "Tags": return shotCulture == "en" ? "Tags" : "Теги";
         case "NotIndicated": return shotCulture == "en" ? "Not indicated" : "Не указано";
     }
 }
