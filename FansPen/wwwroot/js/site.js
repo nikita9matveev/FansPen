@@ -12,5 +12,8 @@ function localeText(word) {
         case "Films": return shotCulture == "en" ? "Films" : "Фильмы";
         case "Tags": return shotCulture == "en" ? "Tags" : "Теги";
         case "NotIndicated": return shotCulture == "en" ? "Not indicated" : "Не указано";
+        case "Chapter": return shotCulture == "en" ? "Chapter." : "Глава.";
+        case "TopicName": return shotCulture == "en" ? "Name" : "Название";
+        case "UploadCover": return shotCulture == "en" ? "Upload cover" : "Загрузить обложку";
     }
 }

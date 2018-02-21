@@ -19,7 +19,7 @@
         <h5 class="small-text">@Model.RegistrationDate</h5>
         @if (UserManager.GetUserId(User) == Model.Id)
         {
-            <a href="/FanficBuilder" id="newFanficButton" class="btn btn-block btn-success">@Localizer["NewFanfic"]</a>
+            <a href="/FanficBuilder" id="newFanficButton" class="btn btn-block btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["NewFanfic"]</a>
         }
         <hr />
     </div>
