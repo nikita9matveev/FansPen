@@ -12,7 +12,6 @@ namespace FansPen.Domain.Models
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Fanfic> Fanfics { get; set; }
-        public DbSet<Img> Imgs { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Comment> Comments { get; set; }

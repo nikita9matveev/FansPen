@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using FansPen.Web.Helpers
+
 @model FanficViewModel
 
 @inject IViewLocalizer Localizer
@@ -54,7 +56,7 @@
         </div>
         <div class="col-sm-6">
             <h4>@Localizer["Description"]</h4>
-            <p class="description-fanfic">@Model.Description</p>
+            <p class="description-fanfic">@Html.ToHTML(Model.Description)</p>
             <h4>@Localizer["Contents"]</h4>
             @foreach (var item in Model.Topics)
             {

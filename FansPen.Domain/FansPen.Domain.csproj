@@ -194,13 +194,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Migrations\20180221072211_deleteImg.cs" />
+    <Compile Include="Migrations\20180221072211_deleteImg.designer.cs">
+      <DependentUpon>20180221072211_deleteImg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\FanficModel.cs" />
     <Compile Include="Models\FanficTagModel.cs" />
-    <Compile Include="Models\ImgModel.cs" />
     <Compile Include="Models\LikeModel.cs" />
     <Compile Include="Models\RatingModel.cs" />
     <Compile Include="Models\TagModel.cs" />
@@ -211,6 +214,7 @@
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\FanficRepository.cs" />
+    <Compile Include="Repository\FanficTagRepository.cs" />
     <Compile Include="Repository\LikeRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\TagFanficRepository.cs" />

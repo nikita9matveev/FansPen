@@ -24,5 +24,19 @@ namespace FansPen.Domain.Repository
             var tag = _tagEntity.SingleOrDefault(x => x.Name == name);
             return tag?.Id ?? -1;
         }
+
+        public int FindOrAdd(string name)
+        {
+            Tag tag = _tagEntity.SingleOrDefault(x => x.Name == name);
+            if(tag != null)
+            {
+                tag.CountOfFanfic++;
+                Save();
+                return tag.Id;
+            }
+            _tagEntity.Add(new Tag { Name = name, CountOfFanfic = 1 });
+            Save();
+            return _tagEntity.Single(x => x.Name == name).Id;
+        }
     }
 }

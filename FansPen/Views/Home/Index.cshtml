@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using FansPen.Web.Helpers
+
 @model HomeViewModel
 
 @inject IViewLocalizer Localizer
@@ -68,7 +70,7 @@
                     </div>
                 </a>
                 <div class="caption">
-                    <p class="description-fanfic">@item.Description</p>
+                    <p class="description-fanfic">@Html.ToHTML(item.Description)</p>
                     <p>
                         <a href="/Category?value=@item.Category.Name.ToString()" class="categoryButton" role="button">@Localizer[item.Category.Name]</a>
                         @foreach (var tag in item.Tags)

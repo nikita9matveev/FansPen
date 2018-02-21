@@ -12,11 +12,13 @@ var countOfTopic = 0;
 var countForEvent = 0;
 var topicList = $('#TopicList');
 var addTopicButton = $('#AddTopic');
+var cancelButton = $('#CancelBuilder');
 var hideBut = $('.hide-show-builder');
 var deleteBut = $('.delete-builder');
 var createBut = $('#SaveTopic');
 
 addTopicButton.click(addTopic);
+cancelButton.click(cancel);
 createBut.click(createFanfic);
 
 hideBut.click(hideShow);
@@ -169,8 +171,78 @@ function validatorFanfic() {
     return error;
 }
 
+function cancel() {
+    window.history.back();
+}
+
 function createFanfic() {
     if (!validatorFanfic()) {
-        console.log('Create fanfic')
+        fanfic = new FanficScriptModel(
+            $('#FanficNameInput').val(),
+            $('.CoverFanfic img').attr('src'),
+            DescriptionText.markdown(DescriptionText.value()),
+            $('#categoryProfile')[0].selectedIndex
+        );
+
+        var tagsList = $('#tags').val().split(',');
+        for (var i = 0; i < tagsList.length; i++) {
+            var tag = new TagScriptModel(tagsList[i]);
+            fanfic.Tags.push(tag);
+        }
+
+        for (var i = 0; i < topicList.children().length; i++) {
+            var srcImg = topicList.children().eq(i)
+                .children().eq(3).children().eq(0)
+                .children().eq(0).children().eq(1)
+                .attr('src');
+            srcImg = srcImg == 'http://res.cloudinary.com/fanspen/image/upload/v1519090685/default1.jpg' ? " " : srcImg;
+
+            var topic = new TopicScriptModel(
+                i + 1,
+                topicList.children().eq(i).children().eq(2).children().eq(0).val(),
+                srcImg,
+                simplemdeMass[i].markdown(simplemdeMass[i].value())
+            );
+            fanfic.Topics.push(topic);
+        }
+        fan = JSON.stringify(fanfic);
+        $.ajax({
+            url: "/CreateFanfic",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(fanfic),
+            success: function (data) {
+                window.location.replace("/");
+            },
+            error: function () {
+                alert("Error while retrieving data!");
+            }
+        }).always(function (data) {  });
+    }
+}
+
+class TopicScriptModel {
+    constructor(Number, Name, ImgUrl, Text) {
+        this.Number = Number;
+        this.Name = Name;
+        this.ImgUrl = ImgUrl;
+        this.Text = Text;
+    }
+}
+
+class TagScriptModel {
+    constructor(Name) {
+        this.Name = Name;
+    }
+}
+
+class FanficScriptModel {
+    constructor(Name, ImgUrl, Description, Category) {
+        this.Name = Name;
+        this.ImgUrl = ImgUrl;
+        this.Description = Description;
+        this.Category = Category;
+        this.Topics = [];
+        this.Tags = [];
     }
 }

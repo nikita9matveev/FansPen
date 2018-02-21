@@ -131,5 +131,12 @@ namespace FansPen.Domain.Repository
                 .Take(10).ToList();
             }
         }
+
+        public int AddFanfic(Fanfic fanfic)
+        {
+            _fanficEntity.Add(fanfic);
+            Save();
+            return _fanficEntity.Where(x => x.ImgUrl == fanfic.ImgUrl).First().Id;
+        }
     }
 }
