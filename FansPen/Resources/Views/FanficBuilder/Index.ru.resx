@@ -129,6 +129,9 @@
   <data name="BuilderTitle" xml:space="preserve">
     <value>Создание фанфика</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>Категория</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Comics" xml:space="preserve">
     <value>Комиксы</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать фанфик</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Эпиграф</value>

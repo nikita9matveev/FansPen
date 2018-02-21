@@ -14,8 +14,10 @@ var topicList = $('#TopicList');
 var addTopicButton = $('#AddTopic');
 var hideBut = $('.hide-show-builder');
 var deleteBut = $('.delete-builder');
+var createBut = $('#SaveTopic');
 
 addTopicButton.click(addTopic);
+createBut.click(createFanfic);
 
 hideBut.click(hideShow);
 deleteBut.click(deleteTopic);
@@ -111,18 +113,64 @@ function deleteTopic() {
         else
             topicList.children().eq(i).children().eq(1).children().eq(0).text(localeText("Chapter") + " " + (i + 1));
 
-        //topicList.children().eq(i).children().eq(0).children().eq(0).removeClass();
-        //topicList.children().eq(i).children().eq(0).children().eq(0).addClass('head-builder');
-        //topicList.children().eq(i).children().eq(0).children().eq(0).addClass('delete-builder' + (i + 1));
-        //$('.delete-builder' + (i + 1)).click(deleteTopic);
-
-        //topicList.children().eq(i).children().eq(0).children().eq(1).removeClass();
-        //topicList.children().eq(i).children().eq(0).children().eq(1).addClass('head-builder');
-        //topicList.children().eq(i).children().eq(0).children().eq(1).addClass('hide-show-margin');
-        //topicList.children().eq(i).children().eq(0).children().eq(1).addClass('hide-show-builder' + (i + 1));
-        //$('.hide-show-builder' + (i + 1)).click(hideShow);
-
         simplemdeMass[i] = simplemdeMass[i + 1];
     }
     simplemdeMass.pop();
+}
+
+function validatorFanfic() {
+    $('.alert-danger').remove();
+    var errorList = [];
+    var error = false;
+    if ($('#categoryProfile')[0].selectedIndex == 0) {
+        errorList.push(localeText('CategoryEmpty'));
+        error = true;
+    }
+    if ($('#FanficNameInput').val().replace(/\s/g, '').length == 0) {
+        errorList.push(localeText('FanficNameEmpty'));
+        error = true;
+    }
+    if (!/[a-zA-Zа-яА-Я]+/i.test(DescriptionText.value())) {
+        errorList.push(localeText('DescriptionEmpty'));
+        error = true;
+    }
+    if ($('.CoverFanfic img').attr('src') == 'http://res.cloudinary.com/fanspen/image/upload/v1519090685/default1.jpg') {
+        errorList.push(localeText('FanficCoverEmpty'));
+        error = true;
+    }
+    if (topicList.children().length == 0) {
+        errorList.push(localeText('NoTopic'));
+        error = true;
+    }
+    var isEmptyName = false;
+    var isEmptyText = false;
+    for (var i = 0; i < topicList.children().length; i++) {
+        if (topicList.children().eq(i).children().eq(2).children().eq(0).val().replace(/\s/g, '').length == 0 && !isEmptyName) {
+            isEmptyName = true;
+            error = true;
+            errorList.push(localeText('TopicNameEmpty') + ' (№' + (i + 1) + ')');
+        }
+        if (!/[a-zA-Zа-яА-Я]+/i.test(simplemdeMass[i].value()) && !isEmptyText) {
+            isEmptyText = true;
+            error = true;
+            errorList.push(localeText('TopicTextEmpty') + ' (№' + (i + 1) + ')');
+        }
+    }
+    if (error) {
+        for (var i = 0; i < errorList.length; i++) {
+            $(document.body).append(`
+                <div style="top:${10 + i * 13}%" class="alert alert-dismissible alert-danger fixed-error-builder">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>${errorList[i]}</p>
+                </div>`
+            );
+        }
+    }
+    return error;
+}
+
+function createFanfic() {
+    if (!validatorFanfic()) {
+        console.log('Create fanfic')
+    }
 }
