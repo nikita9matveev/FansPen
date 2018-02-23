@@ -17,21 +17,18 @@ function uploadPhoto() {
         stylesheet: '#cloudinary-overlay.modal{background-color: rgba(0,0,0,.8);}'
     },
         function (error, result) {
-            $this.children().eq(0).removeClass('deletable');
-            $this.children().children().eq(0).hide();
+            //if ($this.hasClass('uploadTopicCover') && result != undefined) {
+            //    $this.children().children().eq(1).attr('src', result[0].url);
+            //    $this.children().eq(0).removeClass('deletable');
+            //    $this.children().children().eq(0).hide();
+            //}
 
-            if ($this.hasClass('uploadTopicCover') && result != undefined) {
-                $this.children().children().eq(1).attr('src', result[0].url);
-                $this.children().eq(0).removeClass('deletable');
-                $this.children().children().eq(0).hide();
-            }
-
-            if ($this.hasClass('CoverFanfic') && result != undefined)
-            {
-                $this.children().children().eq(1).attr('src', result[0].url);
-                $this.children().eq(0).removeClass('deletable');
-                $this.children().children().eq(0).hide();
-            }
+            //if ($this.hasClass('CoverFanfic') && result != undefined)
+            //{
+            //    $this.children().children().eq(1).attr('src', result[0].url);
+            //    $this.children().eq(0).removeClass('deletable');
+            //    $this.children().children().eq(0).hide();
+            //}
 
             if ($this.attr('id') == 'avatarPhoto' && result != undefined) {
                 var headerAvatar = result[0].url;
@@ -57,6 +54,11 @@ function uploadPhoto() {
                         document.cookie = "avatarUrl=" + headerAvatar + "; path=/; expires=" + date.toUTCString();
                     }
                 });
+            }
+            else {
+                $this.children().children().eq(1).attr('src', result[0].url);
+                $this.children().eq(0).removeClass('deletable');
+                $this.children().children().eq(0).hide();
             }
 
         });

@@ -13,7 +13,17 @@
 
 <div class="contentOther">
     <div class="col-sm-10 col-sm-offset-1 fanficBlock">
-        <div class="text-center">
+
+        @if (UserManager.GetUserId(User) == Model.ApplicationUser.Id) {
+            <div class="col-sm-1 col-sm-offset-10 col-xs-6 tool-bar-fanfic">
+                <a title="@Localizer["Edit"]" class="edit-button-fanfic" href="/FanficBuilder?fanficid=@Model.Id" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
+            <div class="col-sm-1 col-xs-6 align-right-mobile tool-bar-fanfic">
+                <button title="@Localizer["Delete"]" class="button-initial" type="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </div>
+        }
+
+        <div class="col-xs-12 text-center">
             <h2 class="nameFanfic">@Model.Name</h2>
         </div>
         <div class="col-sm-6 authorData">
@@ -85,6 +95,30 @@
         </div>
     </div>
 </div>
+
+
+@* MODAL WONDOW *@
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">@Localizer["DeleteTitle"]</h4>
+            </div>
+            <div class="modal-body">
+                @Localizer["DeleteMessage"]
+            </div>
+            <div class="modal-footer">
+                <form style="float:left" action="/DeleteFanfic" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button class="btn btn-danger">@Localizer["Delete"]</button>
+                </form>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Localizer["Cancel"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     @await Html.PartialAsync("_CommentScripts")

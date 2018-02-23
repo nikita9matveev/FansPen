@@ -103,7 +103,6 @@ div.tagsinput {
     width: 100%;
     text-align: center;
     position: absolute;
-    z-index: -1;
 }
 
 .fixed-error-builder {
@@ -111,4 +110,8 @@ div.tagsinput {
     right: 2%;
     top: 12%;
     z-index: 10000;
+}
+
+.tool-bar-builder {
+    z-index: 100;
 }

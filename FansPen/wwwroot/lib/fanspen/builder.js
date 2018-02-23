@@ -52,13 +52,16 @@ function addTopic() {
     topicList.append(`
         <div class="topic-item col-xs-12">
 
-                    <div class="col-xs-12 margin-block-builder">
+                    <div class="col-xs-12 tool-bar-builder margin-block-builder">
                         <div class="head-builder delete-builder${countForEvent}">
                             <div class="hidden">${countOfTopic}</div>
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </div>
                         <div class="head-builder hide-show-builder${countForEvent} hide-show-margin">
                             <i class="fa fa-caret-up" aria-hidden="true"></i>
+                        </div>
+                        <div class="hidden">
+                            -1
                         </div>
                     </div>
 
@@ -71,7 +74,7 @@ function addTopic() {
                     </div>
 
                     <div class="col-xs-12 margin-block-builder">
-                        <a class="CoverTopic${countOfTopic} uploadTopicCover pointer-build">
+                        <a class="CoverTopic${countForEvent} uploadTopicCover pointer-build">
                             <div class="load-photo-builder deletable">
                                 <div class="load-title-div">
                                     <h4 class="load-title"><i class="fa fa-picture-o" aria-hidden="true"></i> ${uploadStr}</h4>
@@ -171,10 +174,6 @@ function validatorFanfic() {
     return error;
 }
 
-function cancel() {
-    window.history.back();
-}
-
 function createFanfic() {
     if (!validatorFanfic()) {
         fanfic = new FanficScriptModel(
@@ -185,8 +184,9 @@ function createFanfic() {
         );
 
         var tagsList = $('#tags').val().split(',');
+        if (tagsList[0] == '') tagsList = [];
         for (var i = 0; i < tagsList.length; i++) {
-            var tag = new TagScriptModel(tagsList[i]);
+            var tag = new TagScriptModel(tagsList[i].toLowerCase().replace(' ',''));
             fanfic.Tags.push(tag);
         }
 
@@ -221,8 +221,13 @@ function createFanfic() {
     }
 }
 
+function cancel() {
+    window.history.back();
+}
+
 class TopicScriptModel {
     constructor(Number, Name, ImgUrl, Text) {
+        this.Id = -1;
         this.Number = Number;
         this.Name = Name;
         this.ImgUrl = ImgUrl;
@@ -238,6 +243,8 @@ class TagScriptModel {
 
 class FanficScriptModel {
     constructor(Name, ImgUrl, Description, Category) {
+        this.Id = -1,
+        //this.UserId = UserId,
         this.Name = Name;
         this.ImgUrl = ImgUrl;
         this.Description = Description;

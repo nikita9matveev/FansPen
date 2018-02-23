@@ -1,3 +1,23 @@
 ﻿body {
-    /*background-image: url('/images/background/2/tex2res4.png') !important;*/
+    background-image: url('/images/background/1/spiration dark.png');
+}
+
+.navbar-inverse {
+    background-color: #4976c4 !important;
+}
+
+#Category li:hover a {
+    background-color: #375a7f;
+}
+
+a, a:hover {
+    color: #0099ff;
+}
+
+.fanficBlock {
+    background: #222222 !important;
+}
+
+.edit-button-fanfic, .edit-button-fanfic:hover, .edit-button-fanfic:active {
+    color: white;
 }

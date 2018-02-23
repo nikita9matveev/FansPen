@@ -150,6 +150,9 @@
   <data name="DownloadCover" xml:space="preserve">
     <value>Загрузить обложку</value>
   </data>
+  <data name="EditFanfic" xml:space="preserve">
+    <value>Редактирование фанфика</value>
+  </data>
   <data name="Films" xml:space="preserve">
     <value>Фильмы</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="Other" xml:space="preserve">
     <value>Другое</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
   <data name="Tags" xml:space="preserve">
     <value>Теги</value>

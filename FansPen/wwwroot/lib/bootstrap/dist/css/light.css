@@ -2,6 +2,23 @@
     background: #2c3e50 !important;
 }
 
-#logoutForm button:hover {
+#logoutForm {
+    cursor: pointer;
+}
+
+#logoutForm:hover button {
     color: white;
+}
+
+body {
+    background: #edeef0;
+}
+
+.edit-button-fanfic, .edit-button-fanfic:hover, .edit-button-fanfic:active {
+    color: black;
+}
+
+#Category {
+    box-shadow: 0px 0px 1px #d7d8db;
+    background: #fff;
 }

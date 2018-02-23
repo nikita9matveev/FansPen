@@ -123,6 +123,9 @@
   <data name="Books" xml:space="preserve">
     <value>Books</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Chapter" xml:space="preserve">
     <value>Сhapter</value>
   </data>
@@ -135,8 +138,20 @@
   <data name="Contents" xml:space="preserve">
     <value>Contents:</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Do you want to delete the fanfic?</value>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Deleting</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description:</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Films" xml:space="preserve">
     <value>Films</value>

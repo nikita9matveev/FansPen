@@ -217,7 +217,6 @@
     <Compile Include="Repository\FanficTagRepository.cs" />
     <Compile Include="Repository\LikeRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
-    <Compile Include="Repository\TagFanficRepository.cs" />
     <Compile Include="Repository\TagRepository.cs" />
     <Compile Include="Repository\TopicRepository.cs" />
   </ItemGroup>

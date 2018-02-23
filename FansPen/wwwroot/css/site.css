@@ -108,3 +108,14 @@ body {
 .contentOther {
     font-size: .9em;
 }
+
+.button-initial {
+    background: initial;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.modal {
+    top: 30% !important;
+}

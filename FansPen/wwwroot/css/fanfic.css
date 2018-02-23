@@ -1,6 +1,7 @@
 ﻿.fanficBlock {
+    background: white;
     border-radius: 5px !important;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+    box-shadow: 0px 0px 1px #d7d8db;
     padding-bottom: 10px;
 }
 
@@ -154,4 +155,14 @@
 
 .text-comment {
     word-wrap: break-word;
+}
+
+@media(max-height: 767px) {
+    .align-right-mobile {
+        text-align: right;
+    }
+}
+
+.tool-bar-fanfic {
+    margin-top: 20px;
 }

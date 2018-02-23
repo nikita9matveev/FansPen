@@ -17,10 +17,45 @@ namespace FansPen.Domain.Repository
             _fanficTagEntity = context.Set<FanficTag>();
         }
 
+        public List<FanficTag> GetItemByTagId(int id)
+        {
+            return _fanficTagEntity.Where(x => x.TagId == id).ToList();
+        }
+
         public void AddNewFanficTag(int idFanfic, int idTag)
         {
-            _fanficTagEntity.Add(new FanficTag { FanficId = idFanfic, TagId = idTag });
-            Save();
+            if (_fanficTagEntity
+                .Where(x => x.FanficId == idFanfic)
+                .Where(x => x.TagId == idTag)
+                .FirstOrDefault() == null)
+            {
+                _fanficTagEntity.Add(new FanficTag { FanficId = idFanfic, TagId = idTag });
+                Save();
+            }
+        }
+
+        public List<FanficTag> GetFanficTagByFanficId(int id)
+        {
+            return _fanficTagEntity.Where(x => x.FanficId == id).ToList();
+        }
+
+        public void DeleteFanficTag(int fanficId, int tagId)
+        {
+            FanficTag fanficTag = _fanficTagEntity
+                .Where(x => x.FanficId == fanficId)
+                .Where(x => x.TagId == tagId).First();
+            if(fanficTag != null)
+            {
+                _fanficTagEntity.Remove(fanficTag);
+                Save();
+            }
+        }
+
+        public FanficTag FindByFanficIdTagId(int fanficId, int tagId)
+        {
+            return _fanficTagEntity
+                .Where(x => x.FanficId == fanficId)
+                .Where(x => x.TagId == tagId).FirstOrDefault();
         }
     }
 }
