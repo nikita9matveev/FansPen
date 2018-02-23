@@ -94,3 +94,52 @@
     line-height: 2;
     text-align: justify;
 }
+
+.fixed-left-button {
+    cursor: pointer;
+    text-align: center;
+    position: fixed;
+    left: 10%;
+    top: 45%;
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #d7d8db;
+    color: black;
+}
+
+
+.fixed-right-button {
+    cursor: pointer;
+    text-align: center;
+    position: fixed;
+    right: 10%;
+    top: 45%;
+    vertical-align: 40%;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #d7d8db;
+    color: black;
+}
+
+@media(max-width: 767px) {
+    .fixed-left-button, .fixed-top-button {
+        left: 2%;
+    }
+    .fixed-right-button {
+        right: 2%;
+    }
+}
+
+.fixed-top-button {
+    cursor: pointer;
+    text-align: center;
+    position: fixed;
+    left: 10%;
+    top: 10%;
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #d7d8db;
+    color: black;
+}
