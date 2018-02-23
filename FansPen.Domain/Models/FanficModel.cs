@@ -16,7 +16,7 @@ namespace FansPen.Domain.Models
         public DateTime EditingDate { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-        public int? CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Topic> Topics { get; set; }

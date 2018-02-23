@@ -1,0 +1,170 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Text.RegularExpressions;
+
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    Regex r = new Regex(@"fanficid");
+    MatchCollection m = r.Matches(Context.Request.QueryString.ToString());
+    string titleString;
+    if (m.Count() > 0)
+    {
+        titleString = "EditFanfic";
+    }
+    else
+    {
+        titleString = "BuilderTitle";
+    }
+    ViewData["Title"] = @Localizer[titleString];
+}
+
+<div class="contentOther">
+    <div class="col-sm-10 col-sm-offset-1 col-xs-12 fanficBlock">
+
+        @* TITLE *@
+        <div class="col-xs-12 margin-block-builder text-center">
+            <h3>@Localizer[titleString]</h3>
+        </div>
+
+        <div class="col-sm-6">
+            @* CATEGORY *@
+            <div class="col-xs-12 margin-block-builder">
+                <select class="form-control min-border-input" id="categoryProfile">
+                    <option>@Localizer["Category"]</option>
+                    <option>@Localizer["Anime"]</option>
+                    <option>@Localizer["Books"]</option>
+                    <option>@Localizer["Games"]</option>
+                    <option>@Localizer["Comics"]</option>
+                    <option>@Localizer["Films"]</option>
+                    <option>@Localizer["Other"]</option>
+                </select>
+            </div>
+
+            @* FANFIC'S NAME *@
+            <div class="col-xs-12 margin-block-builder">
+                <input type="text" class="form-control min-border-input" id="FanficNameInput" placeholder="@Localizer["NameFanfic"]">
+            </div>
+
+            @* FANFIC'S TAGS *@
+            <div class="col-xs-12 margin-block-builder">
+                <input name="tags" id="tags" class="form-control min-border-input" placeholder="@Localizer["Tags"]">
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+
+            @* DOWNLOAD COVER *@
+            <div class="col-xs-12 margin-block-builder">
+                <a class="CoverFanfic pointer-build">
+                    <div class="load-photo-builder deletable">
+                        <div class="load-title-div">
+                            <h4 class="load-title"><i class="fa fa-picture-o" aria-hidden="true"></i> @Localizer["DownloadCover"]</h4>
+                        </div>
+                        <img src="http://res.cloudinary.com/fanspen/image/upload/v1519090685/default1.jpg" />
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        @* FANFIC'S DESCRIPTION *@
+        <div class="col-xs-12">
+            <div class="col-xs-12 margin-block-builder description-div">
+                <textarea id="DescriptionFanfic" placeholder="@Localizer["Description"]" class="form-control min-border-input" rows="3" maxlength="1000"></textarea>
+            </div>
+
+            <div class="col-xs-12">
+                <hr />
+            </div>
+            <div id="TopicList">
+
+                @*<div class="topic-item col-xs-12">
+
+                        <div class="col-xs-12 margin-block-builder">
+                            <div class="head-builder delete-builder">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </div>
+                            <div class="head-builder hide-show-builder hide-show-margin">
+                                <i class="fa fa-caret-up" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 margin-block-builder text-center">
+                            <h4>@Localizer["Chapter"]. 1</h4>
+                        </div>
+
+                        <div class="col-xs-12 margin-block-builder">
+                            <input type="text" class="form-control min-border-input" id="TopicName" placeholder="TopicName">
+                        </div>
+
+                        <div class="col-xs-12 margin-block-builder">
+                            <a class="CoverTopic pointer-build">
+                                <div class="load-photo-builder deletable">
+                                    <div class="load-title-div">
+                                        <h4 class="load-title"><i class="fa fa-picture-o" aria-hidden="true"></i> Download cover</h4>
+                                    </div>
+                                    <img src="http://res.cloudinary.com/fanspen/image/upload/v1519090685/default1.jpg" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-12 margin-block-builder">
+                            <textarea id="TopicText1" placeholder="Topic text" class="form-control min-border-input topic-text-builder" rows="3"></textarea>
+                        </div>
+                        <div class="col-xs-12">
+                            <hr />
+                        </div>
+                    </div>*@
+
+
+            </div>
+
+            @* BUTTON NEW TOPIC *@
+            <div class="col-xs-12 margin-block-builder">
+                @{
+                    Regex regex = new Regex(@"fanficid");
+                    MatchCollection matches = regex.Matches(Context.Request.QueryString.ToString());
+                    if (matches.Count() == 0)
+                    {
+                        <div class="col-sm-4 col-xs-12 margin-block-builder">
+                            <a id="SaveTopic" class="btn btn-block btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["Create"]</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-4 col-xs-12 margin-block-builder">
+                            <a id="EditTopic" class="btn btn-block btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> @Localizer["SaveChanges"]</a>
+                        </div>
+                        @await Html.PartialAsync("_EditFanfic");
+                    }
+                }
+                <div class="col-sm-4 col-xs-12 margin-block-builder">
+                    <a id="AddTopic" class="btn btn-block btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i> @Localizer["AddTopic"]</a>
+                </div>
+                <div class="col-sm-4 col-xs-12 margin-block-builder">
+                    <a id="CancelBuilder" class="btn btn-block btn-success"><i class="fa fa-ban" aria-hidden="true"></i> @Localizer["Cancel"]</a>
+                </div>
+            </div>
+
+            @*<div class="col-xs-12">
+                    <hr />
+                </div>*@
+
+            @* BUTTON SAVE CREATE AND CANCEL TOPIC *@
+            @*<div class="col-xs-12 margin-block-builder">
+                <div class="col-sm-4 col-xs-12 margin-block-builder">
+                    <a id="SaveTopic" class="btn btn-block btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["Create"]</a>
+                </div>
+                <div class="col-sm-4 col-sm-offset-4 col-xs-12 margin-block-builder">
+                    <a id="CancelBuilder" class="btn btn-block btn-success"><i class="fa fa-ban" aria-hidden="true"></i> @Localizer["Cancel"]</a>
+                </div>*@
+            @*</div>*@
+
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("_Builder")
+@await Html.PartialAsync("_UploadPhoto")

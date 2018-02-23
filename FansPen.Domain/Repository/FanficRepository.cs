@@ -9,13 +9,13 @@ namespace FansPen.Domain.Repository
     {
         private DbSet<Fanfic> _fanficEntity;
         private TagRepository _tagRepositiry;
-        private TagFanficRepository _tagFanficRepository;
+        private FanficTagRepository _fanficTagRepository;
 
         public FanficRepository(ApplicationContext context) : base(context)
         {
             _fanficEntity = context.Set<Fanfic>();
             _tagRepositiry = new TagRepository(context);
-            _tagFanficRepository = new TagFanficRepository(context);
+            _fanficTagRepository = new FanficTagRepository(context);
         }
 
         public List<Fanfic> GetAllItems()
@@ -40,7 +40,7 @@ namespace FansPen.Domain.Repository
         public List<Fanfic> GetItemByTags(string tag)
         {
             int tagId = _tagRepositiry.GetItemByName(tag);
-            List<FanficTag> tagFanfic = _tagFanficRepository.GetItemByTagId(tagId);
+            List<FanficTag> tagFanfic = _fanficTagRepository.GetItemByTagId(tagId);
             List<Fanfic> fanficsResult = new List<Fanfic>();
             List<Fanfic> fanficsList = _fanficEntity.Include(x => x.Category)
                 .Include(x => x.ApplicationUser).Include(x => x.FanficTags).ToList();
@@ -66,6 +66,16 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.Topics)
                 .Include(x => x.FanficTags)
                 .Include(x => x.Comments)
+                .Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public Fanfic GetFullById(int id)
+        {
+            return _fanficEntity
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.Category)
+                .Include(x => x.Topics)
+                .Include(x => x.FanficTags)
                 .Where(x => x.Id == id).FirstOrDefault();
         }
 
@@ -133,6 +143,55 @@ namespace FansPen.Domain.Repository
             }
         }
 
+        public int AddFanfic(Fanfic fanfic)
+        {
+            _fanficEntity.Add(fanfic);
+            Save();
+            return _fanficEntity.Where(x => x.ImgUrl == fanfic.ImgUrl).First().Id;
+        }
+
+        public void DeleteFanfic(int id)
+        {
+            Fanfic fanfic = _fanficEntity.Where(x => x.Id == id).FirstOrDefault();
+            if(fanfic != null)
+            {
+                _fanficEntity.Remove(fanfic);
+                Save();
+            }
+        }
+
+        public string GetUserIdByFanficId(int id)
+        {
+            return _fanficEntity.Where(x => x.Id == id).First().ApplicationUserId;
+        }
+
+        public Fanfic EditFanfic(int id, string name, string description, string imgUrl)
+        {
+            Fanfic fanfic = _fanficEntity
+                .Where(x => x.Id == id)
+                .Include(x => x.FanficTags)
+                .Include(x => x.Topics).First();
+            if(fanfic != null)
+            {
+                fanfic.Name = name;
+                fanfic.Description = description;
+                fanfic.ImgUrl = imgUrl;
+                Save();
+                return fanfic;
+            }
+            return null;
+        }
+
+        public void AddTopic(int id, Topic topic)
+        {
+            Fanfic fanfic = _fanficEntity.Include(x => x.Topics).Where(x => x.Id == id).FirstOrDefault();
+            if(fanfic != null)
+            {
+                fanfic.Topics.Add(topic);
+                Save();
+            }
+        }
+
         public void SetDefaultUser(string idUser, string defaultId, ApplicationUser admin)
         {
             var fanfics = _fanficEntity
@@ -142,7 +201,6 @@ namespace FansPen.Domain.Repository
             {
                 for (int i = 0; i < fanfics.Count; i++)
                 {
-                    //fanfics[i].ApplicationUser = admin;
                     fanfics[i].ApplicationUserId = defaultId;
                 }
                 Save();

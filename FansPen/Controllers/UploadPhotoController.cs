@@ -9,7 +9,6 @@ namespace FansPen.Web.Controllers
     public class UploadPhotoController : Controller
     {
         public ApplicationUserRepository ApplicationUserRepository;
-        //public FanficRepository FanficRepository;
 
         public UploadPhotoController(ApplicationContext context)
         {
@@ -22,19 +21,5 @@ namespace FansPen.Web.Controllers
         {
             ApplicationUserRepository.UploadAvatar(User.Identity.GetUserId(), avatarUrl);
         }
-
-        //[HttpPost]
-        //[Route("UploadFanficImg")]
-        //public void UploadFanficImg(string fanficImg)
-        //{
-        //    //FanficRepository.UploadImage(, fanficImg);
-        //}
-
-        //[HttpPost]
-        //[Route("UploadTopicImgs")]
-        //public void UploadTopicImgs(List<JsonResult> topicImgs)
-        //{
-        //    //TopicRepository.UploadImages(, topicImgs);
-        //}
     }
 }

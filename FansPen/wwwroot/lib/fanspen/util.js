@@ -19,7 +19,7 @@
                         ${text}
                     </div>
                     <div class="col-xs-12 text-right">
-                        <div class="like${data.Id} like-button" onselectstart="return false" onmousedown="return false"><div class="hidden">${data.Id} false</div><i class="far fa-heart"></i><b> 0</b></div>
+                        <div class="like${data.Id} like-button" onselectstart="return false" onmousedown="return false"><div class="hidden">${data.Id} false</div><i class="fa fa-heart-o" aria-hidden="true"></i><b> 0</b></div>
                     </div>
                 </div>`);
         $('.like' + data.Id).click(setLike);

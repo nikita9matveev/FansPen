@@ -37,6 +37,35 @@ namespace FansPen.Domain.Repository
             }
         }
 
+        public void AddTopic(Topic topic)
+        {
+            _topicEntity.Add(topic);
+            Save();
+        }
+
+        public void EditTopic(int id, int Number, string name, string imgUrl, string text)
+        {
+            Topic topic = _topicEntity.Where(x => x.Id == id).FirstOrDefault();
+            if(topic != null)
+            {
+                topic.Number = Number;
+                topic.Name = name;
+                topic.ImgUrl = imgUrl;
+                topic.Text = text;
+                Save();
+            }
+        }
+
+        public void DeleteTopicById(int id)
+        {
+            Topic topic = _topicEntity.Where(x => x.Id == id).FirstOrDefault();
+            if(topic != null)
+            {
+                _topicEntity.Remove(topic);
+                Save();
+            }
+        }
+
         public List<Topic> GetTopicsByFanficId(int id)
         {
             return _topicEntity.Where(x => x.FanficId == id).ToList();

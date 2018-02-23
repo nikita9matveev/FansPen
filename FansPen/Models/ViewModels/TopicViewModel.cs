@@ -9,6 +9,7 @@ namespace FansPen.Web.Models.ViewModels
         public FanficViewModel Fanfic { get; set; }
         public int Number { get; set; }
         public string Name { get; set; }
+        public string ImgUrl { get; set; }
         public string Text { get; set; }
         public ICollection<RatingViewModel> Ratings { get; set; }
         //public List<PreviewUserViewModel> UsersRated { get; set; }

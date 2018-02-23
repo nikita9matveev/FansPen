@@ -2,6 +2,34 @@
     background: #2c3e50 !important;
 }
 
-#logoutForm button:hover {
+#logoutForm {
+    cursor: pointer;
+}
+
+#logoutForm:hover button {
     color: white;
+}
+
+body {
+    background: #edeef0;
+}
+
+.edit-button-fanfic, .edit-button-fanfic:hover, .edit-button-fanfic:active {
+    color: black;
+}
+
+#Category {
+    box-shadow: 0px 0px 1px #d7d8db;
+    background: #fff;
+}
+
+.navbar-inverse {
+    background-color: #d2d9e3;
+    border-bottom: 1px solid #cbcfd2;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #d2d9e3;
 }

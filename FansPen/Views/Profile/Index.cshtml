@@ -11,17 +11,17 @@
 }
 
 <div class="contentMain">
-    <div class="col-sm-3">
+    <div class="col-sm-3 fixed-info-profile">
         <div id="mainAvatar">
-            <a id="avatarPhoto"><img title="@Localizer["ChangeAvatar"]" id="avatarUser" src="@Model.AvatarUrl" /></a>
+            <a id="avatarPhoto"><img id="avatarUser" src="@Model.AvatarUrl" /></a>
         </div>
         <h3>@Model.UserName</h3>
         <h5>@Model.Email</h5>
         <h5 class="small-text">@Model.RegistrationDate</h5>
         @if (UserManager.GetUserId(User) == Model.Id || User.IsInRole("admin"))
         {
-            <a href="#" id="newFanficButton" class="btn btn-block btn-success">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <a href="/FanficBuilder" id="newFanficButton" class="btn btn-block btn-success">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"> </i>
                 @Localizer["NewFanfic"]
             </a>
         }
@@ -45,7 +45,7 @@
         </form>
         }
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8 col-sm-offset-3">
         <ul class="nav nav-tabs" id="menuProfile">
             <li class="active">
                 <a href="#profileData" data-toggle="tab" aria-expanded="true">
@@ -128,8 +128,6 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="fanficsData">
-                @*@if (UserManager.GetUserId(User) == Model.Id)
-                    {*@
                 <div class="col-sm-6">
                     <select class="form-control min-border-input" id="categoryProfile">
                         <option>@Localizer["All"]</option>
@@ -147,7 +145,6 @@
                         <option>@Localizer["Popular"]</option>
                     </select>
                 </div>
-                @*}*@
                 <div class="col-xs-12" id="resultDivProfile">
                 </div>
             </div>

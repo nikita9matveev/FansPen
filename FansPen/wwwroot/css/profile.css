@@ -56,6 +56,7 @@
 
 #AboutMe {
     text-align: justify;
+    word-wrap: break-word;
 }
 
 #resultDivProfile {
@@ -65,4 +66,11 @@
 .bordered-thumbnail {
     box-shadow: none;
     border: 1px solid rgb(220, 228, 236) !important;
+}
+
+@media(min-width: 768px) {
+    .fixed-info-profile {
+        position: fixed;
+        width: 20%;
+    }
 }

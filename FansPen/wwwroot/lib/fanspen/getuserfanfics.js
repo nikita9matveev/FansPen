@@ -61,27 +61,61 @@ function GetUserFanfic() {
                 for (var i = 0; i < data.fanfics.length; i++) {
                     var rating = Math.round(data.fanfics[i].averageRating);
                     resultDivProfile.append(
-                        `<div class="thumbnail bordered-thumbnail">
-                        <div class="row autherBlock">
-                            <div class="col-xs-12">
-                                ${data.fanfics[i].createDate}
-                            </div>
-                        </div>
-                        <a href="/Fanfic?id=${data.fanfics[i].id}">
-                            <div class="imgFanfic">
-                                <div class="titleFanfic">
-                                    <h3 class="titleFanficH3">${data.fanfics[i].name}</h3>
-                                </div>
-                                <img src="${data.fanfics[i].imgUrl}">
-                            </div>
-                        </a>
-                        <div class="caption">
-                            <p class="description-fanfic">${data.fanfics[i].description}</p>
-                            <p>
-                                <a href="/Category?value=${data.fanfics[i].category.name}" class="categoryButton" role="button">${localeText(data.fanfics[i].category.name)}</a>
-                            </p>
-                        </div>
-                    </div>`
+                        '<div class="thumbnail bordered-thumbnail">' +
+                            '<div class="row autherBlock">' +
+                                '<div class="col-xs-6" style="padding-top: 5px">' +
+                                   data.fanfics[i].createDate +
+                                '</div>' +
+                                '<div class="col-xs-6 starsRating" style="overflow:hidden">' +
+                                    '<form class="rating" title="' + data.fanfics[i].averageRating + '" >' +
+                                        '<label>' +
+                                            '<input type="radio" name="stars" disabled value="1" ' + ((rating == 1) ? 'checked' : '') + ' />' +
+                                            '<span class="icon">★</span>' +
+                                        '</label>' +
+                                        '<label>' +
+                                            '<input type="radio" name="stars" disabled value="2" ' + ((rating == 2) ? 'checked' : '') + ' />' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                        '</label>' +
+                                        '<label>' +
+                                            '<input type="radio" name="stars" disabled value="3" ' + ((rating == 3) ? 'checked' : '')  + ' />' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                        '</label>' +
+                                        '<label>' +
+                                            '<input type="radio" name="stars" disabled value="4" ' + ((rating == 4) ? 'checked' : '') + ' />' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                        '</label>' +
+                                        '<label>' +
+                                            '<input type="radio" name="stars" disabled value="5" ' + ((rating == 5) ? 'checked' : '') + ' />' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                            '<span class="icon">★</span>' +
+                                        '</label>' +
+                                    '</form>' +
+                                '</div>' +
+                            '</div>' +
+                            '<a href="/Fanfic?id=' + data.fanfics[i].id + '">' +
+                                '<div class="imgFanfic">' +
+                                    '<div class="titleFanfic">' +
+                                        '<h3 class="titleFanficH3">' + data.fanfics[i].name + '</h3>' +
+                                    '</div>' +
+                                    '<img src="' + data.fanfics[i].imgUrl + '">' +
+                                '</div>' +
+                            '</a>' +
+                        '<div class="caption">' +
+                            '<p class="description-fanfic">' + data.fanfics[i].description + '</p>' +
+                            '<p>' +
+                                '<a href="/Category?value=' + data.fanfics[i].category.name + '" class="categoryButton" role="button">' + localeText(data.fanfics[i].category.name) + '</a>' +
+                            '</p>' +
+                        '</div>' +
+                    '</div>'
                     );
                 }
             },

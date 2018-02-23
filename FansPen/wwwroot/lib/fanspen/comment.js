@@ -81,9 +81,9 @@ function getComments() {
         },
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
-                var isLike = data[i].isLiked ? "fas" : "far";
+                var isLike = data[i].isLiked ? "fa fa-heart" : "fa fa-heart-o";
                 var text = data[i].text.replace('\n', '<br />');
-                var your = data[i].isYour ? `<div class="col-sm-1 col-xs-2 del-comment-button del${data[i].id}"><div class="hidden">${data[i].id}</div><i class="fas fa-times"></i></div>` : ``;
+                var your = data[i].isYour ? `<div class="col-sm-1 col-xs-2 del-comment-button del${data[i].id}"><div class="hidden">${data[i].id}</div><i class="fa fa-times" aria-hidden="true"></i></div>` : ``;
                 commentDiv.append(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
                         <a href="/Profile?id=${data[i].user.id}"><img src="${data[i].user.avatarUrl}" /></a>
@@ -101,7 +101,7 @@ function getComments() {
                         ${text}
                     </div>
                     <div class="col-xs-12 text-right">
-                        <div class="like${data[i].id} like-button" onselectstart="return false" onmousedown="return false"><div class="hidden">${data[i].id} ${data[i].isLiked}</div><i class="${isLike} fa-heart"></i><b> ${data[i].usersLiked.length}</b></div>
+                        <div class="like${data[i].id} like-button" onselectstart="return false" onmousedown="return false"><div class="hidden">${data[i].id} ${data[i].isLiked}</div><i class="${isLike}" aria-hidden="true"></i><b> ${data[i].usersLiked.length}</b></div>
                     </div>
                 </div>`);
                 $('.like' + data[i].id).click(setLike);
@@ -132,11 +132,11 @@ function setLike() {
                 if (data.count != -1) {
                     if (isLiked) {
                         $this.empty();
-                        $this.append(`<div class="hidden">${idComment} false</div><i class="far fa-heart"></i><b> ${data.count}</b>`);
+                        $this.append(`<div class="hidden">${idComment} false</div><i class="fa fa-heart-o" aria-hidden="true"></i><b> ${data.count}</b>`);
                     }
                     else {
                         $this.empty();
-                        $this.append(`<div class="hidden">${idComment} true</div><i class="fas fa-heart"></i><b> ${data.count}</b>`);
+                        $this.append(`<div class="hidden">${idComment} true</div><i class="fa fa-heart" aria-hidden="true"></i><b> ${data.count}</b>`);
                     }
                 }
             },
@@ -172,7 +172,7 @@ function sendComment() {
                             ${data.newComment.dataCreate}
                         </div>
                     </div><div class="col-sm-1 col-xs-2 del-comment-button del${data.newComment.id}">
-                    <div class="hidden">${data.newComment.id}</div><i class="fas fa-times"></i></div>
+                    <div class="hidden">${data.newComment.id}</div><i class="fa fa-times" aria-hidden="true"></i></div>
                     <div class="col-xs-12 text-comment">
                         <hr class="hr-comment">
                         ${text}
@@ -180,7 +180,7 @@ function sendComment() {
                     <div class="col-xs-12 text-right">
                         <div class="like${data.newComment.id} like-button"
                         onselectstart="return false" onmousedown="return false">
-                        <div class="hidden">${data.newComment.id} false</div><i class="far fa-heart"></i><b> 0</b></div>
+                        <div class="hidden">${data.newComment.id} false</div><i class="fa fa-heart-o" aria-hidden="true"></i><b> 0</b></div>
                     </div>
                 </div>`);
             $('.like' + data.newComment.id).click(setLike);

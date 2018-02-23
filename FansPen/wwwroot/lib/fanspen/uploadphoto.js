@@ -1,10 +1,13 @@
-﻿cloudinary.setCloudName('fanspen'); 
+﻿cloudinary.setCloudName('fanspen');
 
 var avatarPhoto = $('#avatarPhoto');
+var coverFanfic = $('.CoverFanfic');
 
 avatarPhoto.click(uploadPhoto);
+coverFanfic.click(uploadPhoto);
 
 function uploadPhoto() {
+    var $this = $(this);
     cloudinary.openUploadWidget({
         upload_preset: 'uai7rxlq', multiple: 'false',
         cropping: 'server',
@@ -14,30 +17,49 @@ function uploadPhoto() {
         stylesheet: '#cloudinary-overlay.modal{background-color: rgba(0,0,0,.8);}'
     },
         function (error, result) {
-            // this transformations for upload user avatar (and 1 transformation in Home/Index.cshtml)
-            var headerAvatar = result[0].url;
-            headerAvatar = headerAvatar.substr(0, 47) + "t_avatarHead" + headerAvatar.substr(58, 22) + "png";
-            var avatarMain = result[0].url;
-            avatarMain = avatarMain.substr(0, 47) + "t_avatarMain" + avatarMain.substr(58, 22) + "png";
-            //
-            $.ajax({
-                url: "/UploadPhoto",    // or "/UploadTopicImg" or "/UploadFanficImg"
-                method: "POST",
-                data: {
-                    avatarUrl: avatarMain    // different arguments
-                },
-                success: function (data) {
-                    console.log(111);
+            //if ($this.hasClass('uploadTopicCover') && result != undefined) {
+            //    $this.children().children().eq(1).attr('src', result[0].url);
+            //    $this.children().eq(0).removeClass('deletable');
+            //    $this.children().children().eq(0).hide();
+            //}
 
-                },
-                dataType: "json",
-                error: function () {
-                    // this for avatar
-                    $('#avatarUser').attr('src', avatarMain);
-                    $('#headerAvatar').attr('src', headerAvatar);
-                    var date = new Date(new Date().getTime() + 60 * 100000000);
-                    document.cookie = "avatarUrl=" + headerAvatar + "; path=/; expires=" + date.toUTCString();
-                }
-            })
+            //if ($this.hasClass('CoverFanfic') && result != undefined)
+            //{
+            //    $this.children().children().eq(1).attr('src', result[0].url);
+            //    $this.children().eq(0).removeClass('deletable');
+            //    $this.children().children().eq(0).hide();
+            //}
+
+            if ($this.attr('id') == 'avatarPhoto' && result != undefined) {
+                var headerAvatar = result[0].url;
+                headerAvatar = headerAvatar.substr(0, 47) + "t_avatarHead" + headerAvatar.substr(58, 22) + "png";
+                var avatarMain = result[0].url;
+                avatarMain = avatarMain.substr(0, 47) + "t_avatarMain" + avatarMain.substr(58, 22) + "png";
+
+                $.ajax({
+                    url: "/UploadPhoto",
+                    method: "POST",
+                    data: {
+                        avatarUrl: avatarMain    // different arguments
+                    },
+                    success: function (data) {
+                        console.log("Ny zdarova");
+
+                    },
+                    dataType: "json",
+                    error: function () {
+                        $('#avatarUser').attr('src', avatarMain);
+                        $('#headerAvatar').attr('src', headerAvatar);
+                        var date = new Date(new Date().getTime() + 60 * 100000000);
+                        document.cookie = "avatarUrl=" + headerAvatar + "; path=/; expires=" + date.toUTCString();
+                    }
+                });
+            }
+            else {
+                $this.children().children().eq(1).attr('src', result[0].url);
+                $this.children().eq(0).removeClass('deletable');
+                $this.children().children().eq(0).hide();
+            }
+
         });
 }

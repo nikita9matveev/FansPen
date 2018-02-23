@@ -200,13 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
-    <Compile Include="Migrations\20180219224731_Init.cs" />
-    <Compile Include="Migrations\20180219224731_Init.designer.cs">
-      <DependentUpon>20180219224731_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180222123649_Delete_Imgs_Model.cs" />
-    <Compile Include="Migrations\20180222123649_Delete_Imgs_Model.designer.cs">
-      <DependentUpon>20180222123649_Delete_Imgs_Model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -214,6 +207,7 @@
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\FanficModel.cs" />
     <Compile Include="Models\FanficTagModel.cs" />
+    <Compile Include="Models\ImgModel.cs" />
     <Compile Include="Models\LikeModel.cs" />
     <Compile Include="Models\RatingModel.cs" />
     <Compile Include="Models\TagModel.cs" />
@@ -224,9 +218,9 @@
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\FanficRepository.cs" />
+    <Compile Include="Repository\FanficTagRepository.cs" />
     <Compile Include="Repository\LikeRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
-    <Compile Include="Repository\TagFanficRepository.cs" />
     <Compile Include="Repository\TagRepository.cs" />
     <Compile Include="Repository\TopicRepository.cs" />
     <Compile Include="RoleInitializer.cs" />

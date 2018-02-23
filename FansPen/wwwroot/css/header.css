@@ -97,11 +97,12 @@
 
 #userIcon img {
     margin-right: 3px;
+    border-radius: 50%;
 }
 
-    .nav > li > a:hover, .nav > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-        background: #fff;
-    }
+.nav > li > a:hover, .nav > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: #fff;
+}
 
 .dropdown {
     /*background: #fff;

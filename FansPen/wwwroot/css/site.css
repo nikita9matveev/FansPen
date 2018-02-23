@@ -4,8 +4,10 @@
 
 body {
     padding-top: 50px;
-    padding-bottom: 20px;
-    background: #f5f5f5;
+    -webkit-transition: .74s all;
+    -moz-transition: .74s all;
+    -o-transition: .74s all;
+    transition: .74s all;
 }
 
 /* Wrapping element */
@@ -60,7 +62,7 @@ body {
 }
 
 .tagButton {
-    background: #18bc9ceb;
+    background: #4976c4;
     padding: 5px;
     display: inline-block;
     border-radius: 3px;
@@ -78,7 +80,7 @@ body {
 }
 
 .tag-count {
-    background: #449a8a;
+    background: #0049c4;
     display: inline-block;
     padding: 5px;
     color: white;
@@ -104,4 +106,55 @@ body {
 
 #cloudinary-overlay.modal {
     background-color: rgba(0,0,0,.5) !important;
+}
+
+.contentOther {
+    font-size: .9em;
+}
+
+.button-initial {
+    background: initial;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.modal {
+    top: 30% !important;
+}
+
+.navbar-fixed-top {
+    -webkit-transition: 1s all;
+    -moz-transition: 1s all;
+    -o-transition: 1s all;
+    transition: 1s all;
+}
+
+.no-body-padding {
+    padding-top: 0;
+}
+
+.no-comments {
+    display: none;
+}
+
+
+.no-navbar {
+    top: -10%;
+}
+
+.no-left {
+    left: 0% !important;
+}
+
+.no-left i {
+    left: 10% !important;
+}
+
+.no-right i {
+    right: 10% !important;
+}
+
+.no-right {
+    right: 0% !important; 
 }

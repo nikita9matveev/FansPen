@@ -123,6 +123,9 @@
   <data name="Books" xml:space="preserve">
     <value>Книги</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="Chapter" xml:space="preserve">
     <value>Глава</value>
   </data>
@@ -135,8 +138,20 @@
   <data name="Contents" xml:space="preserve">
     <value>Оглавление:</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Вы действительно хотите удалить фанфик?</value>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Удаление</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Эпиграф:</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
   </data>
   <data name="Films" xml:space="preserve">
     <value>Фильмы</value>

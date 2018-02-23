@@ -228,7 +228,7 @@ namespace FansPen.Domain.Migrations
 
                     b.Property<int>("FanficId");
 
-                    b.Property<string>("Img");
+                    b.Property<string>("ImgUrl");
 
                     b.Property<string>("Name");
 

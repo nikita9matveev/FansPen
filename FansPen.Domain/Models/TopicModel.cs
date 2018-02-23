@@ -12,8 +12,8 @@ namespace FansPen.Domain.Models
         public Fanfic Fanfic { get; set; }
         public int Number { get; set; }
         public string Name { get; set; }
+        public string ImgUrl { get; set; }
         public string Text { get; set; }
-        public string Img { get; set; }
         public ICollection<Rating> Ratings { get; set; }
         public float AverageRating { get; set; }
         public Topic()

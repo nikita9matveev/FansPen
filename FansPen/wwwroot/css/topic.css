@@ -82,3 +82,94 @@
     color: #09f;
     font-size: 1.2em;
 }
+
+.image-topic {
+    width: 100%;
+    border-radius: 3px;
+}
+
+.text-topic {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 2;
+    text-align: justify;
+}
+
+
+
+
+.fixed-left-button i, .fixed-top-button i {
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    font-size: 1.3em;
+}
+
+.fixed-right-button i, .fixed-read-button i {
+    position: absolute;
+    top: 45%;
+    right: 20%;
+    font-size: 1.3em;
+}
+
+.fixed-left-button, .fixed-read-button, .fixed-right-button, .fixed-top-button {
+    position: fixed;
+    width: 20%;
+    border: 1px solid #d7d8db;
+    color: black;
+    background: #f5f7fa;
+}
+
+.fixed-left-button:hover,
+.fixed-read-button:hover,
+.fixed-right-button:hover,
+.fixed-top-button:hover 
+{
+    background: #eaeff7;
+}
+
+.fixed-left-button, .fixed-right-button {
+    height: 100%;
+}
+
+.fixed-top-button, .fixed-read-button {
+    height: 15%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.fixed-left-button, .fixed-top-button {
+    left: 10%;
+}
+
+.fixed-right-button, .fixed-read-button {
+    right: 10%;
+}
+
+@media(max-width: 1300px) {
+    .fixed-left-button, .fixed-top-button {
+        left: 2%;
+    }
+    .fixed-right-button, .fixed-read-button {
+        right: 2%;
+    }
+}
+
+.progress-read {
+    position: fixed;
+    bottom: 10%;
+    right: .5%;
+    background: rgba(0, 0, 0, .4);
+    border-radius: 3px;
+    color: white;
+    padding: 10px;
+    z-index: 200;
+    -webkit-transition: 1s all;
+    -moz-transition: 1s all;
+    -o-transition: 1s all;
+    transition: 1s all;
+}
+
+.far-right {
+    right: -5%;
+}

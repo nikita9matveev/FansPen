@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using FansPen.Web.Helpers
+
 @model HomeViewModel
 
 @inject IViewLocalizer Localizer
@@ -9,11 +11,11 @@
         Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
 <div class="contentMain">
-    <div class="col-sm-2">
+    <div class="col-sm-2 fixCategory">
         <div style="text-align: center">
             <h3>@Localizer["Categories"]</h3>
         </div>
-        <ul id="Category" class="nav nav-tabs nav-pills nav-stacked ">
+        <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
             @{ var isAllActive = currentPath == "/" ? "active" : ""; }
             <li class="@isAllActive"><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["All"]</a></li>
             @foreach (var item in Model.Categorys)
@@ -23,7 +25,7 @@
             }
         </ul>
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-7 col-sm-offset-2">
         <div style="text-align: center">
             <h3>@Localizer["Popular"]</h3>
         </div>
@@ -74,7 +76,7 @@
                     </div>
                 </a>
                 <div class="caption">
-                    <p class="description-fanfic">@item.Description</p>
+                    <p class="description-fanfic">@Html.ToHTML(item.Description)</p>
                     <p>
                         <a href="/Category?value=@item.Category.Name.ToString()" class="categoryButton" role="button">@Localizer[item.Category.Name]</a>
                         @foreach (var tag in item.Tags)
@@ -86,7 +88,7 @@
             </div>
         }
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 fixCloud">
         <div>
             <h3>@Localizer["Tags"]</h3>
         </div>

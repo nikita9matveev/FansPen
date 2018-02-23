@@ -1,0 +1,50 @@
+{
+  "name": "upndown",
+  "description": "HTML to Markdown converter",
+  "version": "2.0.2",
+  "keywords": [
+    "html",
+    "html2markdown",
+    "htmltomarkdown",
+    "markdown"
+  ],
+  "dependencies": {
+    "htmlparser2": "^3.8.3"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.23.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "browserify": "^14.1.0",
+    "chai": "^3.0.0",
+    "eslint": "^3.17.1",
+    "mocha": "3.2.0",
+    "should": ">= 0.0.1",
+    "uglifyjs": "^2.4.10"
+  },
+  "main": "./lib/upndown.node.js",
+  "scripts": {
+    "browserify": "node node_modules/.bin/browserify lib/upndown.node.js -s upndown > lib/upndown.bundle.js",
+    "build": "npm run lint && npm run compile && npm run test && npm run browserify && npm run uglify",
+    "compile": "node node_modules/.bin/babel src/upndown.js > lib/upndown.node.js",
+    "lint": "node node_modules/.bin/eslint src/upndown.js",
+    "test": "node node_modules/.bin/mocha",
+    "uglify": "node node_modules/.bin/uglifyjs lib/upndown.bundle.js --compress --mangle  -s upndown > lib/upndown.bundle.min.js"
+  },
+  "maintainers": [
+    {
+      "name": "Net Gusto",
+      "email": "contact@netgusto.com",
+      "web": "http://netgusto.com"
+    }
+  ],
+  "repository": [
+    {
+      "type": "git",
+      "url": "https://github.com/netgusto/upndown.git"
+    }
+  ],
+  "license": "MIT"
+}
