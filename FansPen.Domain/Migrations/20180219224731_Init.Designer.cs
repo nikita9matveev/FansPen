@@ -11,8 +11,8 @@ using System;
 namespace FansPen.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180218133429_fixedUser")]
-    partial class fixedUser
+    [Migration("20180219224731_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

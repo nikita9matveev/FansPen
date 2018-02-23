@@ -4,6 +4,7 @@
 @inject IViewLocalizer Localizer
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 
 @{
     ViewData["Title"] = Model.UserName;
@@ -17,11 +18,32 @@
         <h3>@Model.UserName</h3>
         <h5>@Model.Email</h5>
         <h5 class="small-text">@Model.RegistrationDate</h5>
-        @if (UserManager.GetUserId(User) == Model.Id)
+        @if (UserManager.GetUserId(User) == Model.Id || User.IsInRole("admin"))
         {
-            <a href="#" id="newFanficButton" class="btn btn-block btn-success">@Localizer["NewFanfic"]</a>
+            <a href="#" id="newFanficButton" class="btn btn-block btn-success">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                @Localizer["NewFanfic"]
+            </a>
         }
         <hr />
+        @if (UserManager.GetUserId(User) != Model.Id && User.IsInRole("admin"))
+        {
+        <form asp-area="" asp-controller="Role" asp-action="SetAdmin" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post">
+            <button type="submit">
+                ADMIN
+            </button>
+        </form>
+        <form asp-area="" asp-controller="Role" asp-action="SetBan" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post">
+            <button type="submit">
+                BAN
+            </button>
+        </form>
+        <form asp-area="" asp-controller="Role" asp-action="Delete" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post">
+            <button type="submit">
+                DELETE
+            </button>
+        </form>
+        }
     </div>
     <div class="col-sm-8">
         <ul class="nav nav-tabs" id="menuProfile">
@@ -55,7 +77,7 @@
             <div class="tab-pane fade active in" id="profileData">
                 <div class="col-xs-12">
                     @{
-                        var changeble = UserManager.GetUserId(User) == Model.Id ? "changeble" : "";
+                        var changeble = UserManager.GetUserId(User) == Model.Id || User.IsInRole("admin") ? "changeble" : "";
                         <label class="control-label label-profile">@Localizer["FirstName"]</label>
                         <div>
                             <h5 id="FirstName" class="@changeble">
@@ -107,24 +129,24 @@
             </div>
             <div class="tab-pane fade" id="fanficsData">
                 @*@if (UserManager.GetUserId(User) == Model.Id)
-                {*@
-                    <div class="col-sm-6">
-                        <select class="form-control min-border-input" id="categoryProfile">
-                            <option>@Localizer["All"]</option>
-                            <option>@Localizer["Anime"]</option>
-                            <option>@Localizer["Books"]</option>
-                            <option>@Localizer["Games"]</option>
-                            <option>@Localizer["Comics"]</option>
-                            <option>@Localizer["Films"]</option>
-                            <option>@Localizer["Other"]</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                        <select class="form-control min-border-input" id="popOrNewProfile">
-                            <option>@Localizer["New"]</option>
-                            <option>@Localizer["Popular"]</option>
-                        </select>
-                    </div>
+                    {*@
+                <div class="col-sm-6">
+                    <select class="form-control min-border-input" id="categoryProfile">
+                        <option>@Localizer["All"]</option>
+                        <option>@Localizer["Anime"]</option>
+                        <option>@Localizer["Books"]</option>
+                        <option>@Localizer["Games"]</option>
+                        <option>@Localizer["Comics"]</option>
+                        <option>@Localizer["Films"]</option>
+                        <option>@Localizer["Other"]</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control min-border-input" id="popOrNewProfile">
+                        <option>@Localizer["New"]</option>
+                        <option>@Localizer["Popular"]</option>
+                    </select>
+                </div>
                 @*}*@
                 <div class="col-xs-12" id="resultDivProfile">
                 </div>
@@ -134,7 +156,7 @@
 </div>
 
 @await Html.PartialAsync("_GetUserFanfics")
-@if (UserManager.GetUserId(User) == Model.Id)
+@if (UserManager.GetUserId(User) == Model.Id || User.IsInRole("admin"))
 {
     @await Html.PartialAsync("_UploadPhoto")
     @await Html.PartialAsync("_ChangeProfile")

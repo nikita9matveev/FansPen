@@ -13,6 +13,11 @@ using FansPen.Web.Models.ViewModels;
 using AutoMapper;
 using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
+using Nest;
+using Elasticsearch.Net;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace FansPen.Web.Controllers
 {
@@ -67,9 +72,8 @@ namespace FansPen.Web.Controllers
             {
                 return RedirectToActionPermanent("Tags","Home", new { value = value.Substring(1, value.Length - 1) });
             }
-            _homeModel.SetList(
-                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value)),
-                Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
+            
+
             return View("Index", _homeModel);
         }
 

@@ -5,6 +5,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #f5f5f5;
 }
 
 /* Wrapping element */
@@ -59,7 +60,7 @@ body {
 }
 
 .tagButton {
-    background: #4976c4;
+    background: #18bc9ceb;
     padding: 5px;
     display: inline-block;
     border-radius: 3px;
@@ -77,7 +78,7 @@ body {
 }
 
 .tag-count {
-    background: #0049c4;
+    background: #449a8a;
     display: inline-block;
     padding: 5px;
     color: white;

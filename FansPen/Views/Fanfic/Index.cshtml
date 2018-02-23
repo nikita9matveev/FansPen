@@ -51,6 +51,13 @@
                     <a href="/Tag?value=@tag.Name" class="tagButton">#@tag.Name</a>
                 }
             </div>
+            <br>
+            <form asp-area="" asp-controller="Fanfic" asp-action="ExportToPdf" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post" target="_blank">
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+                    @Localizer["Download"]
+                </button>
+            </form>
         </div>
         <div class="col-sm-6">
             <h4>@Localizer["Description"]</h4>

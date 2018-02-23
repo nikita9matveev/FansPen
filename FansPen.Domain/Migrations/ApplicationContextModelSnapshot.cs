@@ -167,22 +167,6 @@ namespace FansPen.Domain.Migrations
                     b.ToTable("FanficTag");
                 });
 
-            modelBuilder.Entity("FansPen.Domain.Models.Img", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ImgUrl");
-
-                    b.Property<int>("TopicId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TopicId");
-
-                    b.ToTable("Imgs");
-                });
-
             modelBuilder.Entity("FansPen.Domain.Models.Like", b =>
                 {
                     b.Property<int>("Id")
@@ -243,6 +227,8 @@ namespace FansPen.Domain.Migrations
                     b.Property<float>("AverageRating");
 
                     b.Property<int>("FanficId");
+
+                    b.Property<string>("Img");
 
                     b.Property<string>("Name");
 
@@ -398,14 +384,6 @@ namespace FansPen.Domain.Migrations
                     b.HasOne("FansPen.Domain.Models.Tag", "Tag")
                         .WithMany("FanficTags")
                         .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FansPen.Domain.Models.Img", b =>
-                {
-                    b.HasOne("FansPen.Domain.Models.Topic", "Topic")
-                        .WithMany("Imgs")
-                        .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

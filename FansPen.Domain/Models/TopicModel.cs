@@ -13,12 +13,11 @@ namespace FansPen.Domain.Models
         public int Number { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
-        public ICollection<Img> Imgs { get; set; }
+        public string Img { get; set; }
         public ICollection<Rating> Ratings { get; set; }
         public float AverageRating { get; set; }
         public Topic()
         {
-            Imgs = new List<Img>();
             Ratings = new List<Rating>();
         }
     }

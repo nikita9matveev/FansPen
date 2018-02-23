@@ -11,7 +11,8 @@ namespace FansPen.Domain.Repository
         private TagRepository _tagRepositiry;
         private TagFanficRepository _tagFanficRepository;
 
-        public FanficRepository(ApplicationContext context) : base(context) {
+        public FanficRepository(ApplicationContext context) : base(context)
+        {
             _fanficEntity = context.Set<Fanfic>();
             _tagRepositiry = new TagRepository(context);
             _tagFanficRepository = new TagFanficRepository(context);
@@ -74,10 +75,10 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.Topics)
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
-            if(fanfic != null)
+            if (fanfic != null)
             {
                 float averageFanficRating = 0;
-                foreach(var topic in fanfic.Topics)
+                foreach (var topic in fanfic.Topics)
                 {
                     averageFanficRating += topic.AverageRating;
                 }
@@ -88,7 +89,7 @@ namespace FansPen.Domain.Repository
 
         public List<Fanfic> GetUserFanficsByCategory(string idUser, string category, int sort, int package)
         {
-            if(sort == 0)
+            if (sort == 0)
             {
                 return _fanficEntity
                 .Include(x => x.Category)
@@ -129,6 +130,22 @@ namespace FansPen.Domain.Repository
                 .OrderByDescending(x => x.AverageRating)
                 .Skip(package)
                 .Take(10).ToList();
+            }
+        }
+
+        public void SetDefaultUser(string idUser, string defaultId, ApplicationUser admin)
+        {
+            var fanfics = _fanficEntity
+                .Where(x => x.ApplicationUserId == idUser)
+                .ToList();
+            if (fanfics != null)
+            {
+                for (int i = 0; i < fanfics.Count; i++)
+                {
+                    //fanfics[i].ApplicationUser = admin;
+                    fanfics[i].ApplicationUserId = defaultId;
+                }
+                Save();
             }
         }
     }

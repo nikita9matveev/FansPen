@@ -69,7 +69,6 @@ namespace FansPen.Web.Controllers
                 Email = user.Email,
                 AboutMe = user.AboutMe,
                 IsEmailConfirmed = user.EmailConfirmed,
-                Interests = user.Interests,
                 StatusMessage = StatusMessage
             };
 
@@ -109,17 +108,6 @@ namespace FansPen.Web.Controllers
                 if (!setAboutMe.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting About me info for user with ID '{user.Id}'.");
-                }
-            }
-
-            var interests = user.Interests;
-            if (model.Interests != interests)
-            {
-                user.Interests = model.Interests;
-                IdentityResult setInterests = await _userManager.UpdateAsync(user);
-                if (!setInterests.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting Interests for user with ID '{user.Id}'.");
                 }
             }
 

@@ -24,7 +24,6 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.Ratings)
                 .Include(x => x.Fanfic.Comments)
                 .Include(x => x.Fanfic.Topics)
-                .Include(x => x.Imgs)
                 .Where(x => x.Id == id).FirstOrDefault();
         }
 
@@ -36,6 +35,11 @@ namespace FansPen.Domain.Repository
                 topic.AverageRating = averageRating;
                 Save();
             }
+        }
+
+        public List<Topic> GetTopicsByFanficId(int id)
+        {
+            return _topicEntity.Where(x => x.FanficId == id).ToList();
         }
     }
 }

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Elasticsearch.Net, Version=6.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elasticsearch.Net.6.0.1\lib\net46\Elasticsearch.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Authentication, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Authentication.2.0.1\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.dll</HintPath>
     </Reference>
@@ -144,6 +147,9 @@
     <Reference Include="Microsoft.Win32.Registry, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Registry.4.4.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
+    <Reference Include="Nest, Version=6.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\NEST.6.0.1\lib\net46\Nest.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
     </Reference>
@@ -194,6 +200,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Migrations\20180219224731_Init.cs" />
+    <Compile Include="Migrations\20180219224731_Init.designer.cs">
+      <DependentUpon>20180219224731_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20180222123649_Delete_Imgs_Model.cs" />
+    <Compile Include="Migrations\20180222123649_Delete_Imgs_Model.designer.cs">
+      <DependentUpon>20180222123649_Delete_Imgs_Model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -201,7 +214,6 @@
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\FanficModel.cs" />
     <Compile Include="Models\FanficTagModel.cs" />
-    <Compile Include="Models\ImgModel.cs" />
     <Compile Include="Models\LikeModel.cs" />
     <Compile Include="Models\RatingModel.cs" />
     <Compile Include="Models\TagModel.cs" />
@@ -217,6 +229,7 @@
     <Compile Include="Repository\TagFanficRepository.cs" />
     <Compile Include="Repository\TagRepository.cs" />
     <Compile Include="Repository\TopicRepository.cs" />
+    <Compile Include="RoleInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

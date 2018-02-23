@@ -2,11 +2,13 @@
 using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
 using FansPen.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace FansPen.Web.Controllers
 {
+    
     public class ProfileController : Controller
     {
         public ApplicationUserRepository ApplicationUserRepository;

@@ -71,7 +71,9 @@
 #Category {
     width: 100%;
     padding: 9px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    background: white;
+    border-radius: 3px;
 }
 
 .thumbnail {

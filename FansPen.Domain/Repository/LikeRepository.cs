@@ -37,5 +37,20 @@ namespace FansPen.Domain.Repository
             }
             return _likeEntity.Where(x => x.CommentId == commentId).Count();
         }
+
+        //public void DeleteUserLikes(string idUser)
+        //{
+        //    var likes = _likeEntity
+        //        .Where(x => x.ApplicationUserId == idUser)
+        //        .ToList();
+        //    if (likes != null)
+        //    {
+        //        for (int i = 0; i < likes.Count; i++)
+        //        {
+        //            _likeEntity.Remove(likes[i]);
+        //        }
+                
+        //    }
+        //}
     }
 }

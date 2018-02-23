@@ -81,5 +81,17 @@ namespace FansPen.Domain.Repository
                 Save();
             }
         }
+
+        public void DeleteUser(string idUser)
+        {
+            var user = _applicationUserEntity
+                .Where(x => x.Id == idUser)
+                .FirstOrDefault();
+            if (user != null)
+            {
+                _applicationUserEntity.Remove(user);
+            }
+            Save();
+        }
     }
 }

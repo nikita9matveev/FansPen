@@ -76,13 +76,18 @@ namespace FansPen.Web.Controllers
                         ModelState.AddModelError(string.Empty, "Вы не подтвердили свой email");
                         return View(model);
                     }
+                    if(await _userManager.IsInRoleAsync(user, "ban"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Упс...Вас забанили! Больше не шалите!");
+                        return View(model);
+                    }
                 }
 
                 var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password,
                                                     model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    Response.Cookies.Append("avatarUrl", user.AvatarUrl.Substring(0, 47) + "t_avatarHead" + user.AvatarUrl.Substring(59));
+                    Response.Cookies.Append("avatarUrl", user.AvatarUrl.Substring(0, 47) + "t_avatarHead" + user.AvatarUrl.Substring(59));                     
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -243,12 +248,12 @@ namespace FansPen.Web.Controllers
                     var callbackUrl = Url.Action(
                         "ConfirmEmail",
                         "Account",
-                        new { userId = user.Id, code = code },
+                        new { userId = user.Id, code },
                         protocol: HttpContext.Request.Scheme);
                     EmailService emailService = new EmailService(Configuration);
                     await emailService.SendEmailAsync(model.Email, "Confirm your account",
                         $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
-                    
+                    await _userManager.AddToRoleAsync(user, "user");
                     // await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal(returnUrl);
                 }
@@ -272,6 +277,7 @@ namespace FansPen.Web.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
+
             var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
@@ -291,12 +297,18 @@ namespace FansPen.Web.Controllers
             {
                 return RedirectToAction(nameof(Login));
             }
-
+            var user = _db.Users.Where(users => users.ProviderKey == info.ProviderKey).FirstOrDefault();
+            if (await _userManager.IsInRoleAsync(user, "ban"))
+            {
+                ModelState.AddModelError(string.Empty, "Упс...Вас забанили!\nБольше не шалите!");
+                return RedirectToLocal(returnUrl);
+            }
             // Sign in the user with this external login provider if the user already has a login.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                var user = _db.Users.Where(users => users.ProviderKey == info.ProviderKey).FirstOrDefault();
+                
+                
                 Response.Cookies.Append("avatarUrl", user.AvatarUrl.Substring(0, 47) + "t_avatarHead" + user.AvatarUrl.Substring(59));
                 _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
@@ -343,13 +355,13 @@ namespace FansPen.Web.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        await _userManager.AddToRoleAsync(user, "user");
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);
                     }
                 }
                 AddErrors(result);
             }
-
             ViewData["ReturnUrl"] = returnUrl;
             return View(nameof(ExternalLogin), model);
         }
@@ -368,7 +380,8 @@ namespace FansPen.Web.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{userId}'.");
             }
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            //return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return RedirectToAction(nameof(AccountController.Login), "Account");
         }
 
         [HttpGet]

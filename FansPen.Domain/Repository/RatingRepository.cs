@@ -50,5 +50,20 @@ namespace FansPen.Domain.Repository
         {
             return _ratingEntity.Where(x => x.TopicId == idTopic).Count();
         }
+
+        //public void DeleteUserRating(string idUser)
+        //{
+        //    var ratings = _ratingEntity
+        //        .Where(x => x.ApplicationUserId == idUser)
+        //        .ToList();
+        //    if (ratings != null)
+        //    {
+        //        for (int i = 0; i < ratings.Count; i++)
+        //        {
+        //            _ratingEntity.Remove(ratings[i]);
+        //        }
+                
+        //    }
+        //}
     }
 }

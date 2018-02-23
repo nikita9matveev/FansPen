@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using Microsoft.Owin;
 using Owin;
+using Nest;
 
 namespace FansPen.Web
 {
