@@ -126,8 +126,17 @@
   <data name="Comments" xml:space="preserve">
     <value>Комментарии</value>
   </data>
+  <data name="DefaultMode" xml:space="preserve">
+    <value>Стандартный режим</value>
+  </data>
+  <data name="ReadMode" xml:space="preserve">
+    <value>Режим чтения</value>
+  </data>
   <data name="Send" xml:space="preserve">
     <value>Отправить</value>
+  </data>
+  <data name="ToContents" xml:space="preserve">
+    <value>К оглавлению</value>
   </data>
   <data name="Vote" xml:space="preserve">
     <value>Голосов:</value>

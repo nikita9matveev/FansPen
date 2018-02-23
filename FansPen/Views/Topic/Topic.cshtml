@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Text.RegularExpressions;
 @using FansPen.Web.Helpers
 
 @model TopicViewModel
@@ -9,26 +10,43 @@
 
 @{
     ViewData["Title"] = Model.Name;
+    Regex r = new Regex(@"mode");
+    MatchCollection m = r.Matches(Context.Request.QueryString.ToString());
+    string titleString;
+    if (m.Count() > 0)
+    {
+        titleString = "DefaultMode";
+    }
+    else
+    {
+        titleString = "ReadMode";
+    }
 }
 
 <div class="contentOther">
+    <div class="progress-read far-right">
+        0%
+    </div>
     <a href="/Fanfic?id=@Model.Fanfic.Id">
-        <div class="fixed-top-button">
+        <div title="@Localizer["ToContents"]" class="fixed-top-button">
             <i class="fa fa-reply" aria-hidden="true"></i>
         </div>
     </a>
+    <div title="@Localizer[titleString]" class="fixed-read-button">
+        <i class="fa fa-book" aria-hidden="true"></i>
+    </div>
     @if (Model.Number - 1 != 0)
     {
-        <a href="/Topic?id=@Model.Fanfic.Topics.Where(x => x.Number == Model.Number - 1).First().Id">
-            <div class="fixed-left-button">
+        <a class="prev-button" href="/Topic?id=@Model.Fanfic.Topics.Where(x => x.Number == Model.Number - 1).First().Id">
+            <div title="@Localizer["Chapter"] @Model.Number. @Model.Fanfic.Topics.Where(x => x.Number == Model.Number - 1).First().Name" class="fixed-left-button">
                 <i class="fa fa-chevron-left" aria-hidden="true"></i>
             </div>
         </a>
     }
     @if (Model.Number < Model.Fanfic.Topics.Count())
     {
-        <a href="/Topic?id=@Model.Fanfic.Topics.Where(x => x.Number == Model.Number + 1).First().Id">
-            <div class="fixed-right-button">
+        <a class="next-button" href="/Topic?id=@Model.Fanfic.Topics.Where(x => x.Number == Model.Number + 1).First().Id">
+            <div title="@Localizer["Chapter"] @Model.Number. @Model.Fanfic.Topics.Where(x => x.Number == Model.Number + 1).First().Name" class="fixed-right-button">
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
         </a>
@@ -123,8 +141,8 @@
     </div>
 </div>
 
-<script src="~/lib/fanspen/setrating.js"></script>
 @section Scripts {
+    @await Html.PartialAsync("_ReadMode")
     @await Html.PartialAsync("_CommentScripts")
     @await Html.PartialAsync("_SetRating")
 }

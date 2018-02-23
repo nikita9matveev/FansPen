@@ -22,5 +22,7 @@ function localeText(word) {
         case "NoTopic": return shotCulture == "en" ? "Least one chapter needed" : "Необходима хотя бы одна глава";
         case "TopicNameEmpty": return shotCulture == "en" ? "Chapter name not indicated" : "Не указано название главы";
         case "TopicTextEmpty": return shotCulture == "en" ? "Chapter text is empty" : "Не введен текст главы";
+        case "ReadMode": return shotCulture == "en" ? "Reading mode" : "Режим чтения";
+        case "DefaultMode": return shotCulture == "en" ? "Default mode" : "Стандартный режим";
     }
 }

@@ -95,51 +95,81 @@
     text-align: justify;
 }
 
-.fixed-left-button {
-    cursor: pointer;
-    text-align: center;
+
+
+
+.fixed-left-button i, .fixed-top-button i {
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    font-size: 1.3em;
+}
+
+.fixed-right-button i, .fixed-read-button i {
+    position: absolute;
+    top: 45%;
+    right: 20%;
+    font-size: 1.3em;
+}
+
+.fixed-left-button, .fixed-read-button, .fixed-right-button, .fixed-top-button {
     position: fixed;
+    width: 20%;
+    border: 1px solid #d7d8db;
+    color: black;
+    background: #f5f7fa;
+}
+
+.fixed-left-button:hover,
+.fixed-read-button:hover,
+.fixed-right-button:hover,
+.fixed-top-button:hover 
+{
+    background: #eaeff7;
+}
+
+.fixed-left-button, .fixed-right-button {
+    height: 100%;
+}
+
+.fixed-top-button, .fixed-read-button {
+    height: 15%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.fixed-left-button, .fixed-top-button {
     left: 10%;
-    top: 45%;
-    vertical-align: middle;
-    padding: 10px;
-    border-radius: 3px;
-    border: 1px solid #d7d8db;
-    color: black;
 }
 
-
-.fixed-right-button {
-    cursor: pointer;
-    text-align: center;
-    position: fixed;
+.fixed-right-button, .fixed-read-button {
     right: 10%;
-    top: 45%;
-    vertical-align: 40%;
-    padding: 10px;
-    border-radius: 3px;
-    border: 1px solid #d7d8db;
-    color: black;
 }
 
-@media(max-width: 767px) {
+@media(max-width: 1300px) {
     .fixed-left-button, .fixed-top-button {
         left: 2%;
     }
-    .fixed-right-button {
+    .fixed-right-button, .fixed-read-button {
         right: 2%;
     }
 }
 
-.fixed-top-button {
-    cursor: pointer;
-    text-align: center;
+.progress-read {
     position: fixed;
-    left: 10%;
-    top: 10%;
-    vertical-align: middle;
-    padding: 10px;
+    bottom: 10%;
+    right: .5%;
+    background: rgba(0, 0, 0, .4);
     border-radius: 3px;
-    border: 1px solid #d7d8db;
-    color: black;
+    color: white;
+    padding: 10px;
+    z-index: 200;
+    -webkit-transition: 1s all;
+    -moz-transition: 1s all;
+    -o-transition: 1s all;
+    transition: 1s all;
+}
+
+.far-right {
+    right: -5%;
 }

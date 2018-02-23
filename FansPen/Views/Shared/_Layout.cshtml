@@ -14,14 +14,12 @@
         @if (Context.Request.Cookies["theme"] == "dark")
         {
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-darkly.css" />
-            <link rel="stylesheet" href="~/css/site.css" />
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/dark.css" />
+            <link asp-append-version="true"  rel="stylesheet" href="~/lib/bootstrap/dist/css/dark.css" />
         }
         else
         {
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
-            <link rel="stylesheet" href="~/css/site.css" />
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/light.css" />
+            <link asp-append-version="true"  rel="stylesheet" href="~/lib/bootstrap/dist/css/light.css" />
         }
     </environment>
     <environment exclude="Development">

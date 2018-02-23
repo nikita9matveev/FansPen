@@ -96,7 +96,7 @@ function addTopic() {
     $('.delete-builder' + countForEvent).click(deleteTopic);
     $('.CoverTopic' + countForEvent).click(uploadPhoto);
     var simplemde = new SimpleMDE({
-        hideIcons: ["fullscreen", "image", "side-by-side"],
+        hideIcons: ["fullscreen", "side-by-side"],
         element: $("#TopicText" + countForEvent)[0]
     });
     simplemdeMass.push(simplemde);

@@ -26,7 +26,7 @@ namespace FansPen.Web.Controllers
 
         [HttpGet]
         [Route("Topic")]
-        public IActionResult Topic(int id)
+        public IActionResult Topic(int id, string mode = "default")
         {
             TopicViewModel topicView = Mapper.Map<TopicViewModel>(TopicRepository.GetTopicById(id));
             topicView.SetUserRating(User.Identity.GetUserId());
