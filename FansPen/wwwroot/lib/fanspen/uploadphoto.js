@@ -32,14 +32,24 @@ function uploadPhoto() {
                     },
                     success: function (data) {
                         console.log("Ny zdarova");
-
                     },
                     dataType: "json",
                     error: function () {
                         $('#avatarUser').attr('src', avatarMain);
-                        $('#headerAvatar').attr('src', headerAvatar);
-                        var date = new Date(new Date().getTime() + 60 * 100000000);
-                        document.cookie = "avatarUrl=" + headerAvatar + "; path=/; expires=" + date.toUTCString();
+                        $.ajax({
+                            url: "/GetIdCurrentUser",
+                            success: function (data) {
+                                if (data.id == idUser) {
+                                    $('#headerAvatar').attr('src', headerAvatar);
+                                    var date = new Date(new Date().getTime() + 60 * 100000000);
+                                    document.cookie = "avatarUrl=" + headerAvatar + "; path=/; expires=" + date.toUTCString();
+                                }
+                            },
+                            dataType: 'json',
+                            error: function () {
+                                alert("Error while retrieving data!");
+                            }
+                        });
                     }
                 });
             }

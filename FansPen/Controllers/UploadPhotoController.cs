@@ -21,5 +21,12 @@ namespace FansPen.Web.Controllers
         {
             ApplicationUserRepository.UploadAvatar(id, avatarUrl);
         }
+
+        [HttpGet]
+        [Route("GetIdCurrentUser")]
+        public IActionResult GetIdCurrentUser()
+        {
+            return Json(new { id = User.Identity.GetUserId() });
+        }
     }
 }
