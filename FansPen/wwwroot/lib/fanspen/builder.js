@@ -182,6 +182,8 @@ function createFanfic() {
             DescriptionText.markdown(DescriptionText.value()),
             $('#categoryProfile')[0].selectedIndex
         );
+        if (window.location.search.split('?userid=').length > 1)
+            fanfic.UserId = window.location.search.replace('?userid=' ,'');
 
         var tagsList = $('#tags').val().split(',');
         if (tagsList[0] == '') tagsList = [];
@@ -244,7 +246,7 @@ class TagScriptModel {
 class FanficScriptModel {
     constructor(Name, ImgUrl, Description, Category) {
         this.Id = -1,
-        //this.UserId = UserId,
+        this.UserId = "default",
         this.Name = Name;
         this.ImgUrl = ImgUrl;
         this.Description = Description;

@@ -128,7 +128,7 @@ namespace FansPen.Domain.Migrations
 
                     b.Property<float>("AverageRating");
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<DateTime>("CreateDate");
 
@@ -371,7 +371,8 @@ namespace FansPen.Domain.Migrations
 
                     b.HasOne("FansPen.Domain.Models.Category", "Category")
                         .WithMany("Fanfics")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FansPen.Domain.Models.FanficTag", b =>

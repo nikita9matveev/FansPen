@@ -80,13 +80,14 @@ namespace FansPen.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id, string returnUrl)
         {
-            ApplicationUser user = await _userManager.FindByIdAsync(id);
-            if (user != null)
-            {                
-                //CommentRepository.DeleteAllUserComments(id);
-                //RatingRepository.DeleteUserRating(id);
-                //LikeRepository.DeleteUserLikes(id);                
-                FanficRepository.SetDefaultUser(id, "18b96a86-973a-4445-bb9f-5aeb732a25af", user);
+            ApplicationUser userForDelete = await _userManager.FindByIdAsync(id);
+            if (userForDelete != null)
+            {
+                ApplicationUser admin = await _userManager.FindByNameAsync("admin");
+                CommentRepository.DeleteAllUserComments(id);
+                RatingRepository.DeleteUserRating(id);
+                LikeRepository.DeleteUserLikes(id);
+                FanficRepository.SetDefaultUser(id, admin.Id);
                 ApplicationUserRepository.DeleteUser(id);
                 return Redirect("/");
             }

@@ -46,6 +46,11 @@
     text-align: justify;
 }
 
+.description-fanfic + p {
+    text-align: justify;
+    word-break: break-word;
+}
+
 .img-fanfic {
     position: relative;
     overflow: hidden;

@@ -18,9 +18,16 @@
         <h3>@Model.UserName</h3>
         <h5>@Model.Email</h5>
         <h5 class="small-text">@Model.RegistrationDate</h5>
-        @if (UserManager.GetUserId(User) == Model.Id || User.IsInRole("admin"))
+        @if (UserManager.GetUserId(User) == Model.Id)
         {
             <a href="/FanficBuilder" id="newFanficButton" class="btn btn-block btn-success">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"> </i>
+                @Localizer["NewFanfic"]
+            </a>
+        }
+        @if(User.IsInRole("admin") && UserManager.GetUserId(User) != Model.Id)
+        {
+            <a href="/FanficBuilder?userid=@Model.Id" id="newFanficButton" class="btn btn-block btn-success">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"> </i>
                 @Localizer["NewFanfic"]
             </a>

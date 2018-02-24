@@ -58,19 +58,17 @@ namespace FansPen.Domain.Repository
             }
             return _commentEntity.Where(x => x.FanficId == idFanfic).Count();
         }
-        //public void DeleteAllUserComments(string idUser)
-        //{
-        //    var comments = _commentEntity
-        //        .Where(x => x.ApplicationUserId == idUser)
-        //        .ToList();
-        //    if (comments != null)
-        //    {
-        //        for (int i = 0; i < comments.Count; i++)
-        //        {
-        //            _commentEntity.Remove(comments[i]);
-        //        }
-                
-        //    }
-        //}
+
+        public void DeleteAllUserComments(string idUser)
+        {
+            List<Comment> comments = _commentEntity
+                .Where(x => x.ApplicationUserId == idUser)
+                .ToList();
+            if (comments != null)
+            {
+                _commentEntity.RemoveRange(comments);
+                Save();
+            }
+        }
     }
 }

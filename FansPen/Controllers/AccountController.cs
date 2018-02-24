@@ -298,17 +298,18 @@ namespace FansPen.Web.Controllers
                 return RedirectToAction(nameof(Login));
             }
             var user = _db.Users.Where(users => users.ProviderKey == info.ProviderKey).FirstOrDefault();
-            if (await _userManager.IsInRoleAsync(user, "ban"))
+            if (user != null)
             {
-                ModelState.AddModelError(string.Empty, "Упс...Вас забанили!\nБольше не шалите!");
-                return RedirectToLocal(returnUrl);
+                if (await _userManager.IsInRoleAsync(user, "ban"))
+                {
+                    ModelState.AddModelError(string.Empty, "Упс...Вас забанили!\nБольше не шалите!");
+                    return RedirectToLocal(returnUrl);
+                }
             }
             // Sign in the user with this external login provider if the user already has a login.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                
-                
                 Response.Cookies.Append("avatarUrl", user.AvatarUrl.Substring(0, 47) + "t_avatarHead" + user.AvatarUrl.Substring(59));
                 _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);

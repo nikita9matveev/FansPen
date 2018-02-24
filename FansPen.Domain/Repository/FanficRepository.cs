@@ -192,17 +192,14 @@ namespace FansPen.Domain.Repository
             }
         }
 
-        public void SetDefaultUser(string idUser, string defaultId, ApplicationUser admin)
+        public void SetDefaultUser(string idUser, string defaultId)
         {
-            var fanfics = _fanficEntity
+            List<Fanfic> fanfics = _fanficEntity
                 .Where(x => x.ApplicationUserId == idUser)
                 .ToList();
             if (fanfics != null)
             {
-                for (int i = 0; i < fanfics.Count; i++)
-                {
-                    fanfics[i].ApplicationUserId = defaultId;
-                }
+                fanfics.ForEach(x => x.ApplicationUserId = defaultId);
                 Save();
             }
         }

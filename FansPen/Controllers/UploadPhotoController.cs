@@ -17,9 +17,9 @@ namespace FansPen.Web.Controllers
 
         [HttpPost]
         [Route("UploadPhoto")]
-        public void UploadPhoto(string avatarUrl)
+        public void UploadPhoto(string id, string avatarUrl)
         {
-            ApplicationUserRepository.UploadAvatar(User.Identity.GetUserId(), avatarUrl);
+            ApplicationUserRepository.UploadAvatar(id, avatarUrl);
         }
     }
 }

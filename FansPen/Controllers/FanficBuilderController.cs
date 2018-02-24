@@ -16,6 +16,7 @@ namespace FansPen.Web.Controllers
         public TopicRepository TopicRepository;
         public TagRepository TagRepository;
         public FanficTagRepository FanficTagRepository;
+        public ApplicationUserRepository ApplicationUserRepository;
 
         public FanficBuilderController(ApplicationContext context)
         {
@@ -23,6 +24,7 @@ namespace FansPen.Web.Controllers
             TopicRepository = new TopicRepository(context);
             FanficTagRepository = new FanficTagRepository(context);
             TagRepository = new TagRepository(context);
+            ApplicationUserRepository = new ApplicationUserRepository(context);
         }
 
         [HttpGet]
@@ -33,7 +35,7 @@ namespace FansPen.Web.Controllers
                 return RedirectPermanent("/");
             if (fanficid != -1)
             {
-                if (FanficRepository.GetUserIdByFanficId(fanficid) != User.Identity.GetUserId())
+                if (FanficRepository.GetUserIdByFanficId(fanficid) != User.Identity.GetUserId() && !User.IsInRole("admin"))
                     return RedirectPermanent("/");
             }
             return View("Index");
@@ -43,9 +45,16 @@ namespace FansPen.Web.Controllers
         [Route("CreateFanfic")]
         public void CreateFanfic([FromBody]FanficScriptModel data)
         {
+            string userId = User.Identity.GetUserId();
+            PreviewUserViewModel user = Mapper
+                .Map<PreviewUserViewModel>(ApplicationUserRepository.GetApplicationUserById(data.UserId));
+            if(user != null && User.IsInRole("admin"))
+            {
+                userId = user.Id;
+            }
             Fanfic fanfic = new Fanfic
             {
-                ApplicationUserId = User.Identity.GetUserId(),
+                ApplicationUserId = userId,
                 AverageRating = 0,
                 CategoryId = data.Category,
                 CreateDate = DateTime.Now,

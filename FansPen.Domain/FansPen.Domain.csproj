@@ -200,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Migrations\20180224005205_int.cs" />
+    <Compile Include="Migrations\20180224005205_int.designer.cs">
+      <DependentUpon>20180224005205_int.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -207,7 +210,6 @@
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\FanficModel.cs" />
     <Compile Include="Models\FanficTagModel.cs" />
-    <Compile Include="Models\ImgModel.cs" />
     <Compile Include="Models\LikeModel.cs" />
     <Compile Include="Models\RatingModel.cs" />
     <Compile Include="Models\TagModel.cs" />

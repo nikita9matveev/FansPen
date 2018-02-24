@@ -11,8 +11,8 @@ using System;
 namespace FansPen.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180222123649_Delete_Imgs_Model")]
-    partial class Delete_Imgs_Model
+    [Migration("20180224005205_int")]
+    partial class @int
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,7 +129,7 @@ namespace FansPen.Domain.Migrations
 
                     b.Property<float>("AverageRating");
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<DateTime>("CreateDate");
 
@@ -229,7 +229,7 @@ namespace FansPen.Domain.Migrations
 
                     b.Property<int>("FanficId");
 
-                    b.Property<string>("Img");
+                    b.Property<string>("ImgUrl");
 
                     b.Property<string>("Name");
 
@@ -372,7 +372,8 @@ namespace FansPen.Domain.Migrations
 
                     b.HasOne("FansPen.Domain.Models.Category", "Category")
                         .WithMany("Fanfics")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FansPen.Domain.Models.FanficTag", b =>

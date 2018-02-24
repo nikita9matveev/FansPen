@@ -95,6 +95,11 @@
     text-align: justify;
 }
 
+.text-topic p {
+    word-wrap: break-word;
+    text-align: justify;
+}
+
 
 
 
@@ -139,11 +144,11 @@
 }
 
 .fixed-left-button, .fixed-top-button {
-    left: 10%;
+    left: 7%;
 }
 
 .fixed-right-button, .fixed-read-button {
-    right: 10%;
+    right: 7%;
 }
 
 @media(max-width: 1300px) {
@@ -171,5 +176,5 @@
 }
 
 .far-right {
-    right: -5%;
+    right: -20%;
 }
