@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Forgot" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
   <data name="Sign" xml:space="preserve">
     <value>Sign in to FansPen</value>
+  </data>
+  <data name="SignButton" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

@@ -14,14 +14,21 @@
 
 #LoginRememberMe {
     margin-top: 0px;
+    padding-left: 40px;
+}
+
+#LoginForgot {
+    padding-left: 20px;
 }
 
 #LoginOrLabel {
     padding-left: 7px;
 }
 
-#LoginProviders {
+.LoginProviders {
     width: 50px;
     height: auto;
     cursor: pointer;
+    text-align: center;
+
 }

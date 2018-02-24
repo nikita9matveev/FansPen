@@ -11,6 +11,5 @@ namespace FansPen.Web.Helpers
     {
         public static IHtmlContent ToHTML(this IHtmlHelper htmlHelper, string ConvertString)
             => new HtmlString(ConvertString);
-
     }
 }

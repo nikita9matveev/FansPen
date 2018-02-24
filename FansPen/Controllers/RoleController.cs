@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace FansPen.Web.Controllers
 {
     public class RoleController : Controller
@@ -80,13 +78,14 @@ namespace FansPen.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id, string returnUrl)
         {
-            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            ApplicationUser user = await _userManager.FindByIdAsync(id);           
             if (user != null)
-            {                
-                //CommentRepository.DeleteAllUserComments(id);
-                //RatingRepository.DeleteUserRating(id);
-                //LikeRepository.DeleteUserLikes(id);                
-                FanficRepository.SetDefaultUser(id, "18b96a86-973a-4445-bb9f-5aeb732a25af", user);
+            {
+                ApplicationUser admin = await _userManager.FindByNameAsync("admin");
+                CommentRepository.DeleteAllUserComments(id);
+                RatingRepository.DeleteUserRating(id);
+                LikeRepository.DeleteUserLikes(id);                
+                FanficRepository.SetDefaultUser(id, admin.Id);
                 ApplicationUserRepository.DeleteUser(id);
                 return Redirect("/");
             }

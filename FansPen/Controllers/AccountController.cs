@@ -73,12 +73,12 @@ namespace FansPen.Web.Controllers
                     // проверяем, подтвержден ли email
                     if (!await _userManager.IsEmailConfirmedAsync(user))
                     {
-                        ModelState.AddModelError(string.Empty, "Вы не подтвердили свой email");
+                        ModelState.AddModelError(string.Empty, "You haven't confirm your email!");
                         return View(model);
                     }
                     if(await _userManager.IsInRoleAsync(user, "ban"))
                     {
-                        ModelState.AddModelError(string.Empty, "Упс...Вас забанили! Больше не шалите!");
+                        ModelState.AddModelError(string.Empty, "Oops...You're banned!");
                         return View(model);
                     }
                 }
@@ -298,10 +298,13 @@ namespace FansPen.Web.Controllers
                 return RedirectToAction(nameof(Login));
             }
             var user = _db.Users.Where(users => users.ProviderKey == info.ProviderKey).FirstOrDefault();
-            if (await _userManager.IsInRoleAsync(user, "ban"))
+            if (user != null)
             {
-                ModelState.AddModelError(string.Empty, "Упс...Вас забанили!\nБольше не шалите!");
-                return RedirectToLocal(returnUrl);
+                if (await _userManager.IsInRoleAsync(user, "ban"))
+                {
+                    ModelState.AddModelError(string.Empty, "Упс...Вас забанили! Больше не шалите!");
+                    return RedirectToLocal(returnUrl);
+                }
             }
             // Sign in the user with this external login provider if the user already has a login.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);

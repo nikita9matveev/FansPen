@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Forgot" xml:space="preserve">
-    <value>Забыли пароль?</value>
+  <data name="Associate" xml:space="preserve">
+    <value>Привзка аккаунта</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Пароль</value>
+  <data name="AssociateOf" xml:space="preserve">
+    <value>Привяжите ваш аккаунт</value>
   </data>
-  <data name="Remember" xml:space="preserve">
-    <value>Запомнить?</value>
+  <data name="Attention" xml:space="preserve">
+    <value>Внимание: вы не сможете изменить ваше имя пользователя позже.</value>
   </data>
-  <data name="Sign" xml:space="preserve">
-    <value>Войти</value>
+  <data name="Email" xml:space="preserve">
+    <value>Почтовый ящик</value>
   </data>
-  <data name="SignButton" xml:space="preserve">
-    <value>Войти</value>
+  <data name="Register" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Пожалуйста, введите имя пользователя и пароль для нашего сайта ниже.</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Имя пользователя</value>
+  </data>
+  <data name="Well" xml:space="preserve">
+    <value>Отлично!</value>
   </data>
 </root>

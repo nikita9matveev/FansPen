@@ -9,10 +9,13 @@ using FansPen.Domain.Repository;
 using FansPen.Web.Models.ViewModels;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 using System.Drawing;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.html;
 
 namespace FansPen.Web.Controllers
 {
@@ -57,7 +60,6 @@ namespace FansPen.Web.Controllers
             FileStream fileLogo = new FileStream(@"wwwroot/images/logo.png", FileMode.Open);
             var logo = Image.GetInstance(fileLogo);
             logo.SetAbsolutePosition(pdfDoc.Left, pdfDoc.Top);
-            //wri.DirectContent.AddImage(logo);
             pdfDoc.Add(logo);
             fileLogo.Close();
 
@@ -84,9 +86,20 @@ namespace FansPen.Web.Controllers
             Paragraph descLabel = new Paragraph("Description: ", new Font(baseFont, 16));
             pdfDoc.Add(descLabel);
             pdfDoc.Add(spacer);
-            Paragraph description = new Paragraph(fanfic.Description, new Font(baseFont, 14));
-            pdfDoc.Add(description);
 
+            string arialuniTff = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIALUNI.TTF");
+            FontFactory.Register(arialuniTff);
+            StyleSheet ST = new StyleSheet();
+            ST.LoadTagStyle(HtmlTags.BODY, HtmlTags.FACE, "Arial Unicode MS");
+            ST.LoadTagStyle(HtmlTags.BODY, HtmlTags.ENCODING, BaseFont.IDENTITY_H);
+            using (var htmlWorker = new HTMLWorker(pdfDoc))
+            {
+                using (var sr = new StringReader(fanfic.Description))
+                {
+                    htmlWorker.SetStyleSheet(ST);
+                    htmlWorker.Parse(sr);
+                }
+            }
             pdfDoc.Add(spacer);
             
             Chapter content = new Chapter(new Paragraph("Content: ", new Font(baseFont, 16)), 0);
@@ -108,21 +121,26 @@ namespace FansPen.Web.Controllers
                 Paragraph infoTopic = new Paragraph("Rating: " + item.AverageRating, new Font(baseFont, 11));
                 pdfDoc.Add(infoTopic);
                 pdfDoc.Add(spacer);
-
-                //var avatarTopic = item.ImgUrl;
-                //avatarTopic = avatarTopic.Substring(0, 47) + "t_FanficPDF" + avatarTopic.Substring(58, 22) + "jpg";
-                //Uri uriTopic = new Uri(avatarTopic);
-                //Jpeg imgTopic = new Jpeg(uriTopic);
-                //pdfDoc.Add(imgTopic);
-                //pdfDoc.Add(spacer);
-
-                Paragraph text = new Paragraph (item.Text, new Font(baseFont, 14));
-                pdfDoc.Add(text);
+                if (item.ImgUrl != " ")
+                {
+                    var avatarTopic = item.ImgUrl;
+                    avatarTopic = avatarTopic.Substring(0, 47) + "t_FanficPDF" + avatarTopic.Substring(58, 22) + "jpg";
+                    Uri uriTopic = new Uri(avatarTopic);
+                    Jpeg imgTopic = new Jpeg(uriTopic);
+                    pdfDoc.Add(imgTopic);
+                    pdfDoc.Add(spacer);
+                }
+                using (var htmlWorker = new HTMLWorker(pdfDoc))
+                {
+                    using (var sr = new StringReader(item.Text))
+                    {
+                        htmlWorker.SetStyleSheet(ST);
+                        htmlWorker.Parse(sr);
+                    }
+                }
             }
-
             pdfDoc.Close();
             wri.Close();
-
             WebClient User = new WebClient();
             Byte[] FileBuffer = User.DownloadData(@"wwwroot/pdf/tester1.pdf");
             if (FileBuffer != null)
