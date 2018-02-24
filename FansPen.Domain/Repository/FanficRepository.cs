@@ -1,5 +1,6 @@
 ﻿using FansPen.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +27,19 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.FanficTags).ToList();
         }
 
-        public List<Fanfic> GetItemByCategory(string category)
+        public List<Fanfic> GetAllPopular()
+        {
+            return _fanficEntity
+                .Include(x => x.Category)
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.FanficTags)
+                .OrderByDescending(x => x.AverageRating)
+                .Where(x => x.CreateDate > DateTime.Now.AddDays(-5))
+                .Take(2)
+                .ToList();
+        }
+
+        public List<Fanfic> GetItemByCategory(string category, int package)
         {
             return _fanficEntity
                 .Include(x => x.Category)
@@ -34,16 +47,20 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.FanficTags)
                 .Where(x => x.Category.Name == category)
                 .OrderByDescending(x => x.CreateDate)
+                .Skip(package)
+                .Take(10)
                 .ToList();
         }
 
-        public List<Fanfic> GetItemByTags(string tag)
+        public List<Fanfic> GetItemByTags(string tag, int package)
         {
             int tagId = _tagRepositiry.GetItemByName(tag);
             List<FanficTag> tagFanfic = _fanficTagRepository.GetItemByTagId(tagId);
             List<Fanfic> fanficsResult = new List<Fanfic>();
-            List<Fanfic> fanficsList = _fanficEntity.Include(x => x.Category)
-                .Include(x => x.ApplicationUser).Include(x => x.FanficTags).ToList();
+            List<Fanfic> fanficsList = _fanficEntity
+                .Include(x => x.Category)
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.FanficTags).ToList();
             foreach (var tagFan in tagFanfic)
             {
                 foreach (var fan in fanficsList)
@@ -55,7 +72,23 @@ namespace FansPen.Domain.Repository
                     }
                 }
             }
-            return fanficsResult.OrderByDescending(x => x.CreateDate).ToList();
+            return fanficsResult
+                .OrderByDescending(x => x.CreateDate)
+                .Skip(package)
+                .Take(10)
+                .ToList();
+        }
+
+        public List<Fanfic> GetNew(int package)
+        {
+            return _fanficEntity
+                .Include(x => x.Category)
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.FanficTags)
+                .OrderByDescending(x => x.CreateDate)
+                .Skip(package)
+                .Take(10)
+                .ToList();
         }
 
         public Fanfic GetById(int id)
@@ -174,6 +207,7 @@ namespace FansPen.Domain.Repository
             if(fanfic != null)
             {
                 fanfic.Name = name;
+                fanfic.EditingDate = DateTime.Now;
                 fanfic.Description = description;
                 fanfic.ImgUrl = imgUrl;
                 Save();
@@ -200,7 +234,6 @@ namespace FansPen.Domain.Repository
             if (fanfics != null)
             {
                 fanfics.ForEach(x => x.ApplicationUserId = defaultId);
-                
                 Save();
             }
         }

@@ -95,6 +95,11 @@
     text-align: justify;
 }
 
+.text-topic p {
+    word-wrap: break-word;
+    text-align: justify;
+}
+
 
 
 

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
 
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace FansPen.Web.Controllers
 {
     public class RoleController : Controller
@@ -29,23 +31,20 @@ namespace FansPen.Web.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
+
         [HttpPost]
         public async Task<IActionResult> SetAdmin(string returnUrl, string id)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                foreach (var role in userRoles)
+                if (await _userManager.IsInRoleAsync(user, "admin"))
                 {
-                    if (role == "admin")
-                    {
-                        await _userManager.RemoveFromRoleAsync(user, "admin");
-                    }
-                    else if (role != "ban")
-                    {
-                        await _userManager.AddToRoleAsync(user, "admin");
-                    }
+                    await _userManager.RemoveFromRoleAsync(user, "admin");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "admin");
                 }
                 return RedirectPermanent(returnUrl);
             }
@@ -58,17 +57,13 @@ namespace FansPen.Web.Controllers
             ApplicationUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                foreach (var role in userRoles)
+                if (await _userManager.IsInRoleAsync(user, "ban"))
                 {
-                    if (role == "ban")
-                    {
-                        await _userManager.RemoveFromRoleAsync(user, "ban");
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, "ban");
-                    }
+                    await _userManager.RemoveFromRoleAsync(user, "ban");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "ban");
                 }
                 return RedirectPermanent(returnUrl);
             }
@@ -78,13 +73,13 @@ namespace FansPen.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id, string returnUrl)
         {
-            ApplicationUser user = await _userManager.FindByIdAsync(id);           
-            if (user != null)
+            ApplicationUser userForDelete = await _userManager.FindByIdAsync(id);
+            if (userForDelete != null)
             {
                 ApplicationUser admin = await _userManager.FindByNameAsync("admin");
                 CommentRepository.DeleteAllUserComments(id);
                 RatingRepository.DeleteUserRating(id);
-                LikeRepository.DeleteUserLikes(id);                
+                LikeRepository.DeleteUserLikes(id);
                 FanficRepository.SetDefaultUser(id, admin.Id);
                 ApplicationUserRepository.DeleteUser(id);
                 return Redirect("/");

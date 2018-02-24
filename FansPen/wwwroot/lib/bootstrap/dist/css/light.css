@@ -14,7 +14,11 @@ body {
     background: #edeef0;
 }
 
-.edit-button-fanfic, .edit-button-fanfic:hover, .edit-button-fanfic:active {
+.edit-button-fanfic,
+.edit-button-fanfic:hover,
+.edit-button-fanfic:active,
+.edit-button-fanfic:visited,
+.edit-button-fanfic:link {
     color: black;
 }
 
@@ -32,4 +36,8 @@ body {
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #d2d9e3;
+}
+
+.hr-profile {
+    border-top: 1px solid #ccc;
 }

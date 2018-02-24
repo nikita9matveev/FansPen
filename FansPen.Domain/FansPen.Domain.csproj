@@ -200,10 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
-    <Compile Include="Migrations\20180224001219_forth_term.cs" />
-    <Compile Include="Migrations\20180224001219_forth_term.designer.cs">
-      <DependentUpon>20180224001219_forth_term.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CategoryModel.cs" />

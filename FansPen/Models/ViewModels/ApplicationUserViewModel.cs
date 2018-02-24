@@ -17,11 +17,8 @@ namespace FansPen.Web.Models.ViewModels
         public string Sex { get; set; }
         public string AvatarUrl { get; set; }
         public string ProviderKey { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool IsBan { get; set; }
         public ICollection<FanficPreViewModel> Fanfics { get; set; }
-
-        //public SetTags()
-        //{
-
-        //}
     }
 }
