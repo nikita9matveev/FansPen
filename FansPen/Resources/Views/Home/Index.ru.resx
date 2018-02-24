@@ -126,6 +126,12 @@
   <data name="Books" xml:space="preserve">
     <value>Книги</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
   <data name="Comics" xml:space="preserve">
     <value>Комиксы</value>
   </data>
@@ -135,7 +141,19 @@
   <data name="Games" xml:space="preserve">
     <value>Игры</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>Новое</value>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>Другое</value>
+  </data>
+  <data name="Popular" xml:space="preserve">
+    <value>Популярное</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Тэг</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Теги</value>
   </data>
 </root>

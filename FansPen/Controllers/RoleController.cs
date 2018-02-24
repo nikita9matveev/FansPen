@@ -31,23 +31,20 @@ namespace FansPen.Web.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
+
         [HttpPost]
         public async Task<IActionResult> SetAdmin(string returnUrl, string id)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                foreach (var role in userRoles)
+                if (await _userManager.IsInRoleAsync(user, "admin"))
                 {
-                    if (role == "admin")
-                    {
-                        await _userManager.RemoveFromRoleAsync(user, "admin");
-                    }
-                    else if (role != "ban")
-                    {
-                        await _userManager.AddToRoleAsync(user, "admin");
-                    }
+                    await _userManager.RemoveFromRoleAsync(user, "admin");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "admin");
                 }
                 return RedirectPermanent(returnUrl);
             }
@@ -60,17 +57,13 @@ namespace FansPen.Web.Controllers
             ApplicationUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                foreach (var role in userRoles)
+                if (await _userManager.IsInRoleAsync(user, "ban"))
                 {
-                    if (role == "ban")
-                    {
-                        await _userManager.RemoveFromRoleAsync(user, "ban");
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, "ban");
-                    }
+                    await _userManager.RemoveFromRoleAsync(user, "ban");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "ban");
                 }
                 return RedirectPermanent(returnUrl);
             }

@@ -39,9 +39,20 @@ namespace FansPen.Web.Controllers
         public IActionResult Index()
         {
             _homeModel.SetList(
-                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetAllItems()),
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetAllPopular()),
                 Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
             return View(_homeModel);
+        }
+
+        [HttpGet]
+        [Route("GetFanfic")]
+        public IActionResult GetFanfic(int package)
+        {
+            List<FanficPreViewModel> fanfics = Mapper
+                .Map<List<FanficPreViewModel>>(FanficRepository.GetNew(package));
+            List<TagViewModel> tags = Mapper.Map<List<TagViewModel>>(TagRepository.GetList());
+            fanfics.ForEach(x => x.SetTags(tags));
+            return Json(fanfics);
         }
 
         [HttpGet]
@@ -49,9 +60,20 @@ namespace FansPen.Web.Controllers
         public IActionResult Category(string value = "")
         {
             _homeModel.SetList(
-                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByCategory(value)),
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByCategory(value, 0)),
                 Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
             return View("Index", _homeModel);
+        }
+
+        [HttpGet]
+        [Route("GetFanficCategory")]
+        public IActionResult GetFanficCategory(string value, int package)
+        {
+            List<FanficPreViewModel> fanfics = Mapper
+                .Map<List<FanficPreViewModel>>(FanficRepository.GetItemByCategory(value, package));
+            List<TagViewModel> tags = Mapper.Map<List<TagViewModel>>(TagRepository.GetList());
+            fanfics.ForEach(x => x.SetTags(tags));
+            return Json(fanfics);
         }
 
         [HttpGet]
@@ -59,9 +81,20 @@ namespace FansPen.Web.Controllers
         public IActionResult Tags(string value = "")
         {
             _homeModel.SetList(
-                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value)),
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value, 0)),
                 Mapper.Map<List<TagViewModel>>(TagRepository.GetList()));
             return View("Index", _homeModel);
+        }
+
+        [HttpGet]
+        [Route("GetFanficTag")]
+        public IActionResult GetFanficTag(string value, int package)
+        {
+            List<FanficPreViewModel> fanfics = Mapper
+                .Map<List<FanficPreViewModel>>(FanficRepository.GetItemByTags(value, package));
+            List<TagViewModel> tags = Mapper.Map<List<TagViewModel>>(TagRepository.GetList());
+            fanfics.ForEach(x => x.SetTags(tags));
+            return Json(fanfics);
         }
 
         [HttpGet]

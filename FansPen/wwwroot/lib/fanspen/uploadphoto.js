@@ -44,7 +44,7 @@ function uploadPhoto() {
                 });
             }
             else {
-                $this.children().children().eq(1).attr('src', result[0].url);
+                $this.children().children().eq(1).attr('src', result[0].url.substr(0, 47) + "t_FanficPDF" + result[0].url.substr(58, 22) + "jpg");
                 $this.children().eq(0).removeClass('deletable');
                 $this.children().children().eq(0).hide();
             }

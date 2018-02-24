@@ -16,7 +16,7 @@ namespace FansPen.Domain.Repository
 
         public List<Tag> GetOrderItems()
         {
-            return _tagEntity.OrderByDescending(x => x.CountOfFanfic).Take(10).ToList();
+            return _tagEntity.OrderByDescending(x => x.CountOfFanfic).Take(20).ToList();
         }
 
         public int GetItemByName(string name)

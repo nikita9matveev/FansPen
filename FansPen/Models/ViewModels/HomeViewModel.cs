@@ -21,10 +21,7 @@ namespace FansPen.Web.Models.ViewModels
         public void SetList(List<FanficPreViewModel> fanfics, List<TagViewModel> tags)
         {
             Fanfics.Clear();
-            foreach(var fanfic in fanfics)
-            {
-                fanfic.SetTags(tags);
-            }
+            fanfics.ForEach(x => x.SetTags(tags));
             Fanfics = fanfics;
             Tags.Clear();
             Tags = tags.OrderByDescending(x => x.CountOfFanfic).Take(10).ToList();

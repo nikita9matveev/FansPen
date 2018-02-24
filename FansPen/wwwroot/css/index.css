@@ -6,3 +6,7 @@
 .thumbnail {
     border: 0 !important;
 }
+
+#TagsTitle {
+    word-wrap: break-word;
+}

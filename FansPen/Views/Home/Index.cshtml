@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @using FansPen.Web.Helpers
+@using System.Text
+@using System.Web
 
 @model HomeViewModel
 
@@ -7,7 +9,7 @@
 @{
     ViewData["Title"] = "FansPen";
     var currentPath = Context.Request.Path.ToString();
-    var currentQuery = currentPath == "/Category" && Context.Request.QueryString.ToString() != "" ? 
+    var currentValue = Context.Request.QueryString.ToString() != "" ?
         Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
 <div class="contentMain">
@@ -20,14 +22,25 @@
             <li class="@isAllActive"><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["All"]</a></li>
             @foreach (var item in Model.Categorys)
             {
-                var isActive = currentQuery == item.Name ? "active" : "";
+                var isActive = currentValue == item.Name && currentPath == "/Category" ? "active" : "";
                 <li class="@isActive"><a href="/Category?value=@item.Name.ToString()">@Localizer[item.Name]</a></li>
             }
         </ul>
     </div>
-    <div class="col-sm-7 col-sm-offset-2">
+    <div class="col-sm-7 col-sm-offset-2 fanfics">
         <div style="text-align: center">
-            <h3>@Localizer["Popular"]</h3>
+            @if (currentPath == "/")
+            {
+                <h3>@Localizer["Popular"]</h3>
+            }
+            @if (currentPath == "/Category")
+            {
+                <h3>@Localizer[currentValue]</h3>
+            }
+            @if (currentPath == "/Tag")
+            {
+                <h3 id="TagsTitle">'#@HttpUtility.UrlDecode(currentValue)'</h3>
+            }
         </div>
         @foreach (var item in Model.Fanfics)
         {
@@ -87,6 +100,12 @@
                 </div>
             </div>
         }
+        @if (currentPath == "/")
+        {
+            <div style="text-align: center">
+                <h3>@Localizer["New"]</h3>
+            </div>
+        }
     </div>
     <div class="col-sm-3 fixCloud">
         <div>
@@ -98,3 +117,5 @@
         }
     </div>
 </div>
+
+@await Html.PartialAsync("_GetFanfics")
