@@ -37,7 +37,7 @@
             }
         </h3>
         <h5>@Model.Email</h5>
-        <h5 class="small-text">@Model.RegistrationDate</h5>
+        <h5 title="@Localizer["DateRegistration"]" class="small-text">@Model.RegistrationDate</h5>
         @if (UserManager.GetUserId(User) == Model.Id)
         {
             <a href="/FanficBuilder" id="newFanficButton" class="btn btn-block btn-success">
@@ -87,6 +87,7 @@
                     }
                 </form>
             </div>
+            if (UserManager.Users.Where(x => x.Id == Model.Id).FirstOrDefault().UserName != "admin") {
             <div class="col-xs-4">
                 <form asp-area="" asp-controller="Role" asp-action="Delete" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post">
                     <button title="@Localizer["Delete"]" type="submit" class="btn btn-block btn-success">
@@ -94,6 +95,7 @@
                     </button>
                 </form>
             </div>
+            }
         }
     </div>
     <div class="col-sm-8 col-sm-offset-3">

@@ -13,13 +13,14 @@ namespace FansPen.Web.Controllers
     public class ProfileController : Controller
     {
         public ApplicationUserRepository ApplicationUserRepository;
-
         public FanficRepository FanficRepository;
+        public TagRepository TagRepository;
 
         public ProfileController(ApplicationContext context)
         {
             ApplicationUserRepository = new ApplicationUserRepository(context);
             FanficRepository = new FanficRepository(context);
+            TagRepository = new TagRepository(context);
         }
 
         [HttpGet]
@@ -67,6 +68,8 @@ namespace FansPen.Web.Controllers
             List<FanficPreViewModel> fanfics = (category == "All") ?
                 Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanfics(id, sort, package)) :
                 Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanficsByCategory(id, category, sort, package));
+            List<TagViewModel> tags = Mapper.Map<List<TagViewModel>>(TagRepository.GetList());
+            fanfics.ForEach(x => x.SetTags(tags));
             return Json(new { fanfics });
         }
     }
