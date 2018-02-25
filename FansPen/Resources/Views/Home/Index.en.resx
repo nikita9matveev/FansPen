@@ -150,6 +150,9 @@
   <data name="New" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>The list is empty</value>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>Other</value>
   </data>

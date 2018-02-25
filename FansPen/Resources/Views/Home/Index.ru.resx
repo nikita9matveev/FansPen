@@ -150,6 +150,9 @@
   <data name="New" xml:space="preserve">
     <value>Новое</value>
   </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>Список пуст</value>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>Другое</value>
   </data>

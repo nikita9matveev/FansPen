@@ -62,9 +62,9 @@ function GetUserFanfic() {
                 console.log(data);
                 if (data.fanfics.length == 0) {
                     endOfList = true;
-                    if (package == 2) {
+                    if (package == 10) {
                         resultDivProfile.append(
-                            '<div class="text-center"> <h3>' + localeText("ListEmpty") + '</h3> </div>'
+                            '<div class="text-center"> <h4>' + localeText("ListEmpty") + '</h4> </div>'
                         );
                     }
                 }

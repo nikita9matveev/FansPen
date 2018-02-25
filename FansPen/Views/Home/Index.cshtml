@@ -73,6 +73,12 @@
                 <h3 class="search-title"> '@HttpUtility.UrlDecode(currentValue)'</h3>
             }
         </div>
+        @if (Model.Fanfics.Count() == 0)
+        {
+            <div class="text-center">
+                <h4 style="margin-top:200px">@Localizer["NoResult"]</h4>
+            </div>
+        }
         @foreach (var item in Model.Fanfics)
         {
             var avatarFanfic = item.ApplicationUser.AvatarUrl;
