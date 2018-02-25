@@ -26,5 +26,6 @@ function localeText(word) {
         case "DefaultMode": return shotCulture == "en" ? "Default mode" : "Стандартный режим";
         case "DateCreation": return shotCulture == "en" ? "Date of creation:" : "Дата создания:";
         case "ListEmpty": return shotCulture == "en" ? "The list is empty" : "Список пуст";
+        case "CommentEmpty": return shotCulture == "en" ? "No comments yet" : "Комментариев нет";
     }
 }

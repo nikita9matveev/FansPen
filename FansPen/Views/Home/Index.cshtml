@@ -27,11 +27,22 @@
             }
         </ul>
     </div>
+
+    <div class="col-sm-3 col-sm-pull-9 fixCloud">
+        <div>
+            <h3>@Localizer["Tags"]</h3>
+        </div>
+        @foreach (var tag in Model.Tags)
+        {
+            <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button" draggable="false">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>
+        }
+    </div>
+
     <div class="col-sm-7 col-sm-offset-2 fanfics">
         <div style="text-align: center">
             @if (currentPath == "/")
             {
-                <h3>@Localizer["Popular"]</h3>
+                <h3><span class="glyphicon glyphicon-fire"></span> @Localizer["Popular"]</h3>
             }
             @if (currentPath == "/Category")
             {
@@ -39,7 +50,7 @@
             }
             @if (currentPath == "/Tag")
             {
-                <h3 id="TagsTitle">'#@HttpUtility.UrlDecode(currentValue)'</h3>
+                <h3 id="TagsTitle"> '#@HttpUtility.UrlDecode(currentValue)'</h3>
             }
         </div>
         @foreach (var item in Model.Fanfics)
@@ -108,15 +119,7 @@
             </div>
         }
     </div>
-    <div class="col-sm-3 fixCloud">
-        <div>
-            <h3>@Localizer["Tags"]</h3>
-        </div>
-        @foreach (var tag in Model.Tags)
-        {
-            <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button" draggable="false">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>
-        }
-    </div>
+
 </div>
 
 @await Html.PartialAsync("_GetFanfics")

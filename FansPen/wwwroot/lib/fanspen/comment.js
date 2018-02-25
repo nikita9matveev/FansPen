@@ -11,6 +11,7 @@ var getCommentAjax = true;
 var setLikeAjax = true;
 var sendCommentAjax = true;
 var deleteCommentAjax = true;
+var endOfComments = false;
 
 commentText.on("change paste keyup", function () {
     if ($(this).val().replace(/\s/g, '').length != 0) {
@@ -63,7 +64,7 @@ sendButton.click(function () {
 });
 
 $(document).scroll(function (event) {
-    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 1 && getCommentAjax) {
+    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 1 && getCommentAjax && !endOfComments) {
         getCommentAjax = false;
         getComments();
     }
@@ -80,6 +81,15 @@ function getComments() {
             package += 10;
         },
         success: function (data) {
+            if (data.length == 0) {
+                endOfComments = true;
+                if (package == 10) {
+                    commentDiv.append(
+                        '<div class="text-center"> <h5>' + localeText("CommentEmpty") + '</h5> </div>'
+                    );
+                }
+            }
+            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 var isLike = data[i].isLiked ? "fa fa-heart" : "fa fa-heart-o";
                 var text = data[i].text.replace('\n', '<br />');

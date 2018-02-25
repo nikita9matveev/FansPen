@@ -147,6 +147,9 @@
   <data name="Other" xml:space="preserve">
     <value>Other</value>
   </data>
+  <data name="Popular" xml:space="preserve">
+    <value>High mark</value>
+  </data>
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>
   </data>
