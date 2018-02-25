@@ -25,24 +25,38 @@ namespace FansPen.Web.Controllers
         private List<PreviewUserViewModel> _previewUserViewModels { get; set; }
         private IHubContext<CommentHub> _commentHubContext { get; set; }
 
+        //private string _currentUserId { get; set; }
+        //private bool _isCurrentUserAdmin { get; set; }
+
         public CommentController(ApplicationContext context, IHubContext<CommentHub> commentHub)
         {
             CommentRepository = new CommentRepository(context);
             ApplicationUserRepository = new ApplicationUserRepository(context);
             LikeRepository = new LikeRepository(context);
             _commentHubContext = commentHub;
+            //_currentUserId = User.Identity.GetUserId() ?? "";
+            //_isCurrentUserAdmin = User.IsInRole("admin");
         }
 
         [HttpGet]
         [Route("GetComments")]
         public IActionResult GetComments(int id, int package)
         {
+            string userId = User.Identity.GetUserId();
+            bool isAdmin = User.IsInRole("admin");
             _commentViewModels = Mapper.Map<List<CommentViewModel>>(CommentRepository.GetCommentsByIdFanfic(id, package));
             _previewUserViewModels = Mapper.Map<List<PreviewUserViewModel>>(ApplicationUserRepository.GetList());
             List<CommentScriptModel> commentList = new List<CommentScriptModel>();
-            foreach (var commentView in _commentViewModels)
+            //_commentViewModels.ForEach(x => commentList.Add(
+            //    new CommentScriptModel(x, _previewUserViewModels, _currentUserId, _isCurrentUserAdmin)));
+            foreach(var comment in _commentViewModels)
             {
-                commentList.Add(new CommentScriptModel(commentView, _previewUserViewModels, User.Identity.GetUserId()));
+                commentList.Add(new CommentScriptModel(
+                    comment,
+                    _previewUserViewModels,
+                    userId,
+                    isAdmin
+                    ));
             }
             return Json(commentList);
         }
@@ -69,11 +83,13 @@ namespace FansPen.Web.Controllers
         [Route("SendComment")]
         public IActionResult SendComment(int id, string text)
         {
+            string userId = User.Identity.GetUserId();
             CommentScriptModel newComment = new CommentScriptModel(
-                Mapper.Map<CommentViewModel>(CommentRepository.SendComment(User.Identity.GetUserId(), id, text)),
-                Mapper.Map<List<PreviewUserViewModel>>(ApplicationUserRepository.GetList()),
-                User.Identity.GetUserId());
-            newComment.IsYour = false;
+                Mapper.Map<CommentViewModel>(CommentRepository.SendComment(userId, id, text)),
+                null, userId, false)
+            {
+                IsYour = false
+            };
             var connectionID = HttpContext.Request.Cookies["idClient"];
             _commentHubContext.Clients.AllExcept(connectionID).addMessage(newComment);
             newComment.IsYour = true;

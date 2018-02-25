@@ -3,6 +3,7 @@
     box-shadow: 0px 0px 1px #d7d8db;
     padding-bottom: 10px;
     z-index: +1;
+    min-height: 93vh;
 }
 
 .authorData {
