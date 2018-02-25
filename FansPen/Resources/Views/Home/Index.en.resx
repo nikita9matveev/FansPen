@@ -123,6 +123,9 @@
   <data name="Anime" xml:space="preserve">
     <value>Anime and Manga</value>
   </data>
+  <data name="Banned" xml:space="preserve">
+    <value>You are banned.</value>
+  </data>
   <data name="Books" xml:space="preserve">
     <value>Books</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Comics" xml:space="preserve">
     <value>Comics</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Please confirm your mail: </value>
   </data>
   <data name="Films" xml:space="preserve">
     <value>Films</value>

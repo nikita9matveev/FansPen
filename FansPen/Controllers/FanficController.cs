@@ -160,7 +160,6 @@ namespace FansPen.Web.Controllers
             {
                 pdfDoc.Close();
                 wri.Close();
-                //redirect message
             }
             finally
             {                

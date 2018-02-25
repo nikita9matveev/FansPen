@@ -85,7 +85,7 @@ function getComments() {
                 endOfComments = true;
                 if (package == 10) {
                     commentDiv.append(
-                        '<div class="text-center"> <h5>' + localeText("CommentEmpty") + '</h5> </div>'
+                        '<div class="text-center commetEmpty"> <h5>' + localeText("CommentEmpty") + '</h5> </div>'
                     );
                 }
             }
@@ -167,6 +167,7 @@ function sendComment() {
             text: commentText.val()
         },
         success: function (data) {
+            $('.commetEmpty').remove();
             commentText.val("");
             sendButton.attr('disabled', true);
             var text = data.newComment.text.replace('\n', '<br />');

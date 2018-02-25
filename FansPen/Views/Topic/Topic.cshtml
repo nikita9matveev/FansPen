@@ -10,10 +10,8 @@
 
 @{
     ViewData["Title"] = Model.Name;
-    Regex r = new Regex(@"mode");
-    MatchCollection m = r.Matches(Context.Request.QueryString.ToString());
     string titleString;
-    if (m.Count() > 0)
+    if (Context.Request.QueryString.ToString().Contains("readmode"))
     {
         titleString = "DefaultMode";
     }

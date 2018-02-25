@@ -47,7 +47,7 @@ namespace FansPen.Web.Controllers
             _fanficComparer = new FanficComparer();
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string status = "")
         {
             _resultFanfics = new List<FanficPreViewModel>();
             List<TagViewModel> tags = Mapper.Map<List<TagViewModel>>(TagRepository.GetList());

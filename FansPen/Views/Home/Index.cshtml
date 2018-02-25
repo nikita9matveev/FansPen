@@ -12,6 +12,22 @@
     var currentValue = Context.Request.QueryString.ToString() != "" ?
         Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
+
+@if (currentValue.Contains("ban"))
+{
+    <div class="alert alert-dismissible alert-danger fixed-error-builder">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @Localizer["Banned"]
+    </div>
+}
+@if (Context.Request.QueryString.ToString().Contains("status") && !currentValue.Contains("ban"))
+{
+    <div class="alert alert-dismissible alert-info fixed-error-builder">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @Localizer["Confirm"]<b>@currentValue</b>.
+    </div>
+}
+
 <div class="contentMain">
     <div class="col-sm-2 fixCategory">
         <div class="text-center">
