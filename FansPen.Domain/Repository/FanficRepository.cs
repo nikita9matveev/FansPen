@@ -136,6 +136,7 @@ namespace FansPen.Domain.Repository
             {
                 return _fanficEntity
                 .Include(x => x.Category)
+                .Include(x => x.FanficTags)
                 .Where(x => x.ApplicationUserId == idUser)
                 .Where(x => x.Category.Name == category)
                 .OrderByDescending(x => x.CreateDate)
@@ -146,6 +147,7 @@ namespace FansPen.Domain.Repository
             {
                 return _fanficEntity
                 .Include(x => x.Category)
+                .Include(x => x.FanficTags)
                 .Where(x => x.ApplicationUserId == idUser)
                 .Where(x => x.Category.Name == category)
                 .OrderByDescending(x => x.AverageRating)
@@ -160,6 +162,7 @@ namespace FansPen.Domain.Repository
             {
                 return _fanficEntity
                 .Include(x => x.Category)
+                .Include(x => x.FanficTags)
                 .Where(x => x.ApplicationUserId == idUser)
                 .OrderByDescending(x => x.CreateDate)
                 .Skip(package)
@@ -169,6 +172,7 @@ namespace FansPen.Domain.Repository
             {
                 return _fanficEntity
                 .Include(x => x.Category)
+                .Include(x => x.FanficTags)
                 .Where(x => x.ApplicationUserId == idUser)
                 .OrderByDescending(x => x.AverageRating)
                 .Skip(package)

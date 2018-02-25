@@ -10,6 +10,7 @@ $('#tags').tagsInput({
 var simplemdeMass = [];
 var countOfTopic = 0;
 var countForEvent = 0;
+var createStart = false;
 var topicList = $('#TopicList');
 var addTopicButton = $('#AddTopic');
 var cancelButton = $('#CancelBuilder');
@@ -175,7 +176,8 @@ function validatorFanfic() {
 }
 
 function createFanfic() {
-    if (!validatorFanfic()) {
+    if (!validatorFanfic() && !createStart) {
+        createStart = true;
         fanfic = new FanficScriptModel(
             $('#FanficNameInput').val(),
             $('.CoverFanfic img').attr('src'),

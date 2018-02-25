@@ -43,11 +43,11 @@ function getFanfics() {
                         '<div class="row autherBlock">' +
                             '<div class="col-sm-6 col-xs-12">' +
                                 '<div class="col-xs-2">' +
-                                    '<a href="/Profile?id=' + data[i].applicationUser.Id + '"><img class="avatarImg" src="' + avatarMini + '"></a>' +
+                                    '<a href="/Profile?id=' + data[i].applicationUser.id + '"><img class="avatarImg" src="' + avatarMini + '"></a>' +
                                 '</div>' +
                                 '<div class="col-xs-10">' +
                                     '<div class="col-xs-12">' +
-                                        '<a href="/Profile?id=' + data[i].applicationUser.Id + '"><b>' + data[i].applicationUser.userName + '</b></a>' +
+                                        '<a href="/Profile?id=' + data[i].applicationUser.id + '"><b>' + data[i].applicationUser.userName + '</b></a>' +
                                     '</div>' +
                                     '<div class="col-xs-12 small-text">' +
                                         data[i].createDate +
@@ -89,7 +89,7 @@ function getFanfics() {
                                 '</form>' +
                             '</div>' +
                         '</div>' +
-                        '<a href="/Fanfic?id=' + data.id + '">' +
+                        '<a href="/Fanfic?id=' + data[i].id + '">' +
                             '<div class="imgFanfic">' +
                                 '<div class="titleFanfic">' +
                                     '<h3 class="titleFanficH3">' + data[i].name + '</h3>' +

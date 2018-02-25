@@ -6,6 +6,7 @@ var indexCategory = 0;
 var indexSort = 0;
 var package = 0;
 var getFanficAjax = true;
+var endOfList = false;
 
 
 if (category != undefined) {
@@ -29,7 +30,7 @@ function sortChanged() {
 
 $(document).scroll(function () {
     if ($(window).scrollTop() >= $(document).height() - $(window).height() - 1
-        && $('.nav-tabs').children().eq(1).hasClass('active')) {
+        && $('.nav-tabs').children().eq(1).hasClass('active') && !endOfList) {
         GetUserFanfic();
     }
 });
@@ -58,15 +59,28 @@ function GetUserFanfic() {
                 package += 10;
             },
             success: function (data) {
+                console.log(data);
+                if (data.fanfics.length == 0) {
+                    endOfList = true;
+                    if (package == 10) {
+                        resultDivProfile.append(
+                            '<div class="text-center"> <h3>' + localeText("ListEmpty") + '</h3> </div>'
+                        );
+                    }
+                }
                 for (var i = 0; i < data.fanfics.length; i++) {
                     var rating = Math.round(data.fanfics[i].averageRating);
+                    var tagsStr = '';
+                    for (var j = 0; j < data.fanfics[i].tags.length; j++) {
+                        tagsStr += ' <a href="/Tag?value=' + data.fanfics[i].tags[j].name + '" class="tagButton" role="button">#' + data.fanfics[i].tags[j].name + '</a> ';
+                    }
                     resultDivProfile.append(
                         '<div class="thumbnail bordered-thumbnail">' +
                             '<div class="row autherBlock">' +
-                                '<div class="col-xs-6" style="padding-top: 5px">' +
-                                   data.fanfics[i].createDate +
+                                '<div class="col-sm-6" style="padding-top: 10px">' +
+                                   localeText("DateCreation") + ' ' + data.fanfics[i].createDate +
                                 '</div>' +
-                                '<div class="col-xs-6 starsRating" style="overflow:hidden">' +
+                                '<div class="col-sm-6 starsRating" style="overflow:hidden">' +
                                     '<form class="rating" title="' + data.fanfics[i].averageRating + '" >' +
                                         '<label>' +
                                             '<input type="radio" name="stars" disabled value="1" ' + ((rating == 1) ? 'checked' : '') + ' />' +
@@ -113,6 +127,7 @@ function GetUserFanfic() {
                             '<p class="description-fanfic">' + data.fanfics[i].description + '</p>' +
                             '<p>' +
                                 '<a href="/Category?value=' + data.fanfics[i].category.name + '" class="categoryButton" role="button">' + localeText(data.fanfics[i].category.name) + '</a>' +
+                                tagsStr +
                             '</p>' +
                         '</div>' +
                     '</div>'

@@ -1,6 +1,7 @@
 ﻿var id = window.location.search.replace('?fanficid=', '');
 var und = new upndown();
 var count = 0;
+var editStart = false;
 
 $.ajax({
     url: "/GetFanficById",
@@ -72,8 +73,8 @@ var editButton = $('#EditTopic');
 editButton.click(editFanfic);
 
 function editFanfic() {
-    if (!validatorFanfic()) {
-
+    if (!validatorFanfic() && !editStart) {
+        editStart = true;
         fanfic = new FanficScriptModel(
             $('#FanficNameInput').val(),
             $('.CoverFanfic img').attr('src'),

@@ -141,6 +141,9 @@
   <data name="Comics" xml:space="preserve">
     <value>Комиксы</value>
   </data>
+  <data name="DateRegistration" xml:space="preserve">
+    <value>Дата регистрации</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
   </data>

@@ -24,5 +24,7 @@ function localeText(word) {
         case "TopicTextEmpty": return shotCulture == "en" ? "Chapter text is empty" : "Не введен текст главы";
         case "ReadMode": return shotCulture == "en" ? "Reading mode" : "Режим чтения";
         case "DefaultMode": return shotCulture == "en" ? "Default mode" : "Стандартный режим";
+        case "DateCreation": return shotCulture == "en" ? "Date of creation:" : "Дата создания:";
+        case "ListEmpty": return shotCulture == "en" ? "The list is empty" : "Список пуст";
     }
 }
