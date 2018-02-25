@@ -14,7 +14,7 @@
 }
 <div class="contentMain">
     <div class="col-sm-2 fixCategory">
-        <div style="text-align: center">
+        <div class="text-center">
             <h3>@Localizer["Categories"]</h3>
         </div>
         <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
@@ -29,7 +29,7 @@
     </div>
 
     <div class="col-sm-3 col-sm-pull-9 fixCloud">
-        <div>
+        <div class="text-center">
             <h3>@Localizer["Tags"]</h3>
         </div>
         @foreach (var tag in Model.Tags)
@@ -39,7 +39,7 @@
     </div>
 
     <div class="col-sm-7 col-sm-offset-2 fanfics">
-        <div style="text-align: center">
+        <div class="text-center">
             @if (currentPath == "/")
             {
                 <h3><span class="glyphicon glyphicon-fire"></span> @Localizer["Popular"]</h3>
@@ -50,7 +50,11 @@
             }
             @if (currentPath == "/Tag")
             {
-                <h3 id="TagsTitle"> '#@HttpUtility.UrlDecode(currentValue)'</h3>
+                <h3 class="search-title"> '#@HttpUtility.UrlDecode(currentValue)'</h3>
+            }
+            @if (currentPath == "/Search")
+            {
+                <h3 class="search-title"> '@HttpUtility.UrlDecode(currentValue)'</h3>
             }
         </div>
         @foreach (var item in Model.Fanfics)

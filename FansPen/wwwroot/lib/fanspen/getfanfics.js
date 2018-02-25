@@ -1,6 +1,5 @@
 ﻿var fanficList = $('.fanfics');
 var path = window.location.pathname.replace('/', '');
-var parametr = window.location.search.replace('?value=', '');
 var package = 0;
 var end = false;
 if (path != '')
@@ -15,13 +14,9 @@ $(document).scroll(function (event) {
 });
 
 function getFanfics() {
-
-
-
     $.ajax({
-        url: "/GetFanfic" + path,
+        url: "/GetFanfic",
         data: {
-            id: parametr,
             package: package
         },
         beforeSend: function () {

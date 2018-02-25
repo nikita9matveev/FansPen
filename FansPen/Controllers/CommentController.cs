@@ -24,9 +24,7 @@ namespace FansPen.Web.Controllers
         private List<CommentViewModel> _commentViewModels { get; set; }
         private List<PreviewUserViewModel> _previewUserViewModels { get; set; }
         private IHubContext<CommentHub> _commentHubContext { get; set; }
-
-        //private string _currentUserId { get; set; }
-        //private bool _isCurrentUserAdmin { get; set; }
+        private const int SizeOfPackage = 10;
 
         public CommentController(ApplicationContext context, IHubContext<CommentHub> commentHub)
         {
@@ -34,8 +32,6 @@ namespace FansPen.Web.Controllers
             ApplicationUserRepository = new ApplicationUserRepository(context);
             LikeRepository = new LikeRepository(context);
             _commentHubContext = commentHub;
-            //_currentUserId = User.Identity.GetUserId() ?? "";
-            //_isCurrentUserAdmin = User.IsInRole("admin");
         }
 
         [HttpGet]
@@ -44,20 +40,11 @@ namespace FansPen.Web.Controllers
         {
             string userId = User.Identity.GetUserId();
             bool isAdmin = User.IsInRole("admin");
-            _commentViewModels = Mapper.Map<List<CommentViewModel>>(CommentRepository.GetCommentsByIdFanfic(id, package));
+            _commentViewModels = Mapper.Map<List<CommentViewModel>>(CommentRepository.GetCommentsByIdFanfic(id, package, SizeOfPackage));
             _previewUserViewModels = Mapper.Map<List<PreviewUserViewModel>>(ApplicationUserRepository.GetList());
             List<CommentScriptModel> commentList = new List<CommentScriptModel>();
-            //_commentViewModels.ForEach(x => commentList.Add(
-            //    new CommentScriptModel(x, _previewUserViewModels, _currentUserId, _isCurrentUserAdmin)));
-            foreach(var comment in _commentViewModels)
-            {
-                commentList.Add(new CommentScriptModel(
-                    comment,
-                    _previewUserViewModels,
-                    userId,
-                    isAdmin
-                    ));
-            }
+            _commentViewModels.ForEach(x => commentList.Add(
+                new CommentScriptModel(x, _previewUserViewModels, userId, isAdmin)));
             return Json(commentList);
         }
 
