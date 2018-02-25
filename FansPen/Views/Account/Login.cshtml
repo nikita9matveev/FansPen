@@ -10,11 +10,11 @@
 <div class="row" id="LoginMain">
     <div class="col-md-4 col-sm-2">
         <div class="row">
-            <img class="LogImage" src="~/images/sticks/4.png" />
-            <img class="LogImage" src="~/images/sticks/1.png" />
+            <img class="LogImage" src="~/images/sticks/4.png" draggable="false"/>
+            <img class="LogImage" src="~/images/sticks/1.png" draggable="false"/>
         </div>
         <div class="col-md-offset-2">
-            <img class="LogImage" src="~/images/sticks/5.png" />
+            <img class="LogImage" src="~/images/sticks/5.png" draggable="false"/>
         </div>
     </div>
 
@@ -48,7 +48,7 @@
                             @Localizer["Remember"]
                         </div>
                         <div class="col-md-6" id="LoginForgot">
-                            <a asp-action="ForgotPassword">@Localizer["Forgot"]</a>
+                            <a asp-action="ForgotPassword" draggable="false">@Localizer["Forgot"]</a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -67,7 +67,7 @@
                                     <p>
                                         @foreach (var provider in loginProviders)
                                         {
-                                            <input class="LoginProviders" type="image" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account" src="~/images/ExternalLogins/@provider.DisplayName .png">
+                                            <input draggable="false" class="LoginProviders" type="image" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account" src="~/images/ExternalLogins/@provider.DisplayName .png">
                                         }
                                     </p>
                                 </div>
@@ -80,11 +80,11 @@
     </div>
     <div class="col-md-4 col-sm-2">
         <div class="row">
-            <img class="LogImage" src="~/images/sticks/3.png" />
-            <img class="LogImage" src="~/images/sticks/2.png" />
+            <img class="LogImage" src="~/images/sticks/3.png" draggable="false"/>
+            <img class="LogImage" src="~/images/sticks/2.png" draggable="false"/>
         </div>
         <div class="col-md-offset-2">
-            <img class="LogImage" src="~/images/sticks/6.png" />
+            <img class="LogImage" src="~/images/sticks/6.png" draggable="false"/>
         </div>
     </div>
 </div>

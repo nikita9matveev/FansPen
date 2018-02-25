@@ -12,15 +12,15 @@
     {
         <ul class="nav navbar-nav">
             <li class="dropdown">
-                <a href="#" id="userIcon" class="dropdown-toggle" data-toggle="dropdown"><img id="headerAvatar" src="@Context.Request.Cookies["avatarUrl"]" /><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                <a draggable="false" href="#" id="userIcon" class="dropdown-toggle" data-toggle="dropdown"><img id="headerAvatar" src="@Context.Request.Cookies["avatarUrl"]" draggable="false"/><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Profile?id=@UserManager.GetUserId(User)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> @UserManager.GetUserName(User)</a></li>
+                    <li><a href="/Profile?id=@UserManager.GetUserId(User)" draggable="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i> @UserManager.GetUserName(User)</a></li>
                     <li class="divider"></li>
-                    <li><a href="/FanficBuilder"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["Newfan"]</a></li>
+                    <li><a href="/FanficBuilder" draggable="false"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["Newfan"]</a></li>
                     <li class="divider"></li>
                     <li>
                         <form class="formlink" asp-area="" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" method="post" id="logoutForm">
-                            <button type="submit" class="btnlink"><i class="fa fa-sign-out" aria-hidden="true"></i> @Localizer["Singout"]</button>
+                            <button type="submit" class="btnlink" draggable="false"><i class="fa fa-sign-out" aria-hidden="true"></i> @Localizer["Singout"]</button>
                         </form>
                     </li>
                 </ul>
@@ -30,7 +30,7 @@
     else
     {
         <div id="LogReg">
-            <a asp-area="" asp-controller="Account" asp-action="Register">@Localizer["Singup"]</a> @Localizer["Or"] <a asp-area="" asp-controller="Account" asp-action="Login">@Localizer["Singin"]</a>
+            <a asp-area="" asp-controller="Account" asp-action="Register" draggable="false">@Localizer["Singup"]</a> @Localizer["Or"] <a asp-area="" asp-controller="Account" asp-action="Login" draggable="false">@Localizer["Singin"]</a>
         </div>
     }
 </div>

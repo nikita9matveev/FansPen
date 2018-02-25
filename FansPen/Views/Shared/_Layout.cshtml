@@ -50,7 +50,7 @@
                 </button>
                 <div id="mobileLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
             </div>
-            <div class="col-sm-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand">FansPen</a></div>
+            <div class="col-sm-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand" draggable="false">FansPen</a></div>
             <div class="navbar-collapse collapse">
 
                 <div class="col-sm-5">
@@ -70,7 +70,7 @@
                         }
                         <form asp-area="" asp-controller="Home" asp-action="Theme" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" method="post">
                             <button type="submit">
-                                <img src="~/images/icons/@themeUrl" />
+                                <img src="~/images/icons/@themeUrl" draggable="false"/>
                             </button>
                         </form>
                     }
