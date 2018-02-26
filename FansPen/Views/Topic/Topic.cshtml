@@ -26,17 +26,17 @@
         0%
     </div>
     <a href="/Fanfic?id=@Model.Fanfic.Id">
-        <div title="@Localizer["ToContents"]" class="fixed-top-button">
+        <div title="@Localizer["ToContents"]" class="fixed-top-button navRead">
             <i class="fa fa-reply" aria-hidden="true"></i>
         </div>
     </a>
-    <div title="@Localizer[titleString]" class="fixed-read-button">
+    <div title="@Localizer[titleString]" class="fixed-read-button navRead">
         <i class="fa fa-book" aria-hidden="true"></i>
     </div>
     @if (Model.Number - 1 != 0)
     {
         <a class="prev-button" href="/Topic?id=@Model.Fanfic.Topics.Where(x => x.Number == Model.Number - 1).First().Id">
-            <div title="@Localizer["Chapter"] @Model.Number. @Model.Fanfic.Topics.Where(x => x.Number == Model.Number - 1).First().Name" class="fixed-left-button">
+            <div title="@Localizer["Chapter"] @Model.Number. @Model.Fanfic.Topics.Where(x => x.Number == Model.Number - 1).First().Name" class="fixed-left-button navRead">
                 <i class="fa fa-chevron-left" aria-hidden="true"></i>
             </div>
         </a>
@@ -44,7 +44,7 @@
     @if (Model.Number < Model.Fanfic.Topics.Count())
     {
         <a class="next-button" href="/Topic?id=@Model.Fanfic.Topics.Where(x => x.Number == Model.Number + 1).First().Id">
-            <div title="@Localizer["Chapter"] @Model.Number. @Model.Fanfic.Topics.Where(x => x.Number == Model.Number + 1).First().Name" class="fixed-right-button">
+            <div title="@Localizer["Chapter"] @Model.Number. @Model.Fanfic.Topics.Where(x => x.Number == Model.Number + 1).First().Name" class="fixed-right-button navRead">
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
         </a>

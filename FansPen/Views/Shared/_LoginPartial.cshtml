@@ -7,7 +7,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<div id="LoginRegBlock" class="col-xs-2 col-sm-3 align-right-mobile">
+<div id="LoginRegBlock" class="col-xs-11 col-xs-offset-1 col-sm-3 col-sm-offset-0">
     @if (SignInManager.IsSignedIn(User))
     {
         <ul class="nav navbar-nav">
