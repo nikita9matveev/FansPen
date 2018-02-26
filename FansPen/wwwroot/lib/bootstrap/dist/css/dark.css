@@ -89,3 +89,15 @@ a, a:hover {
     border-right: 0 !important;
     border-bottom: 1px solid #545454 !important;
 }
+
+.adminRules{
+    background: none;
+}
+
+.btnlink:hover {
+    background: #375a7f;
+}
+
+.dropdown ul.dropdown-menu {
+    border: 1px solid #4c4646;
+}

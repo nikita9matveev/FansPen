@@ -96,3 +96,7 @@
 .addChapter:hover {
     color: black !important;
 }
+
+.adminRules {
+    background: none;
+}

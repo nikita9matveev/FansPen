@@ -174,8 +174,16 @@
     padding: 3px 20px;
     font-family: inherit;
     font-size: inherit;
+    text-align: left;
 }
 
 .formlink {
     float: none;
+}
+
+@media (max-width: 767px) {
+    .btnlink{
+        color: white;
+        padding-left: 25px;
+    }
 }

@@ -82,3 +82,24 @@
 .user-name-profile {
     word-wrap: break-word;
 }
+
+.adminRulesPanel {
+    border-radius: 5px;
+    border: 1px solid #bdbcbc;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.adminRules {
+    padding: 10px 10px !important;
+}
+
+.adminRules:hover {
+    color: #3498db !important;
+}
+
+@media(max-width: 767px) {
+    #menuProfile {
+        padding-top: 10px;
+    }
+}

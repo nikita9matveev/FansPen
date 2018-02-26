@@ -134,7 +134,7 @@
 .fixed-right-button:hover,
 .fixed-top-button:hover 
 {
-    background: #eaeff7;
+    background: #595a5d !important;
 }
 
 .fixed-left-button, .fixed-right-button {

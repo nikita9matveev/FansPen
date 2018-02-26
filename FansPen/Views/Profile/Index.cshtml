@@ -53,19 +53,21 @@
             </a>
         }
         <hr class="hr-profile" />
+        <div class="col-xs-10 col-xs-offset-1 btn-group adminRulesPanel" role="group">
+            
         @if (UserManager.GetUserId(User) != Model.Id && User.IsInRole("admin"))
         {
             <div class="col-xs-4">
                 <form asp-area="" asp-controller="Role" asp-action="SetAdmin" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post">
                     @if (isAdmin)
                     {
-                        <button title="@Localizer["FromAdmin"]" type="submit" class="btn btn-block btn-success">
+                        <button title="@Localizer["FromAdmin"]" type="submit" class="btn adminRules">
                             <i class="fa fa-times-circle" aria-hidden="true"></i>
                         </button>
                     }
                     else
                     {
-                        <button title="@Localizer["ToAdmin"]" type="submit" class="btn btn-block btn-success">
+                        <button title="@Localizer["ToAdmin"]" type="submit" class="btn adminRules">
                             <i class="fa fa-check-circle" aria-hidden="true"></i>
                         </button>
                     }
@@ -75,13 +77,13 @@
                 <form asp-area="" asp-controller="Role" asp-action="SetBan" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post">
                     @if (isBan)
                     {
-                        <button title="@Localizer["FromBan"]" type="submit" class="btn btn-block btn-success">
+                        <button title="@Localizer["FromBan"]" type="submit" class="btn adminRules">
                             <i class="fa fa-unlock" aria-hidden="true"></i>
                         </button>
                     }
                     else
                     {
-                        <button title="@Localizer["ToBan"]" type="submit" class="btn btn-block btn-success">
+                        <button title="@Localizer["ToBan"]" type="submit" class="btn adminRules">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </button>
                     }
@@ -90,13 +92,14 @@
             if (UserManager.Users.Where(x => x.Id == Model.Id).FirstOrDefault().UserName != "admin") {
             <div class="col-xs-4">
                 <form asp-area="" asp-controller="Role" asp-action="Delete" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post">
-                    <button title="@Localizer["Delete"]" type="submit" class="btn btn-block btn-success">
+                    <button title="@Localizer["Delete"]" type="submit" class="btn adminRules">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
                 </form>
             </div>
             }
         }
+        </div>
     </div>
     <div class="col-sm-7 col-sm-offset-3">
         <ul class="nav nav-tabs" id="menuProfile">
