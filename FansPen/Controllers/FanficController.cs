@@ -63,7 +63,7 @@ namespace FansPen.Web.Controllers
                 pdfDoc.Open();
 
                 var spacer = new Paragraph("\n");
-                FileStream fileLogo = new FileStream(@"wwwroot/images/logo.png", FileMode.Open);
+                FileStream fileLogo = new FileStream(@"wwwroot/images/icons/logoPDF.png", FileMode.Open);
                 var logo = Image.GetInstance(fileLogo);
                 logo.SetAbsolutePosition(pdfDoc.Left, pdfDoc.Top);
                 pdfDoc.Add(logo);
@@ -160,7 +160,6 @@ namespace FansPen.Web.Controllers
             {
                 pdfDoc.Close();
                 wri.Close();
-                //redirect message
             }
             finally
             {                
