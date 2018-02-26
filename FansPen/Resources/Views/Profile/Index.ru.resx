@@ -193,7 +193,7 @@
     <value>Другое</value>
   </data>
   <data name="Popular" xml:space="preserve">
-    <value>По популярности</value>
+    <value>По оценке</value>
   </data>
   <data name="SecondName" xml:space="preserve">
     <value>Фамилия:</value>

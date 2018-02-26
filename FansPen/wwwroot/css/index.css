@@ -7,6 +7,6 @@
     border: 0 !important;
 }
 
-#TagsTitle {
+.search-title {
     word-wrap: break-word;
 }

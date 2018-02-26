@@ -17,14 +17,5 @@ namespace FansPen.Web.Models.ViewModels
             Tags = new List<TagViewModel>();
             Categorys = categorys;
         }
-
-        public void SetList(List<FanficPreViewModel> fanfics, List<TagViewModel> tags)
-        {
-            Fanfics.Clear();
-            fanfics.ForEach(x => x.SetTags(tags));
-            Fanfics = fanfics;
-            Tags.Clear();
-            Tags = tags.OrderByDescending(x => x.CountOfFanfic).Take(10).ToList();
-        }
     }
 }

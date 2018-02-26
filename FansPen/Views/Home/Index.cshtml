@@ -12,9 +12,25 @@
     var currentValue = Context.Request.QueryString.ToString() != "" ?
         Context.Request.QueryString.ToString().Split('=')[1] : "";
 }
+
+@if (currentValue.Contains("ban"))
+{
+    <div class="alert alert-dismissible alert-danger fixed-error-builder">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @Localizer["Banned"]
+    </div>
+}
+@if (Context.Request.QueryString.ToString().Contains("status") && !currentValue.Contains("ban"))
+{
+    <div class="alert alert-dismissible alert-info fixed-error-builder">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @Localizer["Confirm"]<b>@currentValue</b>.
+    </div>
+}
+
 <div class="contentMain">
     <div class="col-sm-2 fixCategory">
-        <div style="text-align: center">
+        <div class="text-center">
             <h3>@Localizer["Categories"]</h3>
         </div>
         <ul id="Category" class="nav nav-tabs nav-pills nav-stacked well">
@@ -27,11 +43,22 @@
             }
         </ul>
     </div>
+
+    <div class="col-sm-3 col-sm-pull-9 fixCloud">
+        <div class="text-center">
+            <h3>@Localizer["Tags"]</h3>
+        </div>
+        @foreach (var tag in Model.Tags)
+        {
+            <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button" draggable="false">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>
+        }
+    </div>
+
     <div class="col-sm-7 col-sm-offset-2 fanfics">
-        <div style="text-align: center">
+        <div class="text-center">
             @if (currentPath == "/")
             {
-                <h3>@Localizer["Popular"]</h3>
+                <h3><span class="glyphicon glyphicon-fire"></span> @Localizer["Popular"]</h3>
             }
             @if (currentPath == "/Category")
             {
@@ -39,9 +66,19 @@
             }
             @if (currentPath == "/Tag")
             {
-                <h3 id="TagsTitle">'#@HttpUtility.UrlDecode(currentValue)'</h3>
+                <h3 class="search-title"> '#@HttpUtility.UrlDecode(currentValue)'</h3>
+            }
+            @if (currentPath == "/Search")
+            {
+                <h3 class="search-title"> '@HttpUtility.UrlDecode(currentValue)'</h3>
             }
         </div>
+        @if (Model.Fanfics.Count() == 0)
+        {
+            <div class="text-center">
+                <h4 style="margin-top:200px">@Localizer["NoResult"]</h4>
+            </div>
+        }
         @foreach (var item in Model.Fanfics)
         {
             var avatarFanfic = item.ApplicationUser.AvatarUrl;
@@ -108,15 +145,7 @@
             </div>
         }
     </div>
-    <div class="col-sm-3 fixCloud">
-        <div>
-            <h3>@Localizer["Tags"]</h3>
-        </div>
-        @foreach (var tag in Model.Tags)
-        {
-            <div class="div-tag"><a href="/Tag?value=@tag.Name.ToString()" class="tagButton tag-cloud" role="button" draggable="false">#@tag.Name</a><b class="tag-count">@tag.CountOfFanfic</b></div>
-        }
-    </div>
+
 </div>
 
 @await Html.PartialAsync("_GetFanfics")

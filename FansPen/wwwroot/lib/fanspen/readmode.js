@@ -50,6 +50,7 @@ function readMode() {
         readButton.removeClass('no-right');
         readButton.attr('title', localeText('ReadMode'));
         progressRead.addClass('far-right');
+        fanficBlock.css('min-height', '93vh');
     }
     else {
         $(document.body).addClass('no-body-padding');
@@ -71,6 +72,7 @@ function readMode() {
         readButton.addClass('no-right');
         readButton.attr('title', localeText('DefaultMode'));
         progressRead.removeClass('far-right');
+        fanficBlock.css('min-height', '100vh');
     }
 }
 

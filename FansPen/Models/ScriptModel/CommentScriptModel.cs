@@ -15,14 +15,14 @@ namespace FansPen.Web.Models.ViewModels
         public bool IsLiked { get; set; }
         public bool IsYour { get; set; }
 
-        public CommentScriptModel(CommentViewModel commentView, List<PreviewUserViewModel> users, string currentUser)
+        public CommentScriptModel(CommentViewModel commentView, List<PreviewUserViewModel> users, string currentUser, bool isAdmin)
         {
             Id = commentView.Id;
             User = commentView.ApplicationUser;
             Text = commentView.Text;
             DataCreate = commentView.DataCreate.ToShortDateString();
             IsLiked = false;
-            IsYour = commentView.ApplicationUser.Id == currentUser;
+            IsYour = commentView.ApplicationUser.Id == currentUser || isAdmin;
             UsersLiked = new List<PreviewUserViewModel>();
             foreach(var like in commentView.Likes)
             {

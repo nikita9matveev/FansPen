@@ -6,10 +6,8 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    Regex r = new Regex(@"fanficid");
-    MatchCollection m = r.Matches(Context.Request.QueryString.ToString());
     string titleString;
-    if (m.Count() > 0)
+    if (Context.Request.QueryString.ToString().Contains("fanficid"))
     {
         titleString = "EditFanfic";
     }
@@ -128,9 +126,7 @@
                 </div>
                 <hr class="hr-profile"/>
                 @{
-                    Regex regex = new Regex(@"fanficid");
-                    MatchCollection matches = regex.Matches(Context.Request.QueryString.ToString());
-                    if (matches.Count() == 0)
+                    if (!Context.Request.QueryString.ToString().Contains("fanficid"))
                     {
                         <div class="col-xs-6 margin-block-builder">
                             <a id="SaveTopic" class="btn btn-block addChapter"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["Create"]</a>

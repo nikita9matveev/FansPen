@@ -32,11 +32,11 @@ namespace FansPen.Web.Controllers
         public IActionResult FanficBuilder(string userid = "", int fanficid = -1)
         {
             if (User.Identity.GetUserId() == null)
-                return RedirectPermanent("/");
+                return Redirect("/");
             if (fanficid != -1)
             {
                 if (FanficRepository.GetUserIdByFanficId(fanficid) != User.Identity.GetUserId() && !User.IsInRole("admin"))
-                    return RedirectPermanent("/");
+                    return Redirect("/");
             }
             return View("Index");
         }

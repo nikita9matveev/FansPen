@@ -10,10 +10,8 @@
 
 @{
     ViewData["Title"] = Model.Name;
-    Regex r = new Regex(@"mode");
-    MatchCollection m = r.Matches(Context.Request.QueryString.ToString());
     string titleString;
-    if (m.Count() > 0)
+    if (Context.Request.QueryString.ToString().Contains("readmode"))
     {
         titleString = "DefaultMode";
     }
@@ -130,7 +128,7 @@
                 <div class="col-xs-12 send-comment-fanfic">
                     <textarea id="commentText" placeholder="@Localizer["WriteComment"]" maxlength="1000" class="form-control" rows="2"></textarea>
                     <div class="">
-                        <a id="sendButton" class="btn btn-success" disabled>@Localizer["Send"]</a>
+                        <a id="sendButton" class="btn btn-success" disabled><i class="fa fa-paper-plane-o" aria-hidden="true"></i> @Localizer["Send"]</a>
                     </div>
                 </div>
                 <div class="col-xs-12"><hr /></div>

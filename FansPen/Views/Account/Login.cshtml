@@ -6,15 +6,25 @@
 @inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = @Localizer["SignButton"];
+    var currentValue = Context.Request.QueryString.ToString() != "" ?
+        Context.Request.QueryString.ToString().Split('=')[1] : "";
+}
+
+@if (currentValue.Contains("confirmed"))
+{ 
+    <div class="alert alert-dismissible alert-info fixed-error-builder">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @Localizer["Confirmed"]
+    </div>
 }
 <div class="row" id="LoginMain">
     <div class="col-md-4 col-sm-2">
         <div class="row">
-            <img class="LogImage" src="~/images/sticks/4.png" draggable="false"/>
-            <img class="LogImage" src="~/images/sticks/1.png" draggable="false"/>
+            <img class="LogImage" src="~/images/sticks/4.png" draggable="false" />
+            <img class="LogImage" src="~/images/sticks/1.png" draggable="false" />
         </div>
         <div class="col-md-offset-2">
-            <img class="LogImage" src="~/images/sticks/5.png" draggable="false"/>
+            <img class="LogImage" src="~/images/sticks/5.png" draggable="false" />
         </div>
     </div>
 
@@ -80,11 +90,11 @@
     </div>
     <div class="col-md-4 col-sm-2">
         <div class="row">
-            <img class="LogImage" src="~/images/sticks/3.png" draggable="false"/>
-            <img class="LogImage" src="~/images/sticks/2.png" draggable="false"/>
+            <img class="LogImage" src="~/images/sticks/3.png" draggable="false" />
+            <img class="LogImage" src="~/images/sticks/2.png" draggable="false" />
         </div>
         <div class="col-md-offset-2">
-            <img class="LogImage" src="~/images/sticks/6.png" draggable="false"/>
+            <img class="LogImage" src="~/images/sticks/6.png" draggable="false" />
         </div>
     </div>
 </div>

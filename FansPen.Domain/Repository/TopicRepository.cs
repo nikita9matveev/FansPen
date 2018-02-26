@@ -70,5 +70,17 @@ namespace FansPen.Domain.Repository
         {
             return _topicEntity.Where(x => x.FanficId == id).ToList();
         }
+
+        public List<Fanfic> SearchInTopics(string value)
+        {
+            List<Fanfic> resultList = new List<Fanfic>();
+            _topicEntity
+                .Include(x => x.Fanfic.FanficTags)
+                .Include(x => x.Fanfic.Category)
+                .Include(x => x.Fanfic.ApplicationUser)
+                .Where(x => x.Name.Contains(value) || x.Text.Contains(value))
+                .ToList().ForEach(x => resultList.Add(x.Fanfic));
+            return resultList;
+        }
     }
 }

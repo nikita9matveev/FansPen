@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FansPen.Web.Controllers
 {
@@ -14,6 +15,8 @@ namespace FansPen.Web.Controllers
         public ApplicationUserRepository ApplicationUserRepository;
         public FanficRepository FanficRepository;
         public TagRepository TagRepository;
+        static private List<FanficPreViewModel> _resultList { get; set; }
+        private const int SizeOfPackage = 10;
 
         public ProfileController(ApplicationContext context)
         {
@@ -62,14 +65,22 @@ namespace FansPen.Web.Controllers
 
         [HttpGet]
         [Route("GetUserFanfics")]
-        public IActionResult GetUserFanfics(string id, int package, string category, int sort)
+        public IActionResult GetUserFanfics(string id, string category, int sort)
         {
-            List<FanficPreViewModel> fanfics = (category == "All") ?
-                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanfics(id, sort, package)) :
-                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanficsByCategory(id, category, sort, package));
+            _resultList = new List<FanficPreViewModel>();
+            _resultList = (category == "All") ?
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanfics(id, sort)) :
+                Mapper.Map<List<FanficPreViewModel>>(FanficRepository.GetUserFanficsByCategory(id, category, sort));
             List<TagViewModel> tags = Mapper.Map<List<TagViewModel>>(TagRepository.GetList());
-            fanfics.ForEach(x => x.SetTags(tags));
-            return Json(new { fanfics });
+            _resultList.ForEach(x => x.SetTags(tags));
+            return Json(new { fanfics = _resultList.Take(SizeOfPackage) });
+        }
+
+        [HttpGet]
+        [Route("GetNext")]
+        public IActionResult GetNext(int package)
+        { 
+            return Json(new { fanfics = _resultList.Skip(package).Take(SizeOfPackage) });
         }
     }
 }

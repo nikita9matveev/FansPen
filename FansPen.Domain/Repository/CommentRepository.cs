@@ -17,14 +17,16 @@ namespace FansPen.Domain.Repository
             _commentEntity = context.Set<Comment>();
         }
 
-        public List<Comment> GetCommentsByIdFanfic(int id, int package)
+        public List<Comment> GetCommentsByIdFanfic(int id, int package, int size)
         {
             return _commentEntity
                 .OrderByDescending(x => x.DataCreate)
                 .Include(x => x.ApplicationUser)
                 .Include(x => x.Likes)
                 .Where(x => x.FanficId == id)
-                .Skip(package).Take(10).ToList();
+                .Skip(package)
+                .Take(size)
+                .ToList();
         }
 
         public Comment SendComment(string userId, int fanficId, string text)
@@ -58,6 +60,7 @@ namespace FansPen.Domain.Repository
             }
             return _commentEntity.Where(x => x.FanficId == idFanfic).Count();
         }
+
         public void DeleteAllUserComments(string idUser)
         {
             List<Comment> comments = _commentEntity
@@ -68,6 +71,19 @@ namespace FansPen.Domain.Repository
                 _commentEntity.RemoveRange(comments);
                 Save();
             }
+        }
+
+        public List<Fanfic> SearchInComments(string value)
+        {
+            List<Fanfic> resultList = new List<Fanfic>();
+            _commentEntity
+                .Include(x => x.Fanfic.FanficTags)
+                .Include(x => x.Fanfic.Category)
+                .Include(x => x.Fanfic.ApplicationUser)
+                .Where(x => x.Text.Contains(value))
+                .ToList()
+                .ForEach(x => resultList.Add(x.Fanfic));
+            return resultList;
         }
     }
 }

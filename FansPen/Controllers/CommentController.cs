@@ -24,6 +24,7 @@ namespace FansPen.Web.Controllers
         private List<CommentViewModel> _commentViewModels { get; set; }
         private List<PreviewUserViewModel> _previewUserViewModels { get; set; }
         private IHubContext<CommentHub> _commentHubContext { get; set; }
+        private const int SizeOfPackage = 10;
 
         public CommentController(ApplicationContext context, IHubContext<CommentHub> commentHub)
         {
@@ -37,13 +38,13 @@ namespace FansPen.Web.Controllers
         [Route("GetComments")]
         public IActionResult GetComments(int id, int package)
         {
-            _commentViewModels = Mapper.Map<List<CommentViewModel>>(CommentRepository.GetCommentsByIdFanfic(id, package));
+            string userId = User.Identity.GetUserId();
+            bool isAdmin = User.IsInRole("admin");
+            _commentViewModels = Mapper.Map<List<CommentViewModel>>(CommentRepository.GetCommentsByIdFanfic(id, package, SizeOfPackage));
             _previewUserViewModels = Mapper.Map<List<PreviewUserViewModel>>(ApplicationUserRepository.GetList());
             List<CommentScriptModel> commentList = new List<CommentScriptModel>();
-            foreach (var commentView in _commentViewModels)
-            {
-                commentList.Add(new CommentScriptModel(commentView, _previewUserViewModels, User.Identity.GetUserId()));
-            }
+            _commentViewModels.ForEach(x => commentList.Add(
+                new CommentScriptModel(x, _previewUserViewModels, userId, isAdmin)));
             return Json(commentList);
         }
 
@@ -69,11 +70,13 @@ namespace FansPen.Web.Controllers
         [Route("SendComment")]
         public IActionResult SendComment(int id, string text)
         {
+            string userId = User.Identity.GetUserId();
             CommentScriptModel newComment = new CommentScriptModel(
-                Mapper.Map<CommentViewModel>(CommentRepository.SendComment(User.Identity.GetUserId(), id, text)),
-                Mapper.Map<List<PreviewUserViewModel>>(ApplicationUserRepository.GetList()),
-                User.Identity.GetUserId());
-            newComment.IsYour = false;
+                Mapper.Map<CommentViewModel>(CommentRepository.SendComment(userId, id, text)),
+                null, userId, false)
+            {
+                IsYour = false
+            };
             var connectionID = HttpContext.Request.Cookies["idClient"];
             _commentHubContext.Clients.AllExcept(connectionID).addMessage(newComment);
             newComment.IsYour = true;

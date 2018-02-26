@@ -89,10 +89,7 @@
 }
 
 #mySearch {
-    padding-top: 17px;
-}
-
-#mySearch input {
+    margin-top: 17px;
     border: 0;
     height: 26px;
     border-radius: 5px;
