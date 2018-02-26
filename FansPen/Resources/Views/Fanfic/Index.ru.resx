@@ -136,7 +136,7 @@
     <value>Комментарии</value>
   </data>
   <data name="Contents" xml:space="preserve">
-    <value>Оглавление:</value>
+    <value>Оглавление</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
@@ -148,7 +148,10 @@
     <value>Удаление</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Эпиграф:</value>
+    <value>Эпиграф</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Скачать</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>

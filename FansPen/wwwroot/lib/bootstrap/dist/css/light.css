@@ -1,4 +1,8 @@
-﻿#logoutForm:hover {
+﻿body {
+    background-image: url('/images/background/light1.png');
+}
+
+#logoutForm:hover {
     background: #2c3e50 !important;
 }
 
@@ -10,9 +14,6 @@
     color: white;
 }
 
-body {
-    background: #edeef0;
-}
 
 .edit-button-fanfic,
 .edit-button-fanfic:hover,
@@ -28,16 +29,80 @@ body {
 }
 
 .navbar-inverse {
-    background-color: #d2d9e3;
+    background-color: #babfc5;
     border-bottom: 1px solid #cbcfd2;
 }
 
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: #d2d9e3;
+    background-color: #babfc5;
 }
 
 .hr-profile {
     border-top: 1px solid #ccc;
+}
+
+.tag-count {
+    background: #677da3;
+}
+
+.tagButton {
+    background: #9cabbf;
+}
+
+.thumbnail .caption {
+    color: black;
+}
+
+#profileInfo {
+    background: white;
+    border: 1px solid #ecf0f1;
+    border-radius: 0 5px 5px 5px;
+    border-top: none;
+}
+
+#menuProfile {
+    margin-bottom: 0px;
+}
+
+.contents-fanfic:hover {
+    color: black;
+}
+
+.contents-fanfic p {
+    background: rgba(200,200,200,.1);
+    color: black;
+}
+
+.scrollbar {
+    border-left: 1px solid #ecf0f1;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#5ee7df), to(#b490ca));
+    background-image: -webkit-linear-gradient(bottom, #5ee7df 0%, #b490ca 100%);
+    background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+}
+
+.comment-fanfic {
+    box-shadow: 0 0 2px rgba(0,0,0,.5);
+}
+
+.comment-fanfic {
+    background: white;
 }

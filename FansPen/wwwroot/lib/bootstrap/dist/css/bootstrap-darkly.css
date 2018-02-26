@@ -1151,7 +1151,7 @@ hr {
   margin-top: 21px;
   margin-bottom: 21px;
   border: 0;
-  border-top: 1px solid #464545;
+  border-top: 1px solid #222222;
 }
 .sr-only {
   position: absolute;
@@ -4038,7 +4038,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #00bc8c;
+  color: #3498db;
   background-color: #222222;
   border: 1px solid #464545;
   border-bottom-color: transparent;
@@ -4627,24 +4627,17 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #aaaaaa;
   background-color: transparent;
 }
-.navbar-inverse .navbar-toggle {
-  border-color: #008966;
-}
-.navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
-  background-color: #008966;
-}
 .navbar-inverse .navbar-toggle .icon-bar {
   background-color: #ffffff;
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #009871;
+  border-color: #e2e3e3;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #00a379;
+  background-color: #222222;
   color: #ffffff;
 }
 @media (max-width: 767px) {

@@ -15,7 +15,7 @@
                             ${data.DataCreate}
                         </div>
                     </div><div class="col-xs-12 text-comment">
-                        <hr class="hr-comment">
+                        <hr class="hr-comment hr-profile">
                         ${text}
                     </div>
                     <div class="col-xs-12 text-right">

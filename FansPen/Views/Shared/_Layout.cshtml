@@ -48,17 +48,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div id="mobileLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FansPen</a></div>
+                <div id="mobileLogo"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/icons/logo.png" /></a></div>
             </div>
-            <div class="col-sm-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand" draggable="false">FansPen</a></div>
+            <div class="col-xs-2" id="deskLogo"><a href="/Fanfic?id=1234" class="navbar-brand" draggable="false"><img src="~/images/icons/logo.png" /></a></div>
             <div class="navbar-collapse collapse">
-
-                <div class="col-sm-5">
+                <div class="col-xs-5">
                     <form method="get" action="/Search" id="mySearch" role="search">
                         <input type="text" name="value" placeholder="@Localizer["Search"]">
                     </form>
                 </div>
-                <div id="themeBlock" class="col-sm-1">
+                <div id="themeBlock" class="col-xs-2 col-sm-1">
                     @{ var themeUrl = "";
                         if (Context.Request.Cookies["theme"] == "dark")
                         {
@@ -75,7 +74,7 @@
                         </form>
                     }
                 </div>
-                <div id="langBlock" class="col-sm-1">
+                <div id="langBlock" class="col-xs-2 col-sm-1">
                     @await Html.PartialAsync("_SelectLanguagePartial")
                 </div>
                 @await Html.PartialAsync("_LoginPartial")

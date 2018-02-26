@@ -7,11 +7,11 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<div id="LoginRegBlock" class="col-sm-3">
+<div id="LoginRegBlock" class="col-xs-2 col-sm-3 align-right-mobile">
     @if (SignInManager.IsSignedIn(User))
     {
         <ul class="nav navbar-nav">
-            <li class="dropdown">
+            <li class="dropdown" id="userDrop">
                 <a draggable="false" href="#" id="userIcon" class="dropdown-toggle" data-toggle="dropdown"><img id="headerAvatar" src="@Context.Request.Cookies["avatarUrl"]" draggable="false"/><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
                     <li><a href="/Profile?id=@UserManager.GetUserId(User)" draggable="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i> @UserManager.GetUserName(User)</a></li>

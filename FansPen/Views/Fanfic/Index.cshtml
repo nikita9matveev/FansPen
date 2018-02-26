@@ -12,11 +12,11 @@
 }
 
 <div class="contentOther">
-    <div class="col-sm-10 col-sm-offset-1 fanficBlock">
-
-        @if (UserManager.GetUserId(User) == Model.ApplicationUser.Id || User.IsInRole("admin")) {
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 fanficBlock">
+        @if (UserManager.GetUserId(User) == Model.ApplicationUser.Id || User.IsInRole("admin"))
+        {
             <div class="col-sm-1 col-sm-offset-10 col-xs-6 tool-bar-fanfic">
-                <a title="@Localizer["Edit"]" class="edit-button-fanfic" href="/FanficBuilder?fanficid=@Model.Id" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a title="@Localizer["Edit"]" class="edit-button-fanfic" href="/FanficBuilder?fanficid=@Model.Id"><i class="fa fa-pencil" aria-hidden="true"></i></a>
             </div>
             <div class="col-sm-1 col-xs-6 align-right-mobile tool-bar-fanfic">
                 <button title="@Localizer["Delete"]" class="button-initial" type="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -64,7 +64,7 @@
                 }
             </div>
             <br>
-            <form asp-area="" asp-controller="Fanfic" asp-action="ExportToPdf" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post" target="_blank">
+            <form style="padding-bottom: 20px" asp-area="" asp-controller="Fanfic" asp-action="ExportToPdf" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" asp-route-id="@Model.Id" method="post" target="_blank">
                 <button type="submit" class="btn btn-success">
                     <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
                     @Localizer["Download"]
@@ -72,15 +72,39 @@
             </form>
         </div>
         <div class="col-sm-6">
-            <h4>@Localizer["Description"]</h4>
-            <p class="description-fanfic">@Html.ToHTML(Model.Description)</p>
-            <h4>@Localizer["Contents"]</h4>
-            @foreach (var item in Model.Topics)
-            {
-                <a href="/Topic?id=@item.Id" class="contents-fanfic"><p><b>@Localizer["Chapter"] @item.Number. </b>@item.Name</p></a>
-            }
+            <ul class="nav nav-tabs" id="menuProfile">
+                <li class="active">
+                    <a href="#content" data-toggle="tab" aria-expanded="false">
+                        @Localizer["Contents"]
+                    </a>
+                </li>
+                <li>
+                    <a href="#description" data-toggle="tab" aria-expanded="true">
+                        @Localizer["Description"]
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="content">
+                    <div class="col-xs-12 scrollbar scrollbar-near-moon thin">
+                        <div class="force-overflow">
+                            @foreach (var item in Model.Topics)
+                            {
+                                <a href="/Topic?id=@item.Id" class="contents-fanfic"><p style="margin: 0 0 7.5px"><b>@Localizer["Chapter"] @item.Number. </b>@item.Name</p></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="description">
+                    <div class="col-xs-12 scrollbar scrollbar-near-moon thin">
+                        <div class="force-overflow">
+                            <p class="description-fanfic">@Html.ToHTML(Model.Description)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
         @* Comments block *@
         <div class="col-xs-12">
             <hr><div class="hidden" id="FanficId">@Model.Id</div>
@@ -92,14 +116,13 @@
         {
             <div class="col-xs-12 send-comment-fanfic">
                 <textarea id="commentText" placeholder="@Localizer["WriteComment"]" maxlength="1000" class="form-control" rows="2"></textarea>
-                <div class="">
+                <div>
                     <a id="sendButton" class="btn btn-success" disabled>@Localizer["Send"]</a>
                 </div>
             </div>
-            <div class="col-xs-12"><hr /></div>
+            <div class="col-xs-12"><hr class="hr-profile"/></div>
         }
-        <div class="col-xs-12 comment-div">
-        </div>
+        <div class="col-xs-12 comment-div"></div>
     </div>
 </div>
 
@@ -120,7 +143,7 @@
                     <input type="hidden" name="id" value="@Model.Id" />
                     <button class="btn btn-danger">@Localizer["Delete"]</button>
                 </form>
-                <button type="button" class="btn btn-default" data-dismiss="modal">@Localizer["Cancel"]</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">@Localizer["Cancel"]</button>
             </div>
         </div>
     </div>

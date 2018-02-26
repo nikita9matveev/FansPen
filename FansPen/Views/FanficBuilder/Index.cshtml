@@ -31,7 +31,7 @@
         <div class="col-sm-6">
             @* CATEGORY *@
             <div class="col-xs-12 margin-block-builder">
-                <select class="form-control min-border-input" id="categoryProfile">
+                <select class="form-control min-border-input categoryBuilder" id="categoryProfile" style="background: white">
                     <option>@Localizer["Category"]</option>
                     <option>@Localizer["Anime"]</option>
                     <option>@Localizer["Books"]</option>
@@ -76,7 +76,7 @@
             </div>
 
             <div class="col-xs-12">
-                <hr />
+                <hr class="hr-profile"/>
             </div>
             <div id="TopicList">
 
@@ -123,28 +123,30 @@
 
             @* BUTTON NEW TOPIC *@
             <div class="col-xs-12 margin-block-builder">
+                <div class="col-xs-12 margin-block-builder text-center">
+                    <a id="AddTopic" class="btn btn-block addChapter"><i class="fa fa-plus-circle" aria-hidden="true"></i> @Localizer["AddTopic"]</a>
+                </div>
+                <hr class="hr-profile"/>
                 @{
                     Regex regex = new Regex(@"fanficid");
                     MatchCollection matches = regex.Matches(Context.Request.QueryString.ToString());
                     if (matches.Count() == 0)
                     {
-                        <div class="col-sm-4 col-xs-12 margin-block-builder">
-                            <a id="SaveTopic" class="btn btn-block btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["Create"]</a>
+                        <div class="col-xs-6 margin-block-builder">
+                            <a id="SaveTopic" class="btn btn-block addChapter"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["Create"]</a>
                         </div>
                     }
                     else
                     {
-                        <div class="col-sm-4 col-xs-12 margin-block-builder">
-                            <a id="EditTopic" class="btn btn-block btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> @Localizer["SaveChanges"]</a>
+                        <div class="col-xs-6 margin-block-builder">
+                            <a id="EditTopic" class="btn btn-block addChapter"><i class="fa fa-floppy-o" aria-hidden="true"></i> @Localizer["SaveChanges"]</a>
                         </div>
                         @await Html.PartialAsync("_EditFanfic");
                     }
                 }
-                <div class="col-sm-4 col-xs-12 margin-block-builder">
-                    <a id="AddTopic" class="btn btn-block btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i> @Localizer["AddTopic"]</a>
-                </div>
-                <div class="col-sm-4 col-xs-12 margin-block-builder">
-                    <a id="CancelBuilder" class="btn btn-block btn-success"><i class="fa fa-ban" aria-hidden="true"></i> @Localizer["Cancel"]</a>
+                
+                <div class="col-xs-6 margin-block-builder">
+                    <a id="CancelBuilder" class="btn btn-block addChapter"><i class="fa fa-ban" aria-hidden="true"></i> @Localizer["Cancel"]</a>
                 </div>
             </div>
 

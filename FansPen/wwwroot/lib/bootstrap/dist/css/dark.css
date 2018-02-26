@@ -1,5 +1,5 @@
 ﻿body {
-    background-image: url('/images/background/1/spiration dark.png');
+    background-image: url('/images/background/dark6.png');
 }
 
 .navbar-inverse {
@@ -20,4 +20,83 @@ a, a:hover {
 
 .edit-button-fanfic, .edit-button-fanfic:hover, .edit-button-fanfic:active {
     color: white;
+}
+
+.navbar-inverse {
+    border-bottom: 1px solid #666666;
+    background-color: #222222 !important;
+}
+
+.well {
+    background-color: #222222 !important;
+}
+
+.tagButton {
+    background: #375a7f;
+}
+
+.tag-count {
+    background: #60667b;
+}
+
+#profileInfo {
+    background: #222222;
+    border: 1px solid #464545;
+    border-radius: 0 5px 5px 5px;
+    border-top: none;
+}
+
+.hr-profile {
+    border-top: 1px solid #848282;
+}
+
+#categoryProfile,
+#popOrNewProfile {
+    background-color: #222222;
+    color: #3498db;
+}
+
+.contents-fanfic:hover {
+    color: white;
+}
+
+.contents-fanfic p {
+    background: rgba(109, 109, 109, 0.2);
+    color: white;
+}
+
+.scrollbar {
+    border-left: 1px solid #464545;
+    border-bottom: 1px solid #464545;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#30cfd0), to(#330867));
+    background-image: -webkit-linear-gradient(bottom, #30cfd0 0%, #330867 100%);
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+
+.comment-fanfic {
+    box-shadow: 0 0 1px rgb(189, 189, 189);
+}
+
+.comment-fanfic {
+    background: #313131;
+}
+
+.addChapter {
+    background: rgba(228, 228, 228, 0.1);
 }

@@ -115,3 +115,7 @@ div.tagsinput {
 .tool-bar-builder {
     z-index: 100;
 }
+
+.categoryBuilder {
+    cursor: pointer;
+}

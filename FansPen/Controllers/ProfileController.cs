@@ -9,7 +9,6 @@ using System.Collections.Generic;
 
 namespace FansPen.Web.Controllers
 {
-    
     public class ProfileController : Controller
     {
         public ApplicationUserRepository ApplicationUserRepository;

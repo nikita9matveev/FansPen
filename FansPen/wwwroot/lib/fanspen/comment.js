@@ -97,7 +97,7 @@ function getComments() {
                         </div>
                     </div>` + your +
                     `<div class="col-xs-12 text-comment">
-                        <hr class="hr-comment">
+                        <hr class="hr-comment hr-profile">
                         ${text}
                     </div>
                     <div class="col-xs-12 text-right">
@@ -174,7 +174,7 @@ function sendComment() {
                     </div><div class="col-sm-1 col-xs-2 del-comment-button del${data.newComment.id}">
                     <div class="hidden">${data.newComment.id}</div><i class="fa fa-times" aria-hidden="true"></i></div>
                     <div class="col-xs-12 text-comment">
-                        <hr class="hr-comment">
+                        <hr class="hr-comment hr-profile">
                         ${text}
                     </div>
                     <div class="col-xs-12 text-right">

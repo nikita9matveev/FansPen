@@ -2,7 +2,12 @@
     #deskLogo {
         display: none;
     }
-
+    #langBlock button, #themeBlock button {
+        padding-top: 15px;
+    }
+    #userDrop {
+        padding-top: 5px;
+    }
     #mobileLogo {
         display: block;
     }
@@ -16,6 +21,19 @@
     #mobileLogo {
         display: none;
     }
+}
+
+#deskLogo a,
+#mobileLogo a {
+    padding-top: 12px;
+}
+
+#deskLogo a img{
+    width: 100%;
+}
+
+#mobileLogo a img{
+    width: 65%;
 }
 
 .navbar #LoginRegBlock {
@@ -46,13 +64,17 @@
         text-align: right;
         padding-top: 17px;
     }
+    #langBlock button, #themeBlock button {
+        background: initial;
+        border: 0;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 #langBlock button, #themeBlock button {
     background: initial;
     border: 0;
-    padding: 0;
-    margin: 0;
 }
 
 #langBlock img {
@@ -101,7 +123,7 @@
 }
 
 .nav > li > a:hover, .nav > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background: #fff;
+    
 }
 
 .dropdown {

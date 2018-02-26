@@ -89,7 +89,7 @@ function addTopic() {
                         <textarea id="TopicText${countForEvent}" placeholder="Topic text" class="form-control min-border-input topic-text-builder" rows="3"></textarea>
                     </div>
                     <div class="col-xs-12">
-                        <hr />
+                        <hr class="hr-profile"/>
                     </div>
                 </div>
     `);
