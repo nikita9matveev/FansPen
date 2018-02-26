@@ -93,7 +93,6 @@
     z-index: 500;
     color: white;
     width: 100%;
-    /*height: 100%;*/
     top: 35%;
 }
 
@@ -153,6 +152,10 @@
     word-wrap: break-word;
 }
 
+.addChapter {
+    overflow: hidden;
+}
+
 @media(max-height: 767px) {
     .align-right-mobile {
         text-align: right;
@@ -169,7 +172,6 @@
 }
 
 .force-overflow {
-    min-height: 450px;
     padding-top: 5px;
 }
 
@@ -249,7 +251,7 @@
 .scrollbar-info::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-    background-color: #33b5e5;
+    background-color: #3498db;
 }
 
 .scrollbar-default::-webkit-scrollbar-track {
