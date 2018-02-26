@@ -93,7 +93,7 @@ function getFanfics() {
                             '</div>' +
                         '</a>' +
                         '<div class="caption">' +
-                            '<p class="description-fanfic">' + data[i].description + '</p>' +
+                            '<div class="description-fanfic">' + data[i].description + '</div>' +
                             '<p>' +
                                 '<a href="/Category?value=' + data[i].category.name + '" class="categoryButton" role="button">' + localeText(data[i].category.name) + '</a>' +
                                 tagsStr +

@@ -1,5 +1,6 @@
 ﻿body {
-    background-image: url('/images/background/light1.png');
+    /*background-image: url('/images/background/light1.png');*/
+    background: #edeef0;
 }
 
 #logoutForm:hover {
@@ -29,7 +30,7 @@
 }
 
 .navbar-inverse {
-    background-color: #babfc5;
+    background-color: #9cabbf;
     border-bottom: 1px solid #cbcfd2;
 }
 

@@ -114,7 +114,7 @@ body {
 }
 
 .min-border-input:hover {
-    background: rgba(209, 209, 209, 0.65);
+    background: rgba(209, 209, 209, 0.15);
     cursor: text;
 }
 

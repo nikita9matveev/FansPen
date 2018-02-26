@@ -126,7 +126,7 @@
                     </div>
                 </a>
                 <div class="caption">
-                    <p class="description-fanfic">@Html.ToHTML(item.Description)</p>
+                    <div class="description-fanfic">@Html.ToHTML(item.Description)</div>
                     <p>
                         <a href="/Category?value=@item.Category.Name.ToString()" class="categoryButton" role="button" draggable="false">@Localizer[item.Category.Name]</a>
                         @foreach (var tag in item.Tags)
