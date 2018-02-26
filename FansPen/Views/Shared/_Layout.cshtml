@@ -78,7 +78,9 @@
                 <div id="langBlock" class="col-xs-2 col-sm-1">
                     @await Html.PartialAsync("_SelectLanguagePartial")
                 </div>
-                @await Html.PartialAsync("_LoginPartial")
+                <div class="row">
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
             </div>
         </div>
     </nav>

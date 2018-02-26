@@ -106,3 +106,11 @@
 .comment-fanfic {
     background: white;
 }
+
+.addChapter {
+    background: rgba(191, 190, 190, 0.55);
+}
+
+.addChapter:hover {
+    color: black !important;
+}
