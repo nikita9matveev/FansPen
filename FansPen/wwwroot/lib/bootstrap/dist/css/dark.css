@@ -89,3 +89,7 @@ a, a:hover {
     border-right: 0 !important;
     border-bottom: 1px solid #545454 !important;
 }
+
+.adminRules{
+    background: none;
+}
