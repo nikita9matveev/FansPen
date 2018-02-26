@@ -20,7 +20,7 @@
                     <li class="divider"></li>
                     <li>
                         <form class="formlink" asp-area="" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@string.Format("{0}://{1}{2}{3}", Context.Request.Scheme, Context.Request.Host, Context.Request.Path, Context.Request.QueryString)" method="post" id="logoutForm">
-                            <button type="submit" class="btnlink" draggable="false"><i class="fa fa-sign-out" aria-hidden="true"></i> @Localizer["Singout"]</button>
+                            <button type="submit" class="btn-block btnlink" draggable="false"><i class="fa fa-sign-out" aria-hidden="true"></i> @Localizer["Singout"]</button>
                         </form>
                     </li>
                 </ul>
