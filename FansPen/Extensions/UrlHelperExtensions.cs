@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FansPen.Web.Controllers;
 
 namespace Microsoft.AspNetCore.Mvc
@@ -17,13 +13,13 @@ namespace Microsoft.AspNetCore.Mvc
                 protocol: scheme);
         }
 
-        public static string ResetPasswordCallbackLink(this IUrlHelper urlHelper, string userId, string code, string scheme)
-        {
-            return urlHelper.Action(
-                action: nameof(AccountController.ResetPassword),
-                controller: "Account",
-                values: new { userId, code },
-                protocol: scheme);
-        }
+        //public static string ResetPasswordCallbackLink(this IUrlHelper urlHelper, string userId, string code, string scheme)
+        //{
+        //    return urlHelper.Action(
+        //        action: nameof(AccountController.ResetPassword),
+        //        controller: "Account",
+        //        values: new { userId, code },
+        //        protocol: scheme);
+        //}
     }
 }

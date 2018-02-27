@@ -142,12 +142,10 @@ namespace FansPen.Web.Controllers
                         ImgUrl = topic.ImgUrl,
                         AverageRating = 0
                     };
-                    //TopicRepository.AddTopic(newTopic);
                     FanficRepository.AddTopic(fanfic.Id, newTopic);
                 }
             }
             FanficRepository.SetAverageRatingById(fanfic.Id);
-
             List<FanficTagViewModel> fanficTag =
                 Mapper.Map<List<FanficTagViewModel>>(FanficTagRepository.GetFanficTagByFanficId(data.Id));
             foreach (var fanTag in fanficTag)
@@ -164,7 +162,6 @@ namespace FansPen.Web.Controllers
                     TagRepository.SubCountById(fanTag.TagId);
                 }
             }
-
             foreach (var tag in data.Tags)
             {
                 int idTag = TagRepository.AddOrNull(tag.Name);

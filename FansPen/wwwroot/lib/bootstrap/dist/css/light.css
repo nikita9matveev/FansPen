@@ -100,3 +100,10 @@
 .adminRules {
     background: none;
 }
+
+.fixed-left-button:hover,
+.fixed-read-button:hover,
+.fixed-right-button:hover,
+.fixed-top-button:hover {
+    background: #eaeaea !important;
+}

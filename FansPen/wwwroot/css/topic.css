@@ -129,14 +129,6 @@
     background: #f5f7fa;
 }
 
-.fixed-left-button:hover,
-.fixed-read-button:hover,
-.fixed-right-button:hover,
-.fixed-top-button:hover 
-{
-    background: #595a5d !important;
-}
-
 .fixed-left-button, .fixed-right-button {
     height: 100%;
 }

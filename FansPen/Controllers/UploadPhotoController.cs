@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FansPen.Domain.Models;
+﻿using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;

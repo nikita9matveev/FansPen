@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FansPen.Web.Models;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Http.Abstractions;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using FansPen.Web.Models.ViewModels;
 using AutoMapper;
 using FansPen.Domain.Models;
 using FansPen.Domain.Repository;
-using Nest;
-using Elasticsearch.Net;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.IO;
-using System.Threading;
 using FansPen.Web.Tools;
 
 namespace FansPen.Web.Controllers
@@ -33,7 +25,6 @@ namespace FansPen.Web.Controllers
         private HomeViewModel _homeModel { get; set; }
         static private List<FanficPreViewModel> _resultFanfics { get; set; }
         private FanficComparer _fanficComparer { get; set; }
-
         private const int SizeOfPackage = 10;
 
         public HomeController(ApplicationContext context)

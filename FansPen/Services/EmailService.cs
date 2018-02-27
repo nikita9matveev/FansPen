@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +17,6 @@ namespace FansPen.Web.Services
         public async Task SendEmailAsync(string email, string subject, string message)
         {
             var emailMessage = new MimeMessage();
-
             emailMessage.From.Add(new MailboxAddress("Администрация сайта", "dovgevgen@gmail.com"));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
@@ -28,13 +24,11 @@ namespace FansPen.Web.Services
             {
                 Text = message
             };
-
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.gmail.com", 465, true);
                 await client.AuthenticateAsync(Configuration["Email"], Configuration["Password"]);
                 await client.SendAsync(emailMessage);
-
                 await client.DisconnectAsync(true);
             }
         }

@@ -1,5 +1,3 @@
-using System;
-
 namespace FansPen.Web.Models
 {
     public class ErrorViewModel

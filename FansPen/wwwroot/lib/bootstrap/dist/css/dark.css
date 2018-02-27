@@ -101,3 +101,10 @@ a, a:hover {
 .dropdown ul.dropdown-menu {
     border: 1px solid #4c4646;
 }
+
+.fixed-left-button:hover,
+.fixed-read-button:hover,
+.fixed-right-button:hover,
+.fixed-top-button:hover {
+    background: #595a5d !important;
+}
