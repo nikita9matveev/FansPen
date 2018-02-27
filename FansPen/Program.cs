@@ -19,7 +19,7 @@ namespace FansPen.Web
     {
         public static void Main(string[] args)
         {
-            //BuildWebHost(args).Run();
+            BuildWebHost(args).Run();
             var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
@@ -43,6 +43,8 @@ namespace FansPen.Web
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseSetting("detailedErrors", "true")
+                .CaptureStartupErrors(true)
                 .Build();
     }
 }
