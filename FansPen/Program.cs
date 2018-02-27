@@ -45,6 +45,7 @@ namespace FansPen.Web
                 .UseStartup<Startup>()
                 .UseSetting("detailedErrors", "true")
                 .CaptureStartupErrors(true)
+                .UseIISIntegration()
                 .Build();
     }
 }
