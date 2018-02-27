@@ -34,12 +34,12 @@ namespace FansPen.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            //if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
                 services.AddDbContext<ApplicationContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
-            else
-                services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //else
+            //    services.AddDbContext<ApplicationContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.BuildServiceProvider().GetService<ApplicationContext>().Database.Migrate();
 

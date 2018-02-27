@@ -200,6 +200,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Migrations\20180227135052_init.cs" />
+    <Compile Include="Migrations\20180227135052_init.designer.cs">
+      <DependentUpon>20180227135052_init.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CategoryModel.cs" />
