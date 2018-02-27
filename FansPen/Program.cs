@@ -42,12 +42,9 @@ namespace FansPen.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 .UseSetting("detailedErrors", "true")
                 .CaptureStartupErrors(true)
-                .UseIISIntegration()
                 .Build();
     }
 }
