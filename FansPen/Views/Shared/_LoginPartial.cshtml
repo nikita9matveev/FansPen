@@ -12,7 +12,7 @@
     {
         <ul class="nav navbar-nav">
             <li class="dropdown" id="userDrop">
-                <a draggable="false" href="#" id="userIcon" class="dropdown-toggle" data-toggle="dropdown"><img id="headerAvatar" src="@Context.Request.Cookies["avatarUrl"]" draggable="false"/><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                <a draggable="false" href="#" id="userIcon" class="dropdown-toggle" data-toggle="dropdown"><img id="headerAvatar" src="@Context.Request.Cookies["avatarUrl"]" draggable="false" /><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
                     <li><a href="/Profile?id=@UserManager.GetUserId(User)" draggable="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i> @UserManager.GetUserName(User)</a></li>
                     <li class="divider"></li>
