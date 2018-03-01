@@ -134,12 +134,12 @@ namespace FansPen.Web.Controllers
                 WebClient User = new WebClient();
                 var destination = new Uri(string.Format("D:/home/site/repository/FansPen/wwwroot/pdf/tester1.pdf"));
                 Byte[] FileBuffer = User.DownloadData(destination);
-                if (FileBuffer != null)
-                {
+                //if (FileBuffer != null)
+                //{
                     Response.ContentType = "application/pdf";
                     Response.Headers.Add("content-length", FileBuffer.Length.ToString());
                     Response.Body.Write(FileBuffer, 0, FileBuffer.Length);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -148,7 +148,7 @@ namespace FansPen.Web.Controllers
             }
             finally
             {                
-                //System.IO.File.Delete(@"D:/home/site/repository/FansPen/wwwroot/pdf/tester1.pdf");
+                System.IO.File.Delete(@"D:/home/site/repository/FansPen/wwwroot/pdf/tester1.pdf");
             }            
             return RedirectPermanent(returnUrl);
         }
