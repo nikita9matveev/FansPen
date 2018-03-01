@@ -132,7 +132,8 @@ namespace FansPen.Web.Controllers
                 pdfDoc.Close();
                 wri.Close();
                 WebClient User = new WebClient();
-                Byte[] FileBuffer = User.DownloadData(@"D:/home/site/repository/FansPen/wwwroot/pdf/tester1.pdf");
+                var destination = new Uri(string.Format("D:/home/site/repository/FansPen/wwwroot/pdf/tester1.pdf"));
+                Byte[] FileBuffer = User.DownloadData(destination);
                 if (FileBuffer != null)
                 {
                     Response.ContentType = "application/pdf";
