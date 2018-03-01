@@ -2,6 +2,7 @@
     var chat = $.connection.comments;
 
     chat.client.addMessage = function (data) {
+        $('.commetEmpty').remove();
         var text = data.Text.replace('\n', '<br />');
         commentDiv.prepend(`<div class="col-xs-12 comment-fanfic">
                     <div class="col-sm-1 col-xs-2 avatar-comment-fanfic">
