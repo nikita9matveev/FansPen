@@ -147,7 +147,7 @@ namespace FansPen.Web.Controllers
             }
             finally
             {                
-                System.IO.File.Delete(@"D:/home/site/repository/FansPen/wwwroot/pdf/tester1.pdf");
+                //System.IO.File.Delete(@"D:/home/site/repository/FansPen/wwwroot/pdf/tester1.pdf");
             }            
             return RedirectPermanent(returnUrl);
         }
