@@ -24,5 +24,5 @@ Review Assistant
 - Bootsrap
 
 Базы данных:
-- SQL server
+- MS SQL server
 
