@@ -64,7 +64,7 @@ sendButton.click(function () {
 });
 
 $(document).scroll(function (event) {
-    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 1 && getCommentAjax && !endOfComments) {
+    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 5 && getCommentAjax && !endOfComments) {
         getCommentAjax = false;
         getComments();
     }
