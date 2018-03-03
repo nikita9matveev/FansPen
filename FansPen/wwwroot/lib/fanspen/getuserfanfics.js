@@ -30,7 +30,7 @@ function sortChanged() {
 }
 
 $(document).scroll(function () {
-    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 5
+    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 65
         && $('.nav-tabs').children().eq(1).hasClass('active') && !endOfList) {
         GetNext();
     }
