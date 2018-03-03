@@ -8,6 +8,7 @@ var getFanficsAjax = true;
 
 $(document).scroll(function (event) {
     if ($(window).scrollTop() >= $(document).height() - $(window).height() - 5 & getFanficsAjax && !end) {
+        alert("Event happend!");
         getFanficsAjax = false;
         getFanfics();
     }
