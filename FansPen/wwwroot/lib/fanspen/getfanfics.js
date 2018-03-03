@@ -7,7 +7,7 @@ if (path != '')
 var getFanficsAjax = true;
 
 $(document).scroll(function (event) {
-    $(".NewDiv").html($(window).scrollTop() + " / " + $(document).height() - $(window).height() - 5);
+    $(".NewDiv").text($(window).scrollTop() + " / " + ($(document).height() - $(window).height() - 5));
     if ($(window).scrollTop() >= $(document).height() - $(window).height() - 5 && getFanficsAjax && !end) {
         getFanficsAjax = false;
         getFanfics();
