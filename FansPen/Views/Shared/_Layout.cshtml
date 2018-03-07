@@ -6,20 +6,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="google-site-verification" content="WwZqE-Ibz3vVUKWT8KtZXmPjoYO6V6mWZooTCrF1RIM" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
 
-        @if (Context.Request.Cookies["theme"] == "dark")
-        {
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-darkly.css" />
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/dark.css" />
-        }
-        else
-        {
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/light.css" />
-        }
+    @if (Context.Request.Cookies["theme"] == "dark")
+    {
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-darkly.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/dark.css" />
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/light.css" />
+    }
 
     <link rel="stylesheet" asp-href-include="~/css/*.css" asp-append-version="true" />
 
