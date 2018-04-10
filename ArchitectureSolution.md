@@ -42,4 +42,10 @@
 1. Диаграмма компонентов. 
 ![alt text](https://github.com/nikita9matveev/FansPen/blob/master/Design/previous%20diagram.png)
 
+# Часть 2
+## As is architecture:
+1. Диаграмма компонентов. 
+![alt text](https://github.com/nikita9matveev/FansPen/blob/master/Design/After%20diagram.png)
 
+# Часть 3
+Как можно заметить, разработка приложения слегка отклонилась от запланированной концепции. Это связано с тем, что
