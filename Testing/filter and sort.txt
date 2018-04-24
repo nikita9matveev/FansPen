@@ -1,0 +1,9 @@
+Running 'FS'
+1.Trying to execute open on /Profile... Success
+2.Trying to find css=#deskLogo > a.navbar-brand > img... Success
+3.Trying to execute clickAt on //div[3]/div/div/div[2]/div/a/b with value 29,12... Success
+4.Trying to execute clickAt on //a[contains(text(),'Fanfics')] with value 27,0... Success
+5.Trying to execute clickAt on id=categoryProfile with value 76,24... Success
+6.Trying to execute select on id=categoryProfile with value label=Comics... Success
+7.Trying to execute clickAt on id=categoryProfile with value -513,-125... Success
+'FS' completed successfully
