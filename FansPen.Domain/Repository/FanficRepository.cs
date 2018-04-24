@@ -49,6 +49,17 @@ namespace FansPen.Domain.Repository
                 .OrderByDescending(x => x.CreateDate)
                 .ToList();
         }
+        
+        public List<Fanfic> GetItemByCategory(string category)
+        {
+            return _fanficEntity
+                .Include(x => x.Category)
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.FanficTags)
+                .Where(x => x.Category.Name == category)
+                .OrderByDescending(x => x.CreateDate)
+                .ToList();
+        }
 
         public List<Fanfic> GetItemByTags(string tag)
         {
