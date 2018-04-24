@@ -34,7 +34,7 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.ApplicationUser)
                 .Include(x => x.FanficTags)
                 .OrderByDescending(x => x.AverageRating)
-                .Where(x => x.CreateDate > DateTime.Now.AddDays(-5))
+                .Where(x => x.CreateDate > DateTime.Now.AddDays(-100))
                 .Take(size)
                 .ToList();
         }
@@ -75,15 +75,7 @@ namespace FansPen.Domain.Repository
                 .ToList();
         }
 
-        public List<Fanfic> GetNew()
-        {
-            return _fanficEntity
-                .Include(x => x.Category)
-                .Include(x => x.ApplicationUser)
-                .Include(x => x.FanficTags)
-                .OrderByDescending(x => x.CreateDate)
-                .ToList();
-        }
+        
 
         public Fanfic GetById(int id)
         {
