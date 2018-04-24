@@ -27,6 +27,17 @@ namespace FansPen.Domain.Repository
                 .Include(x => x.FanficTags).ToList();
         }
 
+        public List<Fanfic> GetItemByCategory(string category)
+        {
+            return _fanficEntity
+                .Include(x => x.Category)
+                .Include(x => x.ApplicationUser)
+                .Include(x => x.FanficTags)
+                .Where(x => x.Category.Name == category)
+                .OrderByDescending(x => x.CreateDate)
+                .ToList();
+        }
+
         public List<Fanfic> GetAllPopular(int size)
         {
             return _fanficEntity
@@ -36,17 +47,6 @@ namespace FansPen.Domain.Repository
                 .OrderByDescending(x => x.AverageRating)
                 .Where(x => x.CreateDate > DateTime.Now.AddDays(-5))
                 .Take(size)
-                .ToList();
-        }
-
-        public List<Fanfic> GetItemByCategory(string category)
-        {
-            return _fanficEntity
-                .Include(x => x.Category)
-                .Include(x => x.ApplicationUser)
-                .Include(x => x.FanficTags)
-                .Where(x => x.Category.Name == category)
-                .OrderByDescending(x => x.CreateDate)
                 .ToList();
         }
 
