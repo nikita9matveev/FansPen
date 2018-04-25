@@ -1,0 +1,30 @@
+Running 'Untitled'
+1.Trying to execute clickAt on css=div.col-xs-10 with value -1,20... Success
+2.Trying to find css=img.avatarImg... Failed:
+Playback aborted
+'Untitled' was aborted
+Running 'Filter and sort 2'
+1.Trying to execute clickAt on css=div.col-xs-10 with value -1,20... Success
+2.Trying to execute clickAt on css=img.avatarImg with value 25,17... Success
+3.Trying to execute clickAt on //a[contains(text(),'Fanfics')] with value 46,18... Success
+4.Trying to execute clickAt on id=categoryProfile with value 265,23... Success
+5.Trying to execute select on id=categoryProfile with value label=Games... Success
+6.Trying to execute clickAt on id=categoryProfile with value -513,-125... Success
+7.Trying to execute clickAt on id=popOrNewProfile with value 272,19... Success
+8.Trying to execute clickAt on id=popOrNewProfile with value -822,-125... Success
+9.Trying to execute clickAt on id=categoryProfile with value 173,16... Success
+10.Trying to execute select on id=categoryProfile with value label=Films... Success
+11.Trying to execute clickAt on id=categoryProfile with value -513,-125... Success
+12.Trying to execute clickAt on id=categoryProfile with value 110,15... Success
+13.Trying to execute select on id=categoryProfile with value label=Other... Success
+14.Trying to execute clickAt on id=categoryProfile with value -513,-125... Success
+15.Trying to execute clickAt on id=popOrNewProfile with value 200,26... Success
+16.Trying to execute clickAt on id=popOrNewProfile with value -822,-125... Success
+17.Trying to execute clickAt on id=popOrNewProfile with value 85,31... Success
+18.Trying to execute select on id=popOrNewProfile with value label=By mark... Success
+19.Trying to execute clickAt on id=popOrNewProfile with value -831,-125... Success
+20.Trying to execute clickAt on id=popOrNewProfile with value 90,19... Success
+21.Trying to execute select on id=popOrNewProfile with value label=New... Success
+22.Trying to execute clickAt on id=popOrNewProfile with value -831,-125... Success
+23.Trying to execute open on /... Success
+'Filter and sort 2' completed successfully
