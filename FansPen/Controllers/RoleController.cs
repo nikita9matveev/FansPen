@@ -54,5 +54,11 @@ namespace FansPen.Web.Controllers
                 ApplicationUser admin = await _userManager.FindByNameAsync("admin");
                 CommentRepository.DeleteAllUserComments(id);
                 RatingRepository.DeleteUserRating(id);
+                FanficRepository.SetDefaultUser(id, admin.Id);
+                ApplicationUserRepository.DeleteUser(id);
+                return Redirect("/");
+            }
+            return NotFound();
+        }
     }
 }
