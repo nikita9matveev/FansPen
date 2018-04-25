@@ -1,0 +1,14 @@
+Running 'Gif load'
+1.Trying to execute open on /... Success
+2.Trying to execute clickAt on css=img.avatarImg with value 12,21... Success
+3.Trying to execute clickAt on id=avatarUser with value 219,133... Success
+4.Trying to execute selectFrame on index=0... Success
+5.Trying to execute clickAt on css=li.source.image_search with value 34,35... Success
+6.Trying to execute selectFrame on index=0... Success
+7.Trying to execute clickAt on css=input.text-field. with value 117,18... Success
+8.Trying to execute type on css=input.text-field. with value gif... Success
+9.Trying to execute clickAt on css=a.button.search-button with value 37,17... Success
+10.Trying to execute clickAt on //img[contains(@src,'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rotating_earth_%28large%29.gif/200px-Rotating_earth_%28large%29.gif')] with value 57,40... Success
+11.Trying to execute selectFrame on relative=parent... Success
+12.Trying to execute clickAt on css=a.button.upload_cropped with value 78,17... Success
+'Gif load' completed successfully
