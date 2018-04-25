@@ -1,0 +1,10 @@
+Running 'Ban'
+1.Trying to execute clickAt on css=img.avatarImg with value 11,17... Success
+2.Trying to execute clickAt on css=i.fa.fa-lock with value 2,5... Success
+3.Trying to execute clickAt on id=headerAvatar with value 17,13... Success
+4.Trying to execute clickAt on css=button.btn-block.btnlink with value 52,13... Success
+5.Trying to execute clickAt on //a[contains(text(),'Sing in')] with value 28,11... Success
+6.Trying to execute clickAt on xpath=(//input[@name='provider'])[2] with value 15,14... Success
+7.Trying to find css=button.close... Success
+8.Trying to execute open on /... Success
+'Ban' completed successfully
