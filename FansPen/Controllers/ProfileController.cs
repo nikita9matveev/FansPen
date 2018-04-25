@@ -33,7 +33,33 @@ namespace FansPen.Web.Controllers
                 ));
         }
 
-        
+        [HttpPost]
+        [Route("SetFirstName")]
+        public void SetFirstName(string id, string value)
+        {
+            ApplicationUserRepository.SetFirstNameById(id, value);
+        }
+
+        [HttpPost]
+        [Route("SetSecondName")]
+        public void SetSecondName(string id, string value)
+        {
+            ApplicationUserRepository.SetSecondNameById(id, value);
+        }
+
+        [HttpPost]
+        [Route("SetSex")]
+        public void SetSex(string id, string value)
+        {
+            ApplicationUserRepository.SetSexById(id, value);
+        }
+
+        [HttpPost]
+        [Route("SetAboutMe")]
+        public void SetAboutMe(string id, string value)
+        {
+            ApplicationUserRepository.SetAboutMeById(id, value);
+        }
 
         [HttpGet]
         [Route("GetUserFanfics")]
