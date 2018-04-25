@@ -60,5 +60,25 @@ namespace FansPen.Web.Controllers
             }
             return NotFound();
         }
+        
+        
+         [HttpPost]
+        public async Task<IActionResult> SetBan(string id, string returnUrl)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                if (await _userManager.IsInRoleAsync(user, "ban"))
+                {
+                    await _userManager.RemoveFromRoleAsync(user, "ban");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "ban");
+                }
+                return RedirectPermanent(returnUrl);
+            }
+            return NotFound();
+        }
     }
 }
