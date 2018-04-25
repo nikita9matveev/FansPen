@@ -1,0 +1,14 @@
+Running 'Admin'
+1.Trying to execute clickAt on css=img.avatarImg with value 7,21... Success
+2.Trying to execute clickAt on css=i.fa.fa-check-circle with value 1,5... Success
+3.Trying to execute clickAt on id=headerAvatar with value 19,12... Success
+4.Trying to execute clickAt on css=button.btn-block.btnlink with value 58,11... Success
+5.Trying to execute clickAt on //a[contains(text(),'Sing in')] with value 16,7... Success
+6.Trying to execute clickAt on xpath=(//input[@name='provider'])[2] with value 20,22... Success
+7.Trying to execute clickAt on //img[contains(@src,'http://res.cloudinary.com/fanspen/image/upload/t_avatarFanfic/vphr6ro2od7whwdcb3cc.png')] with value 18,14... Success
+8.Trying to execute clickAt on xpath=(//button[@type='submit'])[5] with value 26,20... Success
+9.Trying to execute clickAt on css=i.fa.fa-check-circle with value 8,8... Success
+10.Trying to execute clickAt on css=i.fa.fa-times-circle with value 8,8... Success
+11.Trying to execute clickAt on css=i.fa.fa-unlock with value 10,5... Success
+12.Trying to execute open on /... Success
+'Admin' completed successfully
