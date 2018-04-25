@@ -44,5 +44,15 @@ namespace FansPen.Web.Controllers
             }
             return NotFound();
         }
-      }
-  }
+        
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id, string returnUrl)
+        {
+            ApplicationUser userForDelete = await _userManager.FindByIdAsync(id);
+            if (userForDelete != null)
+            {
+                ApplicationUser admin = await _userManager.FindByNameAsync("admin");
+                CommentRepository.DeleteAllUserComments(id);
+                RatingRepository.DeleteUserRating(id);
+    }
+}
