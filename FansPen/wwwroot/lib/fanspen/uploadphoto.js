@@ -22,4 +22,41 @@ function uploadPhoto() {
                 headerAvatar = headerAvatar.substr(0, 47) + "t_avatarHead" + headerAvatar.substr(58, 22) + "png";
                 var avatarMain = result[0].url;
                 avatarMain = avatarMain.substr(0, 47) + "t_avatarMain" + avatarMain.substr(58, 22) + "png";
+        $.ajax({
+                    url: "/UploadPhoto",
+                    method: "POST",
+                    data: {
+                        id: idUser,
+                        avatarUrl: avatarMain
+                    },
+                    success: function (data) {
+                        console.log("Ny zdarova");
+                    },
+                    dataType: "json",
+                    error: function () {
+                        $('#avatarUser').attr('src', avatarMain);
+                        $.ajax({
+                            url: "/GetIdCurrentUser",
+                            success: function (data) {
+                                if (data.id == idUser) {
+                                    $('#headerAvatar').attr('src', headerAvatar);
+                                    var date = new Date(new Date().getTime() + 60 * 100000000);
+                                    document.cookie = "avatarUrl=" + headerAvatar + "; path=/; expires=" + date.toUTCString();
+                                }
+                            },
+                            dataType: 'json',
+                            error: function () {
+                                alert("Error while retrieving data!");
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                $this.children().children().eq(1).attr('src', result[0].url.substr(0, 47) + "t_FanficPDF" + result[0].url.substr(58, 22) + "jpg");
+                $this.children().eq(0).removeClass('deletable');
+                $this.children().children().eq(0).hide();
+            }
+
+        });
 }
