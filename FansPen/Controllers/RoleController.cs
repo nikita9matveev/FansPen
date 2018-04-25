@@ -1,0 +1,48 @@
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using FansPen.Domain.Models;
+using FansPen.Domain.Repository;
+
+namespace FansPen.Web.Controllers
+{
+    public class RoleController : Controller
+    {
+        RoleManager<IdentityRole> _roleManager;
+        UserManager<ApplicationUser> _userManager;
+        public FanficRepository FanficRepository;
+        public CommentRepository CommentRepository;
+        public RatingRepository RatingRepository;
+        public LikeRepository LikeRepository;
+        public ApplicationUserRepository ApplicationUserRepository;
+        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, ApplicationContext context)
+        {
+            FanficRepository = new FanficRepository(context);
+            CommentRepository = new CommentRepository(context);
+            RatingRepository = new RatingRepository(context);
+            LikeRepository = new LikeRepository(context);
+            ApplicationUserRepository = new ApplicationUserRepository(context);
+            _roleManager = roleManager;
+            _userManager = userManager;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetAdmin(string returnUrl, string id)
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                if (await _userManager.IsInRoleAsync(user, "admin"))
+                {
+                    await _userManager.RemoveFromRoleAsync(user, "admin");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(user, "admin");
+                }
+                return RedirectPermanent(returnUrl);
+            }
+            return NotFound();
+        }
+      }
+  }
