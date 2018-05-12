@@ -30,6 +30,6 @@ FansPen - draw a new way
 
 ##Ссылки на лабораторные работы:
 - [Архитектурное решение](./ArchitectureSolution.md)
-- [Парное программирование](./pair-prog.md)
-- [Технический долг](./Technical-debt.md)
+- [Парное программирование](./pair%20prog.md)
+- [Технический долг](./Technical%20debt.md)
 - [Исправление ГУИ](./UX.md)
