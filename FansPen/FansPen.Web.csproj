@@ -10,7 +10,7 @@
     <PackageReference Include="AspNet.Security.OAuth.VK" Version="0.0.1" />
     <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
-    <PackageReference Include="bootstrap" Version="4.0.0" />
+    <PackageReference Include="bootstrap" Version="4.3.1" />
     <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
     <PackageReference Include="Cloudinary.Core.Sync" Version="1.31.0" />
     <PackageReference Include="CloudinaryDotNet" Version="1.1.1" />
